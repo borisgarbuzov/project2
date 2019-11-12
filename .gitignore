@@ -1,0 +1,11 @@
+output/
+__pycache__/
+*.pdf
+*.csv
+*.jpeg
+*.jpg
+*.gz
+*.txt
+*.log
+*.xml
+*.svg
