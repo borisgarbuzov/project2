@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def first_use_case_plot(sample_size_array, newey_west_array,
-                        threshold_array, par_list):
+                        threshold_array, true_array, par_list):
 
     # create directory for output if doesn't exist
     if not os.path.exists('output'):
@@ -23,6 +23,8 @@ def first_use_case_plot(sample_size_array, newey_west_array,
              label = 'Newey-West')
     plt.plot(sample_size_array, threshold_array, color = 'red',
              label = 'Threshold')
+    plt.plot(sample_size_array, true_array, color = "black", linewidth = 2,
+             label = 'True value')
 
     plt.xlabel('sample size')
     plt.ylabel('value')
@@ -34,6 +36,6 @@ def first_use_case_plot(sample_size_array, newey_west_array,
     plt.tight_layout()
 
     # add subtitle on our plot
-    plt.text(x = 5000, y = -1, s = caption_text, ha='center', va='center')
+    #plt.text(x = 5000, y = -0.2, s = caption_text, ha='center', va='center')
 
     plt.savefig(file_name, dpi = 300, bbox_inches = 'tight')

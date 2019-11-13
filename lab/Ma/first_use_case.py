@@ -19,6 +19,8 @@ def first_use_case(sample_size_min, sample_size_max, sample_size_by,
                                   stop = sample_size_max,
                                   step = sample_size_by)
 
+    true_array = np.full(shape = len(sample_size_array), fill_value = mean)
+
     # create 2 empty arrays for our estimations
     newey_west_array = np.full(shape = len(sample_size_array),
                                fill_value = np.nan)
@@ -40,6 +42,7 @@ def first_use_case(sample_size_min, sample_size_max, sample_size_by,
     first_use_case_plot(sample_size_array = sample_size_array,
                         newey_west_array = newey_west_array,
                         threshold_array = threshold_array,
+                        true_array = true_array,
                         par_list = par_list)
 
 if __name__ == '__main__':
