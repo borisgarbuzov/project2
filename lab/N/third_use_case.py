@@ -26,6 +26,7 @@ def newey_west(sample: np.array) -> float:
 
 def generate_MA1(sample_size: int, coef=1):
     noise = np.random.normal(size=sample_size)
+    print("noise = ", noise)
     ma1 = np.zeros(sample_size)
 
     for i in range(sample_size):
@@ -34,14 +35,14 @@ def generate_MA1(sample_size: int, coef=1):
     return ma1
 
 
-def compute_MSE(sample1: np.array, sample2: np.array) -> float:
-    return float(mean_squared_error(sample1, sample2))
+def compute_MSE(sample: np.array, true_value: float) -> float:
+    true_array = np.full(shape = sample.size, fill_value=true_value)
+    return float(mean_squared_error(sample, true_array))
 
 
 def plot_third_use_case(sample_size_array, threshold_MSE_array, newey_west_MSE_array):
     xs = sample_size_array
     fig = plt.figure()
-    plt.xkcd()
     plt.plot(xs, threshold_MSE_array, xs, threshold_MSE_array, 'ro',  color='green')
     plt.plot(xs, newey_west_MSE_array, xs, newey_west_MSE_array, 'ro', color='red')
     plt.grid()
@@ -62,8 +63,7 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
     sample_size_array = np.arange(start=sample_size_min, stop=sample_size_max, step=sample_size_by)
 
     # идеальный массив чисел для использования в функции precision
-    ideal_array = list(np.ones(replications))
-
+    true_value = 0
     newey_west_MSE_array = np.full(shape=len(sample_size_array), fill_value=np.nan)
     threshold_MSE_array = np.full(shape=len(sample_size_array), fill_value=np.nan)
 
@@ -79,8 +79,8 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
             threshold_array[i] = threshold(sample=sample)
             newey_west_array[i] = newey_west(sample=sample)
 
-        threshold_MSE_array[j] = compute_MSE(ideal_array, threshold_array)
-        newey_west_MSE_array[j] = compute_MSE(ideal_array, newey_west_array)
+        threshold_MSE_array[j] = compute_MSE(threshold_array, true_value)
+        newey_west_MSE_array[j] = compute_MSE(newey_west_array, true_value)
         j += 1
 
     print(threshold_MSE_array)
@@ -91,3 +91,6 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
 if __name__ == '__main__':
     third_use_case(sample_size_min=100, sample_size_max=1000, sample_size_by=100, replications=3, sigma=2, model='MA1',
                    coef=1)
+    # my_ma1 = generate_MA1(sample_size = 3, coef=1)
+    # print(my_ma1)
+    
