@@ -1,67 +1,40 @@
 import os
 import re
 import matplotlib.pyplot as plt
-from itertools import cycle
 
 
-def second_use_case_plot(sample_size_array, newey_west_array,
-                         threshold_array, true_array, par_list):
+def second_use_case_plot(sample_size_array, hat_double_array, true_array,
+                         est_type, par_list):
     # create directory for output if doesn't exist
     if not os.path.exists('output'):
         os.makedirs('output')
 
-    # prepare par_list for subtitle
-    symbols = re.compile(r'[{\'\'}]', flags = re.UNICODE)
-    caption_text = symbols.sub("", str(par_list)).replace(':', ' =')
-
-    lines = ["-", "--", "-.", ":", "."]
-    linecycler = cycle(lines)
+    # get values out of par_list and make it string
+    caption = ""
+    for i, key in enumerate(par_list):
+        caption += str(key) + " = " + str(par_list[key]) + " "
+        if i % 3 == 0 and i != 0:
+            caption += "\n"
 
     plt.style.use('seaborn')
 
     # Newey-West
-    file_name_newey_west = 'output/second case plot NW ' + str(par_list).replace(': ', '=') + '.png'
+    file_name = 'output/plot for ' + est_type + str(par_list).replace(': ', '=') + '.png'
 
-    for row in range(len(newey_west_array)):
-        plt.plot(sample_size_array, newey_west_array[row, :], color = "blue")
+    for row in range(len(hat_double_array)):
+        plt.plot(sample_size_array, hat_double_array[row, :])
 
     plt.plot(sample_size_array, true_array, color = "black", linewidth = 2,
              label = 'True value')
 
-    plt.xlabel('sample size')
+    plt.xlabel('sample size\n' + caption)
     plt.ylabel('value')
-    plt.title('Plot for second use case Newey-West')
+    plt.title('Plot for ' +  est_type)
 
     plt.legend(framealpha = 1, frameon = False)
 
     plt.tight_layout()
 
-    # add subtitle on our plot
-    #plt.text(x = 5000, y = -0.2, s = caption_text, ha='center', va='center')
-
-    plt.savefig(file_name_newey_west, dpi = 300, bbox_inches = 'tight')
+    plt.savefig(file_name, dpi = 300, bbox_inches = 'tight')
 
     plt.close()
-
-    # Threshold
-    file_name_threshold = 'output/second case plot Threshold ' + str(par_list).replace(': ', '=') + '.png'
-
-    for row in range(len(threshold_array)):
-        plt.plot(sample_size_array, threshold_array[row, :], color = 'blue',
-                 linestyle = next(linecycler))
-
-    plt.plot(sample_size_array, true_array, color = "black", linewidth = 2,
-             label = 'True value')
-
-    plt.xlabel('sample size')
-    plt.ylabel('value')
-    plt.title('Plot for second use case Threshold')
-
-    plt.legend(framealpha = 1, frameon = False)
-
-    plt.tight_layout()
-
-    # add subtitle on our plot
-    #plt.text(x = 5000, y = -0.2, s = caption_text, ha='center', va='center')
-
-    plt.savefig(file_name_threshold, dpi = 300, bbox_inches = 'tight')

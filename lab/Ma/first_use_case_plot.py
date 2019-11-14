@@ -13,9 +13,12 @@ def first_use_case_plot(sample_size_array, newey_west_array,
     # create file name for plot
     file_name = 'output/plot case one ' + str(par_list).replace(': ', '=') + '.png'
 
-    # prepare par_list for subtitle
-    symbols = re.compile(r'[{\'\'}]', flags = re.UNICODE)
-    caption_text = symbols.sub("", str(par_list)).replace(':', ' =')
+    # get values out of par_list and make it string
+    caption = ""
+    for i, key in enumerate(par_list):
+        caption += str(key) + " = " + str(par_list[key]) + " "
+        if i % 3 == 0 and i != 0:
+            caption += "\n"
 
     plt.style.use('seaborn')
 
@@ -26,7 +29,7 @@ def first_use_case_plot(sample_size_array, newey_west_array,
     plt.plot(sample_size_array, true_array, color = "black", linewidth = 2,
              label = 'True value')
 
-    plt.xlabel('sample size')
+    plt.xlabel('sample size\n' + caption)
     plt.ylabel('value')
     plt.title('Plot for first use case')
 
@@ -35,7 +38,6 @@ def first_use_case_plot(sample_size_array, newey_west_array,
 
     plt.tight_layout()
 
-    # add subtitle on our plot
-    #plt.text(x = 5000, y = -0.2, s = caption_text, ha='center', va='center')
-
     plt.savefig(file_name, dpi = 300, bbox_inches = 'tight')
+
+    plt.close()

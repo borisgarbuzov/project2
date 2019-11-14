@@ -20,25 +20,35 @@ def second_use_case(sample_size_min, sample_size_max, sample_size_by,
 
     true_array = np.full(shape = len(sample_size_array), fill_value = mean)
 
-    newey_west_array = np.full(shape = (replications, len(sample_size_array)),
-                               fill_value = np.nan)
-    threshold_array = np.full(shape = (replications, len(sample_size_array)),
-                              fill_value = np.nan)
+    newey_west_double_array = np.full(shape = (replications,
+                                     len(sample_size_array)),
+                                     fill_value = np.nan)
+    threshold_double_array = np.full(shape = (replications,
+                                     len(sample_size_array)),
+                                     fill_value = np.nan)
 
     for sample_size_index in range(0, sample_size_array.size):
         for replication in range(replications):
             sample = generate(mean = mean, sigma = sigma,
                               sample_size = sample_size_array[sample_size_index])
-            newey_west_array[replication, sample_size_index] = newey_west_estimator(
+            newey_west_double_array[replication, sample_size_index] = newey_west_estimator(
                 sample = sample)
-            threshold_array[replication, sample_size_index] = threshold_estimator(
+            threshold_double_array[replication, sample_size_index] = threshold_estimator(
                 sample = sample)
 
-    # plot graph for second case
+    # plot Newey-West
     second_use_case_plot(sample_size_array = sample_size_array,
-                         newey_west_array = newey_west_array,
-                         threshold_array = threshold_array,
-                         true_array = true_array, par_list = par_list)
+                         hat_double_array = newey_west_double_array,
+                         true_array = true_array,
+                         est_type = "Newey-West",
+                         par_list = par_list)
+
+    # plot Threshold
+    second_use_case_plot(sample_size_array = sample_size_array,
+                         hat_double_array = threshold_double_array,
+                         true_array = true_array,
+                         est_type = "Threshold",
+                         par_list = par_list)
 
 
 if __name__ == '__main__':
