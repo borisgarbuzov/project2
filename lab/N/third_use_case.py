@@ -25,12 +25,11 @@ def newey_west(sample: np.array) -> float:
 
 
 def generate_MA1(sample_size: int, coef=1):
-    noise = np.random.normal(size=sample_size)
-    print("noise = ", noise)
+    noise = np.random.normal(size=sample_size+1)
     ma1 = np.zeros(sample_size)
 
     for i in range(sample_size):
-        ma1[i - 1] = noise[i] + coef * noise[i - 1]
+        ma1[i] = noise[i + 1] + coef * noise[i]
 
     return ma1
 
@@ -83,14 +82,9 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
         newey_west_MSE_array[j] = compute_MSE(newey_west_array, true_value)
         j += 1
 
-    print(threshold_MSE_array)
-    print(newey_west_MSE_array)
     plot_third_use_case(sample_size_array, threshold_MSE_array, newey_west_MSE_array)
 
 
 if __name__ == '__main__':
     third_use_case(sample_size_min=100, sample_size_max=1000, sample_size_by=100, replications=3, sigma=2, model='MA1',
                    coef=1)
-    # my_ma1 = generate_MA1(sample_size = 3, coef=1)
-    # print(my_ma1)
-    
