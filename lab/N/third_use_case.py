@@ -59,7 +59,7 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
                 "model": model,
                 "coef": coef}
 
-    sample_size_array = np.arange(start=sample_size_min, stop=sample_size_max, step=sample_size_by)
+    sample_size_array = np.arange(start=sample_size_min, stop=sample_size_max + 1, step=sample_size_by)
 
     # идеальный массив чисел для использования в функции precision
     true_value = 0
