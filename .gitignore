@@ -1,8 +1,10 @@
 output/
 __pycache__/
+.idea/
 *.pdf
 *.csv
 *.jpeg
+.png
 *.jpg
 *.gz
 *.txt

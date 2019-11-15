@@ -1,5 +1,4 @@
 import os
-import re
 import matplotlib.pyplot as plt
 
 
@@ -11,9 +10,9 @@ def second_use_case_plot(sample_size_array, hat_double_array, true_array,
 
     # get values out of par_list and make it string
     caption = ""
-    for i, key in enumerate(par_list):
+    for i, key in enumerate(par_list, start=1):
         caption += str(key) + " = " + str(par_list[key]) + " "
-        if i % 3 == 0 and i != 0:
+        if i % 3 == 0:
             caption += "\n"
 
     plt.style.use('seaborn')
@@ -24,17 +23,17 @@ def second_use_case_plot(sample_size_array, hat_double_array, true_array,
     for row in range(len(hat_double_array)):
         plt.plot(sample_size_array, hat_double_array[row, :])
 
-    plt.plot(sample_size_array, true_array, color = "black", linewidth = 2,
-             label = 'True value')
+    plt.plot(sample_size_array, true_array, color="black", linewidth=2,
+             label='True value')
 
     plt.xlabel('sample size\n' + caption)
     plt.ylabel('value')
-    plt.title('Plot for ' +  est_type)
+    plt.title('Plot for ' + est_type)
 
-    plt.legend(framealpha = 1, frameon = False)
+    plt.legend(framealpha=1, frameon=False)
 
     plt.tight_layout()
 
-    plt.savefig(file_name, dpi = 300, bbox_inches = 'tight')
+    plt.savefig(file_name, dpi=300, bbox_inches='tight')
 
     plt.close()
