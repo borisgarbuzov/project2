@@ -14,6 +14,29 @@ methods = {NW, T}
 import numpy as np
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
+from abc import ABC, abstractmethod
+
+
+class TimeSeries(ABC):
+
+    @abstractmethod
+    def generate(self):
+        pass
+
+
+class MA1(TimeSeries):
+
+    def __init__(self, sample_size, coef=1):
+        self.sample_size = sample_size
+        self.coef = coef
+        self.sample = np.zeros(self.sample_size)
+        self.generate()
+
+    def generate(self):
+        noise = np.random.normal(size=self.sample_size + 1)
+        for i in range(self.sample_size):
+            self.sample[i] = noise[i + 1] + self.coef * noise[i]
+        return self
 
 
 def threshold(sample: np.array) -> float:
@@ -24,14 +47,14 @@ def newey_west(sample: np.array) -> float:
     return float(np.median(sample))
 
 
-def generate_MA1(sample_size: int, coef=1):
-    noise = np.random.normal(size=sample_size+1)
-    ma1 = np.zeros(sample_size)
-
-    for i in range(sample_size):
-        ma1[i] = noise[i + 1] + coef * noise[i]
-
-    return ma1
+# def generate_MA1(sample_size: int, coef=1):
+#     noise = np.random.normal(size=sample_size+1)
+#     ma1 = np.zeros(sample_size)
+#
+#     for i in range(sample_size):
+#         ma1[i] = noise[i + 1] + coef * noise[i]
+#
+#     return ma1
 
 
 def compute_MSE(sample: np.array, true_value: float) -> float:
@@ -73,7 +96,7 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
         threshold_array = np.full(shape=replications, fill_value=np.nan)
 
         for i in range(replications):
-            sample = generate_MA1(sample_size, coef=coef)
+            sample = MA1(sample_size=sample_size).sample
 
             threshold_array[i] = threshold(sample=sample)
             newey_west_array[i] = newey_west(sample=sample)
@@ -86,5 +109,5 @@ def third_use_case(sample_size_min, sample_size_max, sample_size_by, replication
 
 
 if __name__ == '__main__':
-    third_use_case(sample_size_min=100, sample_size_max=1000, sample_size_by=100, replications=3, sigma=2, model='MA1',
+    third_use_case(sample_size_min=1000, sample_size_max=10000, sample_size_by=1000, replications=5, sigma=2, model='MA1',
                    coef=1)
