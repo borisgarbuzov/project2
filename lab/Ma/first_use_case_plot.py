@@ -15,9 +15,11 @@ def first_use_case_plot(sample_size_array, newey_west_array,
     # get values out of par_list and make it string
     caption = ""
     for i, key in enumerate(par_list, start=1):
-        caption += str(key) + " = " + str(par_list[key]) + " "
+        caption += str(key) + " = " + str(par_list[key])
         if i % 3 == 0:
             caption += "\n"
+        elif i != len(par_list):
+            caption += ", "
 
     plt.style.use('seaborn')
 

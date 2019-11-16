@@ -11,14 +11,18 @@ def second_use_case_plot(sample_size_array, hat_double_array, true_array,
     # get values out of par_list and make it string
     caption = ""
     for i, key in enumerate(par_list, start=1):
-        caption += str(key) + " = " + str(par_list[key]) + " "
+        caption += str(key) + " = " + str(par_list[key])
         if i % 3 == 0:
             caption += "\n"
+        elif i != len(par_list):
+            caption += ", "
 
     plt.style.use('seaborn')
 
     # Newey-West
-    file_name = 'output/plot for ' + est_type + str(par_list).replace(': ', '=') + '.png'
+    file_name = 'output/plot for ' + est_type + str(par_list).replace(': ',
+                                                                      '=') + \
+                '.png'
 
     for row in range(len(hat_double_array)):
         plt.plot(sample_size_array, hat_double_array[row, :])

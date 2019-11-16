@@ -18,6 +18,8 @@ def first_use_case(sample_size_min, sample_size_max, sample_size_by,
     sample_size_array = np.arange(start=sample_size_min,
                                   stop=sample_size_max,
                                   step=sample_size_by)
+    sample_size_array = np.append(sample_size_array, sample_size_array[-1] +
+                                  sample_size_by)
 
     true_array = np.full(shape=len(sample_size_array), fill_value=mean)
 
@@ -47,7 +49,7 @@ def first_use_case(sample_size_min, sample_size_max, sample_size_by,
 
 
 if __name__ == '__main__':
-    first_use_case(sample_size_min=1000,
+    first_use_case(sample_size_min=1005,
                    sample_size_max=10000,
                    sample_size_by=1000,
                    mean=0,

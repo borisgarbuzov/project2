@@ -17,6 +17,8 @@ def second_use_case(sample_size_min, sample_size_max, sample_size_by,
     sample_size_array = np.arange(start=sample_size_min,
                                   stop=sample_size_max,
                                   step=sample_size_by)
+    sample_size_array = np.append(sample_size_array, sample_size_array[-1] +
+                                  sample_size_by)
 
     true_array = np.full(shape=len(sample_size_array), fill_value=mean)
 
