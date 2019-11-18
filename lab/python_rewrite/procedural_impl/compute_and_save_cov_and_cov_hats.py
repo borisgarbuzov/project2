@@ -6,7 +6,7 @@ from create_horizontal_sample_scaled_noise import *
 from create_t_par_array import *
 from true_cov import *
 from compute_cov_hat import *
-from double_array_plot_by_column import *
+from plot_double_array_by_column import *
 
 
 def compute_and_save_cov_and_cov_hats(sample_size,
@@ -79,7 +79,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
 
         print("There are", gamma_count - (index + 1), "replications left")
 
-    double_array_plot_by_column(t_par_array=t_par_array,
+    plot_double_array_by_column(t_par_array=t_par_array,
                                 hat_double_array=gamma_hat_double_array,
                                 true_array=true_gamma_array,
                                 title='Autocovariance',

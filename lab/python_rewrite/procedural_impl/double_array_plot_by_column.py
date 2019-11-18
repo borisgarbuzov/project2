@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 
 
-def double_array_plot_by_column(t_par_array,
+def plot_double_array_by_column(t_par_array,
                                 hat_double_array,
                                 true_array,
                                 title,

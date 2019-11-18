@@ -3,9 +3,9 @@ from create_t_par_array import *
 from compute_cov_hat import *
 
 
-def compute_cov_double_array(sample, t_par_count, lag_from, lag_by, lag_to):
-    lag_array = np.arange(start=lag_from, stop=lag_to, step=lag_by)
-    lag_array = np.append(lag_array, lag_array[-1] + lag_by)
+def compute_cov_double_array(sample, t_par_count):
+    sample_size = len(sample)
+    lag_array = np.arange(start=0, stop=sample_size, step=1)
 
     cov_double_array = np.full(shape=(len(lag_array), t_par_count),
                                fill_value=np.nan)
@@ -17,5 +17,6 @@ def compute_cov_double_array(sample, t_par_count, lag_from, lag_by, lag_to):
                 sample=sample,
                 t_par=t_par,
                 lag=lag)
+        print("There are", len(lag_array) - lag_index, "left")
 
     return cov_double_array
