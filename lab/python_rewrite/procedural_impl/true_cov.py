@@ -1,7 +1,7 @@
 from coef import *
 
 
-def true_gamma(t_par, sigma, lag, type_process):
+def true_cov(t_par, sigma, lag, type_process):
     if type_process == "MA1":
         if lag == 0:
             return (sigma ** 2) * (1 + (coef(t_par=t_par) ** 2))

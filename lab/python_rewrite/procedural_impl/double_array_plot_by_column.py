@@ -2,7 +2,11 @@ import os
 import matplotlib.pyplot as plt
 
 
-def gamma_plot(t_par_array, hat_double_array, true_array, par_list):
+def double_array_plot_by_column(t_par_array,
+                                hat_double_array,
+                                true_array,
+                                title,
+                                par_list):
     # create directory for output if doesn't exist
     if not os.path.exists('output'):
         os.makedirs('output')
@@ -18,7 +22,8 @@ def gamma_plot(t_par_array, hat_double_array, true_array, par_list):
 
     plt.style.use('seaborn')
 
-    file_name = 'output/plot for gammas' + str(par_list).replace(': ', '=') + \
+    file_name = 'output/plot for ' + title + str(par_list).replace(': ',
+                                                                   '=') + \
                 '.png'
 
     for column in range(hat_double_array.shape[1]):
