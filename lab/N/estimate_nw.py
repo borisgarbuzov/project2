@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def kernel_nw(lag: int, sample_size: int) -> float:
+def triangular_kernel_nw(lag: int, sample_size: int) -> float:
     x = lag / sample_size * bandwidth(sample_size=sample_size)
     return (1 - abs(x)) if -1 <= x <= 1 else 0.
 
@@ -16,7 +16,7 @@ def estimate_nw(cov_matrix: np.array) -> np.array:
     res_array = np.full(shape=sample_size, fill_value=0)
 
     for lag in range(len(cov_matrix)):
-        K = kernel_nw(lag=lag, sample_size=sample_size)
+        K = triangular_kernel_nw(lag=lag, sample_size=sample_size)
         for t in range(sample_size):
             res_array[t] += cov_matrix[lag][t] * K
 
