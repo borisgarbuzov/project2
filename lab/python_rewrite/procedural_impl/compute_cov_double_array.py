@@ -12,10 +12,10 @@ def compute_cov_double_array(sample, t_par_count):
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
     for lag_index, lag in enumerate(lag_array):
-        for t_par in t_par_array:
-            cov_double_array[lag_index, :] = compute_cov_hat(
+        for t_par_index in range(t_par_count):
+            cov_double_array[lag_index, t_par_index] = compute_cov_hat(
                 sample=sample,
-                t_par=t_par,
+                t_par=t_par_array[t_par_index],
                 lag=lag)
         print("There are", len(lag_array) - (lag_index + 1), "lags left")
 
