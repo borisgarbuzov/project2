@@ -17,6 +17,6 @@ def compute_cov_double_array(sample, t_par_count):
                 sample=sample,
                 t_par=t_par,
                 lag=lag)
-        print("There are", len(lag_array) - lag_index, "left")
+        print("There are", len(lag_array) - (lag_index + 1), "lags left")
 
     return cov_double_array
