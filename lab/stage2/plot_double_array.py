@@ -2,13 +2,14 @@ import os
 import matplotlib.pyplot as plt
 
 
-def plot_double_array(t_par_array,
+def plot_double_array(x_array,
                       hat_double_array,
                       true_array,
                       title,
                       axis,
-                      ylabel,
-                      par_list):
+                      xlabel,
+                      par_list,
+                      ylabel='value'):
     # create directory for output if doesn't exist
     if not os.path.exists('output'):
         os.makedirs('output')
@@ -37,13 +38,13 @@ def plot_double_array(t_par_array,
                 '.png'
 
     for ax_value in range(hat_double_array.shape[ax]):
-        plt.plot(t_par_array, hat_double_array[:, ax_value])
+        plt.plot(x_array, hat_double_array)
 
-    plt.plot(t_par_array, true_array, color="black", linewidth=2,
+    plt.plot(x_array, true_array, color="black", linewidth=2,
              label='True value')
 
-    plt.xlabel(ylabel + '\n' + caption)
-    plt.ylabel('value')
+    plt.xlabel(xlabel + '\n' + caption)
+    plt.ylabel(ylabel)
     plt.title(title)
 
     plt.legend(framealpha=1, frameon=False)

@@ -79,12 +79,12 @@ def compute_and_save_cov_and_cov_hats(sample_size,
 
         print("There are", gamma_count - (index + 1), "replications left")
 
-    plot_double_array(t_par_array=t_par_array,
+    plot_double_array(x_array=t_par_array,
                       hat_double_array=gamma_hat_double_array,
                       true_array=true_gamma_array,
                       title='Autocovariance',
                       axis='column',
-                      ylabel='t par',
+                      xlabel='t par',
                       par_list=par_list)
 
 
