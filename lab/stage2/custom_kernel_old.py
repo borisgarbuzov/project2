@@ -1,17 +1,17 @@
 from scipy.stats import norm
 
 
-def custom_kernel(v, kernel_type='gaussian'):
+# def custom_kernel(v, kernel_type='gaussian'):
     
-    if kernel_type == 'triangular':
-        kernel = triangular_kernel(v)
+#     if kernel_type == 'triangular':
+#         kernel = triangular_kernel(v)
             
-    if kernel_type == 'boxcar':
-        kernel = boxcar_kernel
+#     if kernel_type == 'boxcar':
+#         kernel = boxcar_kernel
         
-    if kernel_type == 'gaussian':
-        kernel = gaussian_kernel(v)
-    return kernel 
+#     if kernel_type == 'gaussian':
+#         kernel = gaussian_kernel(v)
+#     return kernel 
 
 
 def triangular_kernel(v):

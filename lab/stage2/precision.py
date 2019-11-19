@@ -22,3 +22,15 @@ def compute_precision(true_array, hat_double_array):
         mse_array.append(np.mean((hat_double_array[t] - true_array[t])**2))
 
     return [mean_array, bias_array, variance_array, mse_array]
+
+
+def mse(true_array, hat_double_array):
+    value = 0
+    return value
+    
+    
+    
+    
+    
+    
+    
