@@ -1,7 +1,15 @@
 from scipy.stats import norm
 
 
-def custom_kernel(u, bandwidth=0.1, kernel_type='gaussian'):
+def custom_kernel(u: int, bandwidth=0.1, kernel_type='gaussian') -> float:
+    """
+    compute "triangular" or "boxcar" or "gaussian"  kernel.
+
+    :param u: lag
+    :param bandwidth: bandwidth
+    :param kernel_type: type
+    :return: kernel float
+    """
     v = u / bandwidth
     if kernel_type == 'triangular':
         if abs(v) <= 1:

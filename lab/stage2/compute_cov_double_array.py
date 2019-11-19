@@ -3,7 +3,14 @@ from create_t_par_array import *
 from compute_cov_hat import *
 
 
-def compute_cov_double_array(sample, t_par_count):
+def compute_cov_double_array(sample: np.array, t_par_count: int) -> np.array:
+    """
+    compute covariance double array.
+
+    :param sample: array
+    :param t_par_count: count of t
+    :return: double array
+    """
     sample_size = len(sample)
     lag_array = np.arange(start=0, stop=sample_size, step=1)
 

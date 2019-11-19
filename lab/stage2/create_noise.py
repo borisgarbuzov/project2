@@ -1,7 +1,16 @@
 import numpy as np
 
 
-def create_noise(noise_size, mean, sigma, type_of_noise):
+def create_noise(noise_size: int, mean: float, sigma: float, type_of_noise: str) -> float:
+    """
+    create "gaussian" or "bernoulli" noise.
+
+    :param noise_size: size of noise
+    :param mean: mean
+    :param sigma: sigma
+    :param type_of_noise: type
+    :return: float noise
+    """
     if type_of_noise == "gaussian":
         return np.random.normal(mean, sigma, noise_size)
     elif type_of_noise == "bernoulli":

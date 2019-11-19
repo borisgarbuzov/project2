@@ -13,7 +13,7 @@ def bandwidth(sample_size: int) -> float:
 def estimate_nw(cov_matrix: np.array) -> np.array:
     sample_size = len(cov_matrix[0])
 
-    res_array = np.full(shape=sample_size, fill_value=0)
+    res_array = np.full(shape=sample_size, fill_value=0.)
 
     for lag in range(len(cov_matrix)):
         K = triangular_kernel_nw(lag=lag, sample_size=sample_size)
