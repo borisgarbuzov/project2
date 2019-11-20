@@ -1,4 +1,4 @@
-def compute_b_nw(t_par_count: int) -> float:
+def b_nw(t_par_count: int) -> float:
     """
     Compute bandwidth for newey west.
 

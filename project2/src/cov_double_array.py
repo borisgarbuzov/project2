@@ -1,9 +1,9 @@
+from src.create_t_par_array import *
+from src.cov_hat import *
 import numpy as np
-from create_t_par_array import *
-from compute_cov_hat import *
 
 
-def compute_cov_double_array(sample: np.array, t_par_count: int) -> np.array:
+def cov_double_array(sample: np.array, t_par_count: int) -> np.array:
     """
     compute covariance double array.
 
@@ -20,7 +20,7 @@ def compute_cov_double_array(sample: np.array, t_par_count: int) -> np.array:
 
     for lag_index, lag in enumerate(lag_array):
         for t_par_index in range(t_par_count):
-            cov_double_array[lag_index, t_par_index] = compute_cov_hat(
+            cov_double_array[lag_index, t_par_index] = cov_hat(
                 sample=sample,
                 t_par=t_par_array[t_par_index],
                 lag=lag)

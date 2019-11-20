@@ -1,11 +1,11 @@
+from src.create_noise import *
+from src.coef import *
+from src.create_t_par_array import *
 import numpy as np
-from create_noise import *
-from coef import *
-from create_t_par_array import *
 
 
-def create_horizontal_sample_tvma1(sample_size, t_par_count, mean, sigma,
-                                   type_of_noise):
+def horizontal_sample_tvma1(sample_size, t_par_count, mean, sigma,
+                            type_of_noise):
     noise = create_noise(noise_size=sample_size + 1, mean=mean, sigma=sigma,
                          type_of_noise=type_of_noise)
     t_par_array = create_t_par_array(t_par_count=t_par_count)

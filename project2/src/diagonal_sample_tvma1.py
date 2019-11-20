@@ -1,9 +1,10 @@
+from src.create_noise import *
+from src.coef import *
 import numpy as np
-from create_noise import *
-from coef import *
 
 
-def create_diagonal_sample_tvma1(sample_size: int, mean: float, sigma: float, type_of_noise: str) -> np.array:
+def diagonal_sample_tvma1(sample_size: int, mean: float, sigma: float,
+                          type_of_noise: str) -> np.array:
     """
     Create diagonal sample tvma1.
 

@@ -20,16 +20,16 @@ def triangular_kernel(v):
     else:
         kernel = 0
     return kernel 
-            
+
+
 def boxcar_kernel(v):
     if abs(v) <= 1:
         kernel = 1 / 2
     else:
         kernel = 0            
     return kernel 
-            
+
+
 def gaussian_kernel(v):
     kernel = norm.pdf(v)            
-    return kernel 
-
-
+    return kernel

@@ -1,11 +1,11 @@
-from custom_kernel import *
-from compute_b_cov import *
+from src.custom_kernel import gaussian_kernel
+from src.b_cov import *
 
 
-def compute_cov_hat(sample, t_par, lag):
+def cov_hat(sample, t_par, lag):
     sample_size = len(sample)
 
-    b_cov = compute_b_cov(sample_size=sample_size)
+    b_cov_value = b_cov(sample_size=sample_size)
 
     if lag < 0:
         raise ValueError("lag should be equal or more than 0")
@@ -15,8 +15,8 @@ def compute_cov_hat(sample, t_par, lag):
     partial_sum = 0
     for term_index in range(1, (sample_size - lag) + 1):
         term = (sample[term_index - 1] * sample[(term_index - 1) + lag] *
-                custom_kernel((term_index / sample_size - t_par) / b_cov))
+                gaussian_kernel((term_index / sample_size - t_par) / b_cov_value))
         partial_sum += term
 
-    cov_hat = partial_sum / (sample_size * b_cov)
+    cov_hat = partial_sum / (sample_size * b_cov_value)
     return cov_hat

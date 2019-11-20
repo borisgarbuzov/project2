@@ -1,6 +1,7 @@
 output/
 __pycache__/
 .idea/
+project2.pkg.egg-info/
 *.pdf
 *.csv
 *.jpeg

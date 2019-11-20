@@ -1,4 +1,4 @@
-from coef import *
+from src.coef import *
 
 
 def true_cov_ma1(t_par, sigma, lag):

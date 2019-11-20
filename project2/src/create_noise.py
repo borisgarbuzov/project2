@@ -1,7 +1,8 @@
 import numpy as np
 
 
-def create_noise(noise_size: int, mean: float, sigma: float, type_of_noise: str) -> float:
+def create_noise(noise_size: int, mean: float, sigma: float,
+                 type_of_noise: str) -> float:
     """
     create "gaussian" or "bernoulli" noise.
 
