@@ -16,6 +16,9 @@ def plot_double_array(x_array,
 
     if axis == 'row':
         hat_double_array = hat_double_array.T
+    elif axis != 'row' or axis != 'colun':
+        raise ValueError('Parameter "axis" should be "column" or "row" not' +
+                         axis)
 
     # get values out of par_list and make it string
     caption = ""

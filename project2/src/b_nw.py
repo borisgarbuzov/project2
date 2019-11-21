@@ -1,4 +1,4 @@
-def b_nw(t_par_count: int) -> float:
+def b_nw(sample_size: int) -> float:
     """
     Compute bandwidth for newey west.
 
@@ -7,4 +7,4 @@ def b_nw(t_par_count: int) -> float:
     """
     b_nw_const = 1
     degree = -0.25
-    return b_nw_const * t_par_count**degree
+    return b_nw_const * sample_size ** degree

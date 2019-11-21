@@ -1,4 +1,4 @@
-from src.coef import *
+from src.coef import coef
 from src.true_cov import true_cov_scaled_noise
 
 

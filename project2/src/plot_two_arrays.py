@@ -2,15 +2,16 @@ import os
 import matplotlib.pyplot as plt
 
 
-def first_use_case_plot(sample_size_array, newey_west_array,
-                        threshold_array, true_array, par_list):
+def plot_two_arrays(x_array, first_array, first_label, second_array,
+                    second_label, true_array, title,
+                    x_label, par_list, y_label='value'):
     # create directory for output if doesn't exist
     if not os.path.exists('output'):
         os.makedirs('output')
 
     # create file name for plot
-    file_name = 'output/plot case one ' + str(par_list).replace(': ',
-                                                                '=') + '.png'
+    file_name = 'output/plot for ' + title + str(par_list).replace(': ',
+                                                                   '=') + '.png'
 
     # get values out of par_list and make it string
     caption = ""
@@ -23,16 +24,14 @@ def first_use_case_plot(sample_size_array, newey_west_array,
 
     plt.style.use('seaborn')
 
-    plt.plot(sample_size_array, newey_west_array, color='blue',
-             label='Newey-West')
-    plt.plot(sample_size_array, threshold_array, color='red',
-             label='Threshold')
-    plt.plot(sample_size_array, true_array, color="black", linewidth=2,
+    plt.plot(x_array, first_array, color='blue', label=first_label)
+    plt.plot(x_array, second_array, color='red', label=second_label)
+    plt.plot(x_array, true_array, color="black", linewidth=2,
              label='True value')
 
-    plt.xlabel('sample size\n' + caption)
-    plt.ylabel('value')
-    plt.title('Plot for first use case')
+    plt.xlabel(x_label + '\n' + caption)
+    plt.ylabel(y_label)
+    plt.title(title)
 
     # legend automatically choose best place
     plt.legend(framealpha=1, frameon=False)

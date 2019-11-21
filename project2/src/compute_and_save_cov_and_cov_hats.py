@@ -1,11 +1,11 @@
-from src.diagonal_sample_tvma1 import *
-from src.horizontal_sample_tvma1 import *
-from src.diagonal_sample_scaled_noise import *
-from src.horizontal_sample_scaled_noise import *
-from src.create_t_par_array import *
-from src.true_cov import *
-from src.cov_hat import *
-from src.plot_double_array import *
+from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
+from src.diagonal_sample_scaled_noise import diagonal_sample_scaled_noise
+from src.horizontal_sample_scaled_noise import horizontal_sample_scaled_noise
+from src.create_t_par_array import create_t_par_array
+from src.true_cov import true_cov_ma1
+from src.cov_hat import cov_hat
+from src.plot_double_array import plot_double_array
 import numpy as np
 
 
@@ -16,7 +16,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                                       sigma,
                                       lag,
                                       type_process,
-                                      type_of_noise,
+                                      noise_type,
                                       diag_or_horiz):
     par_list = {"sample_size": sample_size,
                 "t_par_count": t_par_count,
@@ -24,7 +24,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                 "mean": mean,
                 "sigma": sigma,
                 "lag": lag, "type_process": type_process,
-                "type_of_noise": type_of_noise,
+                "noise_type": noise_type,
                 "diag_or_horiz": diag_or_horiz}
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
@@ -46,28 +46,28 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                     sample_size=sample_size,
                     mean=mean,
                     sigma=sigma,
-                    type_of_noise=type_of_noise)
+                    noise_type=noise_type)
             elif diag_or_horiz == "horiz":
                 horizontal = horizontal_sample_tvma1(
                     sample_size=sample_size,
                     t_par_count=t_par_count,
                     mean=mean,
                     sigma=sigma,
-                    type_of_noise=type_of_noise)
+                    noise_type=noise_type)
         elif type_process == "scaled_noise":
             if diag_or_horiz == "diag":
                 sample = diagonal_sample_scaled_noise(
                     sample_size=sample_size,
                     mean=mean,
                     sigma=sigma,
-                    type_of_noise=type_of_noise)
+                    noise_type=noise_type)
             elif diag_or_horiz == "horiz":
                 horizontal = horizontal_sample_scaled_noise(
                     sample_size=sample_size,
                     t_par_count=t_par_count,
                     mean=mean,
                     sigma=sigma,
-                    type_of_noise=type_of_noise)
+                    noise_type=noise_type)
         for t_index in range(t_par_count):
             if diag_or_horiz == "horiz":
                 sample = horizontal[t_index]
@@ -95,5 +95,5 @@ if __name__ == '__main__':
                                       sigma=2,
                                       lag=2,
                                       type_process='MA1',
-                                      type_of_noise='bernoulli',
+                                      noise_type='bernoulli',
                                       diag_or_horiz='diag')

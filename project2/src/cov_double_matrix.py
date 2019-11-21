@@ -1,9 +1,9 @@
-from src.create_t_par_array import *
-from src.cov_hat import *
+from src.create_t_par_array import create_t_par_array
+from src.cov_hat import cov_hat
 import numpy as np
 
 
-def cov_double_array(sample: np.array, t_par_count: int) -> np.array:
+def cov_double_matrix(sample: np.array, t_par_count: int) -> np.array:
     """
     compute covariance double array.
 

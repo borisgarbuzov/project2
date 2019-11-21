@@ -1,5 +1,5 @@
 from src.custom_kernel import gaussian_kernel
-from src.b_cov import *
+from src.b_cov import b_cov
 
 
 def cov_hat(sample, t_par, lag):
