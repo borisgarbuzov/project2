@@ -7,6 +7,43 @@ from src.true_cov import true_cov_ma1
 from src.cov_hat import cov_hat
 from src.plot_double_array import plot_double_array
 import numpy as np
+import time
+import matplotlib.pyplot as plt
+
+
+def benchmarking():
+    
+    sample_sizes = np.arange(1000,10000,1000)
+    measured_dict = {}
+    time_per_operation_big_array = []
+    time_per_operation_mean_dict = {}
+    for sample_size in sample_sizes:
+        start = time.time()
+        time_per_operation_array = compute_and_save_cov_and_cov_hats(sample_size=sample_size,
+                                          t_par_count=11,
+                                          gamma_count=5,
+                                          mean=0,
+                                          sigma=2,
+                                          lag=2,
+                                          type_process='MA1',
+                                          noise_type='bernoulli',
+                                          diag_or_horiz='diag')
+        time_dif = time.time() - start
+        measured_dict[sample_size] = time_dif
+        time_per_operation_big_array.extend(time_per_operation_array)
+        time_per_operation_mean_dict[sample_size] = np.mean(time_per_operation_array)
+        
+    print('\nlist of times per operation ',time_per_operation_big_array)
+    print('\ndict of mean times per operation for each sample ',time_per_operation_mean_dict)
+    print('\noperation mean ',np.mean(time_per_operation_big_array))
+    print('\ndictionary with measures per sample_size ',measured_dict)
+    
+    plt.plot(list(measured_dict.keys()), list(measured_dict.values()), 'o', color='black')
+    plt.xlabel('sample_size')
+    plt.ylabel('time')
+    plt.savefig('measure1.png')
+    
+        
 
 
 def compute_and_save_cov_and_cov_hats(sample_size,
@@ -38,8 +75,10 @@ def compute_and_save_cov_and_cov_hats(sample_size,
         true_gamma_array[t_index] = true_cov_ma1(t_par=t_par_array[t_index],
                                                  sigma=sigma,
                                                  lag=lag)
-
+                                                 
+    time_per_operation_array = []
     for index in range(gamma_count):
+        start = time.time()
         if type_process == "MA1":
             if diag_or_horiz == "diag":
                 sample = diagonal_sample_tvma1(
@@ -75,6 +114,9 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                 sample=sample,
                 t_par=t_par_array[t_index],
                 lag=lag)
+                
+        time_dif = time.time() - start
+        time_per_operation_array.append(time_dif)
 
         print("There are", gamma_count - (index + 1), "replications left")
 
@@ -85,15 +127,18 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                       axis='column',
                       x_label='t par',
                       par_list=par_list)
+                      
+    return time_per_operation_array
 
 
 if __name__ == '__main__':
-    compute_and_save_cov_and_cov_hats(sample_size=100,
-                                      t_par_count=11,
-                                      gamma_count=5,
-                                      mean=0,
-                                      sigma=2,
-                                      lag=2,
-                                      type_process='MA1',
-                                      noise_type='bernoulli',
-                                      diag_or_horiz='diag')
+    # compute_and_save_cov_and_cov_hats(sample_size=100,
+    #                                   t_par_count=11,
+    #                                   gamma_count=5,
+    #                                   mean=0,
+    #                                   sigma=2,
+    #                                   lag=2,
+    #                                   type_process='MA1',
+    #                                   noise_type='bernoulli',
+    #                                   diag_or_horiz='diag')
+    benchmarking()
