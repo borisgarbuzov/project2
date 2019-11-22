@@ -10,16 +10,17 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 
+time_per_operation_array = []
 
 def benchmarking():
+    global time_per_operation_array 
     
-    sample_sizes = np.arange(1000,10000,1000)
+    sample_sizes = np.arange(100,300,100)
     measured_dict = {}
-    time_per_operation_big_array = []
     time_per_operation_mean_dict = {}
     for sample_size in sample_sizes:
         start = time.time()
-        time_per_operation_array = compute_and_save_cov_and_cov_hats(sample_size=sample_size,
+        compute_and_save_cov_and_cov_hats(sample_size=sample_size,
                                           t_par_count=11,
                                           gamma_count=5,
                                           mean=0,
@@ -30,12 +31,11 @@ def benchmarking():
                                           diag_or_horiz='diag')
         time_dif = time.time() - start
         measured_dict[sample_size] = time_dif
-        time_per_operation_big_array.extend(time_per_operation_array)
         time_per_operation_mean_dict[sample_size] = np.mean(time_per_operation_array)
         
-    print('\nlist of times per operation ',time_per_operation_big_array)
+    print('\nlist of times per operation ', time_per_operation_array)
     print('\ndict of mean times per operation for each sample ',time_per_operation_mean_dict)
-    print('\noperation mean ',np.mean(time_per_operation_big_array))
+    print('\noperation mean ',np.mean(time_per_operation_array))
     print('\ndictionary with measures per sample_size ',measured_dict)
     
     plt.plot(list(measured_dict.keys()), list(measured_dict.values()), 'o', color='black')
@@ -63,6 +63,9 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                 "lag": lag, "type_process": type_process,
                 "noise_type": noise_type,
                 "diag_or_horiz": diag_or_horiz}
+                
+    global time_per_operation_array 
+                
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
@@ -76,7 +79,6 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                                                  sigma=sigma,
                                                  lag=lag)
                                                  
-    time_per_operation_array = []
     for index in range(gamma_count):
         start = time.time()
         if type_process == "MA1":
@@ -128,7 +130,6 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                       x_label='t par',
                       par_list=par_list)
                       
-    return time_per_operation_array
 
 
 if __name__ == '__main__':
