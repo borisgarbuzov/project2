@@ -1,5 +1,5 @@
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
-from src.cov_double_matrix import cov_double_matrix
+from src.cov_matrix import cov_matrix
 from src.custom_kernel import triangular_kernel
 from src.b_nw import b_nw
 import numpy as np
@@ -30,7 +30,6 @@ if __name__ == '__main__':
                                             sigma=2,
                                             noise_type='bernoulli')
 
-    cov_double_array = cov_double_matrix(sample=diagonal_sample,
-                                         t_par_count=11)
+    cov_double_array = cov_matrix(sample=diagonal_sample, t_par_count=11)
 
     print(estimate_nw(cov_matrix=cov_double_array))

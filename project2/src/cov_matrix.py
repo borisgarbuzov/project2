@@ -3,7 +3,7 @@ from src.cov_hat import cov_hat
 import numpy as np
 
 
-def cov_double_matrix(sample: np.array, t_par_count: int) -> np.array:
+def cov_matrix(sample: np.array, t_par_count: int) -> np.array:
     """
     compute covariance double array.
 

@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 from src.estimate_nw import estimate_nw  
-from src.cov_double_matrix import cov_double_matrix
+from src.cov_matrix import cov_double_matrix
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from timeit import default_timer as timer
 
