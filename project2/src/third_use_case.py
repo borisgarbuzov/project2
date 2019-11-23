@@ -69,7 +69,7 @@ def plot_third_use_case(sample_size_array, threshold_MSE_array, newey_west_MSE_a
     plt.plot(xs, newey_west_MSE_array, xs, newey_west_MSE_array, 'ro', color='red')
     plt.grid()
     fig.savefig('lol.png')
-    plt.show()
+    # plt.show()
 
 
 def third_use_case(sample_size_min, sample_size_max, sample_size_by, replications, sigma, model, coef):

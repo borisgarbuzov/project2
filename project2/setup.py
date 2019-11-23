@@ -11,8 +11,7 @@ setup(
         'numpy',
         'matplotlib',
         'pandas',
-        'scikit-learn',
-        'nose'
+        'scikit-learn'
     ],
     python_requires='>=3.5'
 )

@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7.5
+    working_directory: ~/project2
+    steps:
+      - checkout
+      - run:
+          command: |
+            cd project2
+            sudo pip3 install -e .
+      - run:
+          command: |
+            cd project2/test && python -m unittest

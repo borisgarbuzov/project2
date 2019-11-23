@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 from src.estimate_nw import estimate_nw  
-from src.cov_matrix import cov_double_matrix
+from src.cov_matrix import cov_matrix
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from timeit import default_timer as timer
 
@@ -20,8 +20,8 @@ class Test_estimate_nw(unittest.TestCase):
                                       sigma=sigma,
                                       noise_type=noise_type)
                                       
-        cov_double_aray = cov_double_matrix(sample=diagonal_sample,
-                                            t_par_count=t_par_count)
+        cov_double_aray = cov_matrix(sample=diagonal_sample,
+                                     t_par_count=t_par_count)
         start_time = timer()
         returned = estimate_nw(cov_matrix=cov_double_aray)
         print('Test parameters:')

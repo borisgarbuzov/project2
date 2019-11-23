@@ -1,6 +1,5 @@
 import unittest
-import numpy as np
-from src.third_use_case import third_use_case  
+from src.third_use_case import third_use_case
 from timeit import default_timer as timer
 
 
