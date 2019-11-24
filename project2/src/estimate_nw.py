@@ -5,8 +5,8 @@ from src.true_lrv import true_lrv_ma1
 import src.custom_kernel
 import src.precision
 import numpy as np
-
-
+    
+    
 def estimate_nw(cov_matrix: np.array) -> np.array:
     """
     estimate newey west.
@@ -18,9 +18,7 @@ def estimate_nw(cov_matrix: np.array) -> np.array:
     res_array = np.full(shape=t_par_count, fill_value=0.0)
 
     for lag in range(len(cov_matrix)):
-        # b_nw = compute_b_nw(t_par_count=t_par_count)
-        # K = custom_kernel(u=lag, bandwidth=b_nw, kernel_type='triangular')
-        K = custom_kernel.triangular_kernel(v=lag)
+        K = src.custom_kernel.triangular_kernel(v=lag)
         for t_par_index in range(t_par_count):
             res_array[t_par_index] += cov_matrix[lag][t_par_index] * K
 
@@ -37,7 +35,7 @@ if __name__ == '__main__':
                                             noise_type='bernoulli')
 
     cov_double_array = cov_matrix(sample=diagonal_sample,
-                                         t_par_count=t_par_count)
+                                  t_par_count=t_par_count)
 
     # newey west array
     nw_array = estimate_nw(cov_matrix=cov_double_array)
@@ -47,5 +45,11 @@ if __name__ == '__main__':
     for index, t_par in enumerate(t_par_array):
         true_array[index] = true_lrv_ma1(sigma=sigma, t_par=t_par)
 
-    mse_precision = precision.mse(true_array=true_array, hat_double_array=nw_array)
-    print(mse_precision)
+    print('true_array: \t', list(true_array))
+    print('nw_array: \t\t', list(nw_array))
+
+    mse_precision = src.precision.mse(true_array=true_array, array=nw_array)
+    print('mse_precision: \t', list(mse_precision))
+
+    mse2_precision = src.precision.mse2(true_array, nw_array)
+    print('mse2_precision: \t', mse2_precision)
