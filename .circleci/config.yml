@@ -6,10 +6,26 @@ jobs:
     working_directory: ~/project2
     steps:
       - checkout
+      - restore_cache:
+          key: -dependency-{{ checksum "project2/requirements.txt" }}
       - run:
+          name: Install dependencies
           command: |
+            python3 -m venv venv
+            . venv/bin/activate
             cd project2
-            sudo pip3 install -e .
+            pip install -r requirements.txt
+      - save_cache:
+          key: -dependency-{{ checksum "project2/requirements.txt" }}
+          paths:
+            - "venv"
+      - run:
+          name: Install package
+          command: |
+            . venv/bin/activate
+            cd project2
+            pip install -e .
       - run:
           command: |
+            . venv/bin/activate
             cd project2/test && python -m unittest
