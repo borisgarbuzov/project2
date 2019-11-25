@@ -12,12 +12,14 @@ import matplotlib.pyplot as plt
 
 
 time_per_operation_array = []
+time_per_plot_array = []
 
 
 def benchmarking():
     global time_per_operation_array 
+    global time_per_plot_array
     
-    sample_sizes = np.arange(100,300,100)
+    sample_sizes = np.arange(1000,11000,1000)
     measured_dict = {}
     time_per_operation_mean_dict = {}
     for sample_size in sample_sizes:
@@ -42,8 +44,18 @@ def benchmarking():
     
     plt.plot(list(measured_dict.keys()), list(measured_dict.values()), 'o', color='black')
     plt.xlabel('sample_size')
-    plt.ylabel('time')
-    plt.savefig('measure1.png')
+    plt.ylabel('time (sec)')
+    plt.title('compute_and_save_cov_and_cov_hats (Python)')
+    plt.savefig('compute_and_save_cov_and_cov_hats_Python.png')
+    plt.clf()
+    
+    plt.plot(sample_sizes, time_per_plot_array, 'o', color='black', label="plot")
+    plt.plot(sample_sizes, time_per_operation_array, 'o', color='red', label="operation")
+    plt.xlabel('sample_size')
+    plt.ylabel('time (sec)')
+    plt.title('operation vs plot (Python)')
+    plt.legend()
+    plt.savefig('operation vs plot_Python.png')
     
 
 def compute_and_save_cov_and_cov_hats(sample_size,
@@ -65,6 +77,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                 "diag_or_horiz": diag_or_horiz}
                 
     global time_per_operation_array
+    global time_per_plot_array
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
@@ -77,9 +90,8 @@ def compute_and_save_cov_and_cov_hats(sample_size,
         true_gamma_array[t_index] = true_cov_ma1(t_par=t_par_array[t_index],
                                                  sigma=sigma,
                                                  lag=lag)
-                                                 
+    start = time.time()                                             
     for index in range(gamma_count):
-        start = time.time()
         if type_process == "MA1":
             if diag_or_horiz == "diag":
                 sample = diagonal_sample_tvma1(
@@ -115,12 +127,13 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                 sample=sample,
                 t_par=t_par_array[t_index],
                 lag=lag)
-                
-        time_dif = time.time() - start
-        time_per_operation_array.append(time_dif)
 
         print("There are", gamma_count - (index + 1), "replications left")
-
+        
+    time_dif = time.time() - start
+    time_per_operation_array.append(time_dif)
+        
+    start = time.time()
     plot_double_array(x_array=t_par_array,
                       hat_double_array=gamma_hat_double_array,
                       true_array=true_gamma_array,
@@ -128,6 +141,8 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                       axis='column',
                       x_label='t par',
                       par_list=par_list)
+    plot_time_dif = time.time() - start
+    time_per_plot_array.append(plot_time_dif)
                       
 
 if __name__ == '__main__':
