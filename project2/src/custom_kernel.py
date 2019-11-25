@@ -1,17 +1,4 @@
-from scipy.stats import norm
-
-
-# def custom_kernel(v, kernel_type='gaussian'):
-    
-#     if kernel_type == 'triangular':
-#         kernel = triangular_kernel(v)
-            
-#     if kernel_type == 'boxcar':
-#         kernel = boxcar_kernel
-        
-#     if kernel_type == 'gaussian':
-#         kernel = gaussian_kernel(v)
-#     return kernel 
+import numpy as np
 
 
 def triangular_kernel(v):
@@ -31,5 +18,7 @@ def boxcar_kernel(v):
 
 
 def gaussian_kernel(v):
-    kernel = norm.pdf(v)            
+    # this is temporary I don't know if this is right formula for Gaussian
+    # kernel
+    kernel = np.exp(-v**2/2)/np.sqrt(2*np.pi)
     return kernel

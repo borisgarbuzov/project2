@@ -10,7 +10,9 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 
+
 time_per_operation_array = []
+
 
 def benchmarking():
     global time_per_operation_array 
@@ -43,8 +45,6 @@ def benchmarking():
     plt.ylabel('time')
     plt.savefig('measure1.png')
     
-        
-
 
 def compute_and_save_cov_and_cov_hats(sample_size,
                                       t_par_count,
@@ -64,8 +64,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                 "noise_type": noise_type,
                 "diag_or_horiz": diag_or_horiz}
                 
-    global time_per_operation_array 
-                
+    global time_per_operation_array
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
@@ -131,9 +130,8 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                       par_list=par_list)
                       
 
-
 if __name__ == '__main__':
-    # compute_and_save_cov_and_cov_hats(sample_size=100,
+    # compute_and_save_cov_and_cov_hats(sample_size=1000,
     #                                   t_par_count=11,
     #                                   gamma_count=5,
     #                                   mean=0,

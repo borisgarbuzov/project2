@@ -14,9 +14,10 @@ def cov_hat(sample, t_par, lag):
 
     partial_sum = 0
     for term_index in range(1, (sample_size - lag) + 1):
-        term = (sample[term_index - 1] * sample[(term_index - 1) + lag] *
-                gaussian_kernel((term_index / sample_size - t_par) / b_cov_value))
+        K = gaussian_kernel((term_index / sample_size - t_par) / b_cov_value)
+        term = sample[term_index - 1] * sample[(term_index - 1) + lag] * K
         partial_sum += term
 
     cov_hat = partial_sum / (sample_size * b_cov_value)
+
     return cov_hat
