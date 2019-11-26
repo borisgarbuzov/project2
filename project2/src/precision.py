@@ -1,32 +1,34 @@
+"""
+true value AND est array:  2.0
+true array AND est array:  25.0
+new_arr:  [1 4 7]
+new_arr:  [2 5 8]
+new_arr:  [3 6 9]
+true value AND est double array:  [ 7. 10. 15.]
+new_arr:  [1 4 7]
+new_arr:  [2 5 8]
+new_arr:  [3 6 9]
+true array AND est double array:  [15. 15. 15.]
+[1 4 7]
+
+"""
+
 import numpy as np
+from sklearn.metrics import mean_squared_error
 
 
-def mse(true_array: np.array, array: np.array) -> np.array:
+def mse_value(true, est_array: np.array) -> float:
     """
     Mean squared error
 
-    :param true_array: array of true values
-    :param array: array
-    :return:
+    :param true: true value OR array of true values
+    :param est_array: array
+    :return: float
     """
-    t_par_count = len(true_array)
-    mse_array = np.full(shape=t_par_count, fill_value=np.nan)
-    for t in range(t_par_count):
-        mse_array[t] = (array[t] - true_array[t]) ** 2
-    return np.mean(mse_array)
-
-
-def mse2(true: np.array, sample2: np.array) -> float:
-    from sklearn.metrics import mean_squared_error
-    return mean_squared_error(sample1, sample2)
-
-
-def mse_value_by_value_and_array(true_value, est_array):
-    pass
-       
-       
-def mse_value_by_two_arrays(true_array, est_array):
-    from sklearn.metrics import mean_squared_error
+    if type(true) == float or type(true) == int:
+        true_array = np.full(shape=len(est_array), fill_value=true)
+    else:
+        true_array = true
     return mean_squared_error(true_array, est_array)
 
 
@@ -42,43 +44,44 @@ def mse_array_by_array_and_double_array(true_array: np.array, est_double_array: 
 
     mse_array = np.full(shape=length, fill_value=np.nan)
 
-    # Переворачиваем матрицу
-    """
-    Before: [
-        [1, 2, 3],
-        [4, 5, 6]
-    ] 
-    
-    After: [
-        [4, 1],
-        [5, 2],
-        [6, 3]
-    ]
-    """
-    new = list(zip(*est_double_array[::-1]))
+    for t in range(len(est_double_array)):
+        
+        # берём столбец из матрицы
+        t_array = np.array(est_double_array)[:, t]
 
-    for t in range(len(new)):
-        new_true_array = np.full(shape=len(new[t]), fill_value=true_array[t])
-
-        # Переворачиваем массив для нашего удобства
-        """
-        Before: [
-            [4, 1],
-            [5, 2],
-            [6, 3]
-        ]
-
-        After: [
-            [1, 4],
-            [2, 5],
-            [3, 6]
-        ]
-        """
-        t_array = np.array(list(reversed(new[t])))
-
-        mse_number = mse(new_true_array, t_array)
+        mse_number = mse_value(true_array[t], t_array)
         mse_array[t] = mse_number
     return mse_array
+
+
+def mse(true, est):
+    # если est массив
+    if len(np.array(est).shape) == 1:  # array
+        if type(true) == float or type(true) == int:
+            true_array = np.full(shape=len(est), fill_value=true)
+        else:
+            true_array = true
+        return mean_squared_error(true_array, est)
+    # если est двойной массив
+    elif len(np.array(est).shape) == 2:  # double array
+        # выходной массив
+        mse_array = np.full(shape=len(est[0]), fill_value=np.nan)
+
+        # подготовка true_array
+        if type(true) == float or type(true) == int:
+            big_true_array = np.full(shape=len(est[0]), fill_value=true)
+        else:
+            big_true_array = true
+
+        for t in range(len(est)):
+            # берём столбец из матрицы
+            t_array = np.array(est)[:, t]
+            # строим массив true значений
+            true_array = np.full(shape=len(t_array), fill_value=big_true_array[t])
+
+            mse_number = mean_squared_error(true_array, t_array)
+            mse_array[t] = mse_number
+        return mse_array
 
 
 def mean(true_array: np.array, array: np.array) -> np.array:
@@ -104,3 +107,21 @@ def variance(true_array: np.array, array: np.array) -> np.array:
     for t in range(t_par_count):
         variance_array[t] = np.var(array[t])
     return variance_array
+
+
+if __name__ == '__main__':
+    l1 = [1, 2, 3, 4, 5]
+    l2 = [6, 7, 8, 9, 10]
+    print('true value AND est array: ', mse(3, l1))
+    print('true array AND est array: ', mse(l1, l2))
+
+    m = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ]
+
+    l3 = [1, 2, 3]
+
+    print('true value AND est double array: ', mse(3, m))
+    print('true array AND est double array: ', mse(l3, m))
