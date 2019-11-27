@@ -1,34 +1,27 @@
-"""
-true value AND est array:  2.0
-true array AND est array:  25.0
-new_arr:  [1 4 7]
-new_arr:  [2 5 8]
-new_arr:  [3 6 9]
-true value AND est double array:  [ 7. 10. 15.]
-new_arr:  [1 4 7]
-new_arr:  [2 5 8]
-new_arr:  [3 6 9]
-true array AND est double array:  [15. 15. 15.]
-[1 4 7]
-
-"""
-
 import numpy as np
 from sklearn.metrics import mean_squared_error
 
 
-def mse_value(true, est_array: np.array) -> float:
+def mse_value_by_value_and_array(true_value: float, est_array: np.array) -> float:
     """
-    Mean squared error
+    Mean squared error by value and array
 
     :param true: true value OR array of true values
     :param est_array: array
     :return: float
     """
-    if type(true) == float or type(true) == int:
-        true_array = np.full(shape=len(est_array), fill_value=true)
-    else:
-        true_array = true
+    true_array = np.full(shape=len(est_array), fill_value=true_value)
+    return mean_squared_error(true_array, est_array)
+    
+    
+def mse_value_by_array_and_array(true_array: np.array, est_array: np.array) -> float:
+    """
+    Mean squared error by array and array
+
+    :param true: true value OR array of true values
+    :param est_array: array
+    :return: float
+    """
     return mean_squared_error(true_array, est_array)
 
 
@@ -41,87 +34,79 @@ def mse_array_by_array_and_double_array(true_array: np.array, est_double_array: 
     :return:
     """
     length = len(est_double_array[0])
-
     mse_array = np.full(shape=length, fill_value=np.nan)
-
     for t in range(len(est_double_array)):
-        
         # берём столбец из матрицы
         t_array = np.array(est_double_array)[:, t]
 
-        mse_number = mse_value(true_array[t], t_array)
+        mse_number = mse_value_by_value_and_array(true_array[t], t_array)
         mse_array[t] = mse_number
     return mse_array
 
-
-def mse(true, est):
-    # если est массив
-    if len(np.array(est).shape) == 1:  # array
-        if type(true) == float or type(true) == int:
-            true_array = np.full(shape=len(est), fill_value=true)
-        else:
-            true_array = true
-        return mean_squared_error(true_array, est)
-    # если est двойной массив
-    elif len(np.array(est).shape) == 2:  # double array
-        # выходной массив
-        mse_array = np.full(shape=len(est[0]), fill_value=np.nan)
-
-        # подготовка true_array
-        if type(true) == float or type(true) == int:
-            big_true_array = np.full(shape=len(est[0]), fill_value=true)
-        else:
-            big_true_array = true
-
-        for t in range(len(est)):
-            # берём столбец из матрицы
-            t_array = np.array(est)[:, t]
-            # строим массив true значений
-            true_array = np.full(shape=len(t_array), fill_value=big_true_array[t])
-
-            mse_number = mean_squared_error(true_array, t_array)
-            mse_array[t] = mse_number
-        return mse_array
-
-
-def mean(true_array: np.array, array: np.array) -> np.array:
-    t_par_count = len(true_array)
+    
+def mean_array_by_double_array(double_array: np.array) -> np.array:
+    """
+    mean for every t
+    """
+    t_par_count = len(double_array[0])
     mean_array = np.full(shape=t_par_count, fill_value=np.nan)
     for t in range(t_par_count):
-        mean_array[t] = (np.mean(array[t]))
+        # берём столбец из матрицы
+        t_array = np.array(double_array)[:, t]
+        mean_array[t] = (np.mean(t_array))
     return mean_array
 
 
-def bias(true_array: np.array, array: np.array) -> np.array:
+def variance_array_by_double_array(double_array: np.array) -> np.array:
+    """
+    variance for every t
+    """
+    t_par_count = len(double_array[0])
+    variance_array = np.full(shape=t_par_count, fill_value=np.nan)
+    for t in range(t_par_count):
+        # берём столбец из матрицы
+        t_array = np.array(double_array)[:, t]
+        variance_array[t] = np.var(t_array)
+    return variance_array
+    
+
+def bias_array_by_array(true_array: np.array, est_array: np.array) -> np.array:
+    """
+    bias
+    """
     t_par_count = len(true_array)
     bias_array = np.full(shape=t_par_count, fill_value=np.nan)
-    mean_array = mean(true_array=true_array, array=array)
+    
+    mean_value = np.mean(est_array)
+    
+    for t in range(t_par_count):
+        bias_array[t] = mean_value - true_array[t]
+    return bias_array    
+
+    
+def bias_array_by_double_array(true_array: np.array, double_array: np.array) -> np.array:
+    """
+    bias for every t
+    """
+    t_par_count = len(true_array)
+    bias_array = np.full(shape=t_par_count, fill_value=np.nan)
+    mean_array = mean_array_by_double_array(double_array=double_array)
     for t in range(t_par_count):
         bias_array[t] = mean_array[t] - true_array[t]
     return bias_array
 
 
-def variance(true_array: np.array, array: np.array) -> np.array:
-    t_par_count = len(true_array)
-    variance_array = np.full(shape=t_par_count, fill_value=np.nan)
-    for t in range(t_par_count):
-        variance_array[t] = np.var(array[t])
-    return variance_array
-
-
 if __name__ == '__main__':
-    l1 = [1, 2, 3, 4, 5]
-    l2 = [6, 7, 8, 9, 10]
-    print('true value AND est array: ', mse(3, l1))
-    print('true array AND est array: ', mse(l1, l2))
-
-    m = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9]
-    ]
-
-    l3 = [1, 2, 3]
-
-    print('true value AND est double array: ', mse(3, m))
-    print('true array AND est double array: ', mse(l3, m))
+    print(mse_value_by_value_and_array(true_value=3, est_array=[1,2,3,4,5]))
+    
+    print(mse_value_by_array_and_array(true_array=[1,2,3,4,5], est_array=[6,7,8,9,10]))
+    
+    print(mse_array_by_array_and_double_array(true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]]))
+    
+    print(mean_array_by_double_array(double_array=[[1,2,3],[4,5,6],[7,8,9]]))
+    
+    print(variance_array_by_double_array(double_array=[[1,2,3],[4,5,6],[7,8,9]]))
+    
+    print(bias_array_by_array(true_array=[1,2,3], est_array=[4,5,6]))
+    
+    print(bias_array_by_double_array(true_array=[1,2,3], double_array=[[1,2,3],[4,5,6],[7,8,9]]))
