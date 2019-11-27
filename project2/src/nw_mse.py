@@ -1,6 +1,6 @@
 from src.estimate_nw import estimate_nw
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
-from src.cov_matrix import cov_matrix
+from src.cov_matrix_of_t import cov_matrix_of_t
 from src.create_t_par_array import create_t_par_array
 from src.true_lrv import true_lrv_ma1
 import src.precision
@@ -16,8 +16,8 @@ def main(replication_count, t_par_count, sigma, sample_size, mean):
                                                 sigma=sigma,
                                                 noise_type='bernoulli')
 
-        cov_double_array = cov_matrix(sample=diagonal_sample,
-                                      t_par_count=t_par_count)
+        cov_double_array = cov_matrix_of_t(sample=diagonal_sample,
+                                           t_par_count=t_par_count)
 
         # newey west array
         nw_array = estimate_nw(cov_matrix=cov_double_array)

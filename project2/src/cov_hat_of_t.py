@@ -2,7 +2,7 @@ from src.custom_kernel import gaussian_kernel
 from src.b_cov import b_cov
 
 
-def cov_hat(sample, t_par, lag):
+def cov_hat_of_t(sample, t_par, lag):
     sample_size = len(sample)
 
     b_cov_value = b_cov(sample_size=sample_size)

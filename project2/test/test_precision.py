@@ -1,6 +1,5 @@
 import unittest
 import numpy as np
-# from src.precision import compute_precision  
 from timeit import default_timer as timer
 import src.precision
 
@@ -92,7 +91,7 @@ class Test_precision(unittest.TestCase):
         returned = src.precision.variance_array_by_double_array(double_array=double_array)
         print('Test parameters:')
         print('double_array = ', double_array)
-        
+    
         print('\nreturned = ', type(returned))
         if isinstance(returned, list):
             print('returned shape = ', len(returned))

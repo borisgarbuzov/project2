@@ -1,11 +1,15 @@
-import unittest
 from src.third_use_case import third_use_case
 from timeit import default_timer as timer
+import unittest
 
 
 class Test_third_use_case(unittest.TestCase):
-    def test_third_use_case(self, sample_size_min=1000, sample_size_max=10000, sample_size_by=1000, replications=5, sigma=2, model='MA1',
-                   coef=1):
+    def test_third_use_case(self, sample_size_min=1000, sample_size_max=10000,
+                            sample_size_by=1000,
+                            replications=5,
+                            sigma=2,
+                            model='MA1',
+                            coef=1):
 
         print('\n\n===============================================================================')
         print('Testing "third_use_case"')
