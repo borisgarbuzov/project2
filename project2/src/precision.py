@@ -29,14 +29,14 @@ def mse_array_by_array_and_double_array(true_array: np.array, est_double_array: 
     """
     Find mse for every t
 
-    :param true_array:
-    :param matrix:
-    :return:
+    :param true_array: array of true values for every t_par value
+    :param matrix: columns correspond to t_par values, and each row is a replication
+    :return: array of mse's corresponding to each t_par value
     """
     length = len(est_double_array[0])
     mse_array = np.full(shape=length, fill_value=np.nan)
-    for t in range(len(est_double_array)):
-        # берём столбец из матрицы
+    for t in range(length):
+        # take a matrix column
         t_array = np.array(est_double_array)[:, t]
 
         mse_number = mse_value_by_value_and_array(true_array[t], t_array)
