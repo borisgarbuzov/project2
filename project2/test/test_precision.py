@@ -15,10 +15,6 @@ class Test_precision(unittest.TestCase):
         print('est_array = ', est_array)
         
         print('\nreturned = ', type(returned))
-        # if isinstance(returned, list):
-        #     print('returned shape = ', len(returned))
-        # elif isinstance(returned, np.ndarray):
-        #     print('returned shape = ', returned.shape)
         print('returned = ', returned)
             
         print("\nDuration: {:g} secs".format(timer() - start_time))
@@ -35,10 +31,6 @@ class Test_precision(unittest.TestCase):
         print('est_array = ', est_array)
         
         print('\nreturned = ', type(returned))
-        # if isinstance(returned, list):
-        #     print('returned shape = ', len(returned))
-        # elif isinstance(returned, np.ndarray):
-        #     print('returned shape = ', returned.shape)
         print('returned = ', returned)
             
         print("\nDuration: {:g} secs".format(timer() - start_time))
