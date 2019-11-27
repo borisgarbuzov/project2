@@ -1,5 +1,5 @@
 from src.coef import coef
-from src.true_cov import true_cov_scaled_noise
+from src.true_cov_of_t import true_cov_scaled_noise_of_t
 
 
 def true_lrv_ma1(sigma, t_par):
@@ -8,4 +8,4 @@ def true_lrv_ma1(sigma, t_par):
 
 
 def true_lrv_scaled_noise(sigma, t_par):
-    return true_cov_scaled_noise(t_par, sigma, lag=0)
+    return true_cov_scaled_noise_of_t(t_par, sigma, lag=0)

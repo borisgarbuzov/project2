@@ -1,4 +1,4 @@
-from src.cov_matrix import cov_matrix
+from src.cov_matrix_of_t import cov_matrix_of_t
 from src.estimate_nw_double_sum import estimate_nw_double_sum
 from src.estimate_nw import estimate_nw
 from src.true_lrv import true_lrv_ma1
@@ -24,7 +24,7 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
-    cov_double_array = cov_matrix(sample=sample, t_par_count=11)
+    cov_double_array = cov_matrix_of_t(sample=sample, t_par_count=11)
     original_nw_array = estimate_nw(cov_matrix=cov_double_array)
 
     for index, t_par in enumerate(t_par_array):

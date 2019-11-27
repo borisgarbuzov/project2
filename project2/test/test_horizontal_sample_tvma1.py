@@ -1,11 +1,14 @@
-import unittest
-import numpy as np
-from src.horizontal_sample_tvma1 import horizontal_sample_tvma1  
+from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
 from timeit import default_timer as timer
+import numpy as np
+import unittest
 
 
 class Test_horizontal_sample_tvma1(unittest.TestCase):
-    def test_horizontal_sample_tvma1(self, sample_size=8, t_par_count=11, mean=5, sigma=0.12, noise_type= ["bernoulli","gaussian"]):
+    def test_horizontal_sample_tvma1(self, sample_size=8, t_par_count=11,
+                                     mean=5,
+                                     sigma=0.12,
+                                     noise_type= ["bernoulli","gaussian"]):
 
         print('\n\n===============================================================================')
         print('Testing "horizontal_sample_tvma1"')

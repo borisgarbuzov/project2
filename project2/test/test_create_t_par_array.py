@@ -1,12 +1,11 @@
-import unittest
-import numpy as np
-from src.create_t_par_array import create_t_par_array  
+from src.create_t_par_array import create_t_par_array
 from timeit import default_timer as timer
+import numpy as np
+import unittest
 
 
 class Test_create_t_par_array(unittest.TestCase):
     def test_create_noise(self, t_par_count=11):
-
         print('\n\n===============================================================================')
         print('Testing "create_t_par_array"')
         start_time = timer()

@@ -1,18 +1,20 @@
-import unittest
-import numpy as np
-from src.horizontal_sample_scaled_noise import horizontal_sample_scaled_noise  
+from src.horizontal_sample_scaled_noise import horizontal_sample_scaled_noise
 from timeit import default_timer as timer
+import numpy as np
+import unittest
 
 
 class Test_horizontal_sample_scaled_noise(unittest.TestCase):
-    def test_horizontal_sample_scaled_noise(self, sample_size=8, t_par_count=11, mean=5, sigma=0.12, noise_type= ["bernoulli","gaussian"]):
+    def test_horizontal_sample_scaled_noise(self, sample_size=8, t_par_count=11,
+                                            mean=5,
+                                            sigma=0.12,
+                                            noise_type= ["bernoulli","gaussian"]):
 
         print('\n\n===============================================================================')
         print('Testing "horizontal_sample_scaled_noise"')
         start_time = timer()
         
         for each in noise_type:
-            
             returned = horizontal_sample_scaled_noise(sample_size=sample_size, t_par_count=t_par_count, mean=mean, sigma=sigma, noise_type=each)
             print('Test parameters:')
             print('sample_size = ', sample_size)
@@ -20,7 +22,6 @@ class Test_horizontal_sample_scaled_noise(unittest.TestCase):
             print('mean = ', mean)
             print('sigma = ', sigma)
             print('type_of_noise = ', each)
-            
             
             print('\nreturned = ', type(returned))
             if isinstance(returned, list):
