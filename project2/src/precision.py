@@ -54,7 +54,7 @@ def mean_array_by_double_array(est_double_array: np.array) -> np.array:
     t_par_count = len(est_double_array[0])
     mean_array = np.full(shape=t_par_count, fill_value=np.nan)
     for t in range(t_par_count):
-        # берём столбец из матрицы
+        # take a matrix column
         t_array = np.array(est_double_array)[:, t]
         mean_array[t] = (np.mean(t_array))
     return mean_array
@@ -70,7 +70,7 @@ def variance_array_by_double_array(est_double_array: np.array) -> np.array:
     t_par_count = len(est_double_array[0])
     variance_array = np.full(shape=t_par_count, fill_value=np.nan)
     for t in range(t_par_count):
-        # берём столбец из матрицы
+        # take a matrix column
         t_array = np.array(est_double_array)[:, t]
         variance_array[t] = np.var(t_array)
     return variance_array
