@@ -44,6 +44,4 @@ if __name__ == '__main__':
 
     print(src.precision.mse(l1, l2))
     print(src.precision.mse2(l1, l2))
-    
-
     print(src.precision.mse2(3, l2))
