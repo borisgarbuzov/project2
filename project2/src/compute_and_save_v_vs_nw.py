@@ -25,7 +25,7 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
     cov_double_array = cov_double_array_of_t(sample=sample, t_par_count=11)
-    original_nw_array = lrv_hat_of_t_nw(cov_matrix=cov_double_array)
+    original_nw_array = lrv_hat_of_t_nw(cov_double_aray=cov_double_array)
 
     for index, t_par in enumerate(t_par_array):
         true_lrv_ma1_array[index] = true_lrv_ma1_of_t(sigma=sigma, t_par=t_par)
