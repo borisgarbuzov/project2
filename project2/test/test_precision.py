@@ -64,10 +64,10 @@ class Test_precision_run(unittest.TestCase):
         print('\n\n===============================================================================')
         print('RUN testing "mean_array_by_double_array"')
         start_time = timer()
-        returned = src.precision.mean_array_by_double_array(double_array=est_double_array)
+        returned = src.precision.mean_array_by_double_array(est_double_array=est_double_array)
         duration = timer() - start_time
         print('Test parameters:')
-        print('double_array = ', est_double_array)
+        print('est_double_array = ', est_double_array)
         
         print('\nreturned = ', type(returned))
         if isinstance(returned, list):
@@ -84,10 +84,10 @@ class Test_precision_run(unittest.TestCase):
         print('\n\n===============================================================================')
         print('RUN testing "variance_array_by_double_array"')
         start_time = timer()
-        returned = src.precision.variance_array_by_double_array(double_array=est_double_array)
+        returned = src.precision.variance_array_by_double_array(est_double_array=est_double_array)
         duration = timer() - start_time
         print('Test parameters:')
-        print('double_array = ', est_double_array)
+        print('est_double_array = ', est_double_array)
     
         print('\nreturned = ', type(returned))
         if isinstance(returned, list):
@@ -100,15 +100,15 @@ class Test_precision_run(unittest.TestCase):
         print('End of RUN test {}'.format('variance_array_by_double_array'))
         print('===============================================================================\n')
 
-    def test_run_bias_array_by_double_array(self, true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]]):
+    def test_run_bias_array_by_array_and_double_array(self, true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]]):
         print('\n\n===============================================================================')
-        print('RUN testing "bias_array_by_double_array"')
+        print('RUN testing "bias_array_by_array_and_double_array"')
         start_time = timer()
-        returned = src.precision.bias_array_by_double_array(true_array=true_array, double_array=est_double_array)
+        returned = src.precision.bias_array_by_array_and_double_array(true_array=true_array, est_double_array=est_double_array)
         duration = timer() - start_time
         print('Test parameters:')
         print('true_array = ', true_array)
-        print('double_array = ', est_double_array)
+        print('est_double_array = ', est_double_array)
         
         print('\nreturned = ', type(returned))
         if isinstance(returned, list):
@@ -118,7 +118,7 @@ class Test_precision_run(unittest.TestCase):
         print('returned = ', returned)
             
         print("\nDuration: {:g} secs".format(duration))
-        print('End of RUN test {}'.format('bias_array_by_double_array'))
+        print('End of RUN test {}'.format('bias_array_by_array_and_double_array'))
         print('===============================================================================\n')
 
 
@@ -148,13 +148,13 @@ class Test_precision_correct(unittest.TestCase):
         print('\n\n===============================================================================')
         print('Testing "mse_value_by_array_and_array"')
         start_time = timer()
-        returned = src.precision.mse_value_by_array_and_array(true_value=true_array, est_array=est_array)
+        returned = src.precision.mse_value_by_array_and_array(true_array=true_array, est_array=est_array)
         duration = timer() - start_time
 
         self.assertAlmostEqual(returned, true_returned, places=3, msg='Should be {}'.format(true_returned))
 
         print('Test parameters:')
-        print('true_value = ', true_array)
+        print('true_array = ', true_array)
         print('est_array = ', est_array)
 
         print('\nreturned = ', type(returned))
@@ -164,17 +164,17 @@ class Test_precision_correct(unittest.TestCase):
         print('===============================================================================\n')
 
     def test_mse_array_by_array_and_double_array_1(self, true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]],
-                                                 true_returned=np.array([15., 15., 15., 15.])):
+                                                 true_returned=np.array([15., 15., 15.])):
         print('\n\n===============================================================================')
         print('Testing "mse_array_by_array_and_double_array_1"')
         start_time = timer()
-        returned = src.precision.mse_array_by_array_and_double_array(true_value=true_array, est_array=est_double_array)
+        returned = src.precision.mse_array_by_array_and_double_array(true_array=true_array, est_double_array=est_double_array)
         duration = timer() - start_time
 
         self.assertListEqual(list(returned), list(true_returned), msg='Should be {}'.format(true_returned))
 
         print('Test parameters:')
-        print('true_value = ', true_array)
+        print('true_array = ', true_array)
         print('est_array = ', est_double_array)
 
         print('\nreturned = ', type(returned))
@@ -189,19 +189,40 @@ class Test_precision_correct(unittest.TestCase):
         print('\n\n===============================================================================')
         print('Testing "mse_array_by_array_and_double_array_2"')
         start_time = timer()
-        returned = src.precision.mse_array_by_array_and_double_array(true_value=true_array, est_array=est_double_array)
+        returned = src.precision.mse_array_by_array_and_double_array(true_array=true_array, est_double_array=est_double_array)
         duration = timer() - start_time
 
         self.assertListEqual(list(returned), list(true_returned), msg='Should be {}'.format(true_returned))
 
         print('Test parameters:')
-        print('true_value = ', true_array)
-        print('est_array = ', est_double_array)
+        print('true_array = ', true_array)
+        print('est_double_array = ', est_double_array)
 
         print('\nreturned = ', type(returned))
         print('returned = ', returned)
         print("\nDuration: {:g} secs".format(duration))
         print('End of test {}'.format('mse_array_by_array_and_double_array_2'))
+        print('===============================================================================\n')
+        
+    def test_mse_array_by_array_and_double_array_3(self, true_array=[7, 1, 3, 2],
+                                                   est_double_array=[[8, 7, 5, 3], [1, 2, 3, 4], [9, 6, 2, 8]],
+                                                   true_returned=np.array([13.66666667, 20.66666667, 1.66666667, 13.66666667])):
+        print('\n\n===============================================================================')
+        print('Testing "mse_array_by_array_and_double_array_3"')
+        start_time = timer()
+        returned = src.precision.mse_array_by_array_and_double_array(true_array=true_array, est_double_array=est_double_array)
+        duration = timer() - start_time
+
+        self.assertListEqual(list(returned), list(true_returned), msg='Should be {}'.format(true_returned))
+
+        print('Test parameters:')
+        print('true_array = ', true_array)
+        print('est_double_array = ', est_double_array)
+
+        print('\nreturned = ', type(returned))
+        print('returned = ', returned)
+        print("\nDuration: {:g} secs".format(duration))
+        print('End of test {}'.format('mse_array_by_array_and_double_array_3'))
         print('===============================================================================\n')
 
 
