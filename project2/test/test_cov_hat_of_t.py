@@ -29,7 +29,7 @@ class Test_cov_hat_of_t(unittest.TestCase):
         print('returned = ', returned)
 
         print("\nDuration: {:g} secs".format(timer() - start_time))
-        print('End of test {}'.format('cov_hat'))
+        print('End of test {}'.format('cov_hat_of_t'))
         print('===============================================================================\n')
 
 

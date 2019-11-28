@@ -5,15 +5,15 @@ import numpy as np
 import unittest
 
 
-class Test_cov_matrix_of_t(unittest.TestCase):
-    def test_cov_matrix(self, t_par_count=11,
-                        sample_size=20,
-                        mean=0,
-                        sigma=2,
-                        noise_type='bernoulli'):
+class Test_cov_double_array_of_t(unittest.TestCase):
+    def test_cov_double_array_of_t(self, t_par_count=11,
+                                   sample_size=20,
+                                   mean=0,
+                                   sigma=2,
+                                   noise_type='bernoulli'):
 
         print('\n\n===============================================================================')
-        print('Testing "cov_matrix"')
+        print('Testing "cov_double_array_of_t"')
         diagonal_sample = diagonal_sample_tvma1(sample_size=sample_size,
                                                 mean=mean,
                                                 sigma=sigma,
@@ -33,7 +33,7 @@ class Test_cov_matrix_of_t(unittest.TestCase):
         print('returned = ', returned)
 
         print("\nDuration: {:g} secs".format(timer() - start_time))
-        print('End of test {}'.format('cov_matrix'))
+        print('End of test {}'.format('cov_double_array_of_t'))
         print('===============================================================================\n')
 
 
