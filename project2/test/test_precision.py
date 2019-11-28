@@ -123,6 +123,11 @@ class Test_precision_run(unittest.TestCase):
 
 
 class Test_precision_correct(unittest.TestCase):
+    def assertListAlmostEqual(self, list1, list2, places):
+        self.assertEqual(len(list1), len(list2))
+        for a, b in zip(list1, list2):
+            self.assertAlmostEqual(a, b, places)
+    
     def test_mse_value_by_value_and_array(self, true_value=3, est_array=[1, 2, 3, 4, 5],
                                           true_returned=2.0):
         print('\n\n===============================================================================')
@@ -213,7 +218,7 @@ class Test_precision_correct(unittest.TestCase):
         returned = src.precision.mse_array_by_array_and_double_array(true_array=true_array, est_double_array=est_double_array)
         duration = timer() - start_time
 
-        self.assertListEqual(list(returned), list(true_returned), msg='Should be {}'.format(true_returned))
+        self.assertListAlmostEqual(list(returned), list(true_returned), places=4) #, msg='Should be {}'.format(true_returned))
 
         print('Test parameters:')
         print('true_array = ', true_array)
