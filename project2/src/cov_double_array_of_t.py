@@ -3,7 +3,7 @@ from src.cov_hat_of_t import cov_hat_of_t
 import numpy as np
 
 
-def cov_matrix_of_t(sample: np.array, t_par_count: int) -> np.array:
+def cov_double_array_of_t(sample: np.array, t_par_count: int) -> np.array:
     """
     compute covariance double array.
 

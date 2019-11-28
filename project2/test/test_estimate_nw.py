@@ -1,5 +1,5 @@
-from src.estimate_nw import estimate_nw
-from src.cov_matrix_of_t import cov_matrix_of_t
+from src.lrv_hat_of_t_nw import lrv_hat_of_t_nw
+from src.cov_double_array_of_t import cov_double_array_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from timeit import default_timer as timer
 import numpy as np
@@ -16,14 +16,14 @@ class Test_estimate_nw(unittest.TestCase):
         print('\n\n===============================================================================')
         print('Testing "estimate_nw"')
         diagonal_sample = diagonal_sample_tvma1(sample_size=sample_size,
-                                      mean=mean,
-                                      sigma=sigma,
-                                      noise_type=noise_type)
+                                                mean=mean,
+                                                sigma=sigma,
+                                                noise_type=noise_type)
                                       
-        cov_double_aray = cov_matrix_of_t(sample=diagonal_sample,
-                                          t_par_count=t_par_count)
+        cov_double_aray = cov_double_array_of_t(sample=diagonal_sample,
+                                                t_par_count=t_par_count)
         start_time = timer()
-        returned = estimate_nw(cov_matrix=cov_double_aray)
+        returned = lrv_hat_of_t_nw(cov_double_aray=cov_double_aray)
         print('Test parameters:')
         print('cov_double_aray_size = ', cov_double_aray.shape)
 

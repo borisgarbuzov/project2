@@ -1,8 +1,8 @@
-from src.estimate_nw import estimate_nw
+from src.lrv_hat_of_t_nw import estimate_nw
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
-from src.cov_matrix_of_t import cov_matrix_of_t
+from src.cov_double_array_of_t import cov_matrix_of_t
 from src.create_t_par_array import create_t_par_array
-from src.true_lrv import true_lrv_ma1
+from src.true_lrv_of_t import true_lrv_ma1
 import src.precision
 import numpy as np
 

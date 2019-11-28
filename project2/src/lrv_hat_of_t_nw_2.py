@@ -4,7 +4,7 @@ from src.b_nw import b_nw
 import numpy as np
 
 
-def estimate_nw_double_sum(sample, t_par):
+def lrv_hat_of_t_nw_2(sample, t_par):
     sample_size = len(sample)
     b_cov_value = b_cov(sample_size=sample_size)
     b_nw_value = b_nw(sample_size=sample_size)

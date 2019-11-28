@@ -1,4 +1,4 @@
-from src.cov_matrix_of_t import cov_matrix_of_t
+from src.cov_double_array_of_t import cov_double_array_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from timeit import default_timer as timer
 import numpy as np
@@ -19,8 +19,8 @@ class Test_cov_matrix_of_t(unittest.TestCase):
                                                 sigma=sigma,
                                                 noise_type=noise_type)
         start_time = timer()
-        returned = cov_matrix_of_t(sample=diagonal_sample,
-                                   t_par_count=t_par_count)
+        returned = cov_double_array_of_t(sample=diagonal_sample,
+                                         t_par_count=t_par_count)
         print('Test parameters:')
         print('sample_size = ', diagonal_sample.shape)
         print('t_par_count = ', t_par_count)

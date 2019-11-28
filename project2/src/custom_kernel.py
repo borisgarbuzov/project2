@@ -18,7 +18,5 @@ def boxcar_kernel(v):
 
 
 def gaussian_kernel(v):
-    # this is temporary I don't know if this is right formula for Gaussian
-    # kernel
     kernel = np.exp(-v**2/2)/np.sqrt(2*np.pi)
     return kernel
