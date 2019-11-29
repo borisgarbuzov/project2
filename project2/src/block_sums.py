@@ -4,9 +4,7 @@ import numpy as np
 
 def block_sums(paired_product_array: np.array) -> np.array:
     sample_size = len(paired_product_array)
-
     batch_size_value = batch_size(sample_size=sample_size)
-
     block_sum_array = np.full(shape=sample_size - batch_size_value + 1,
                               fill_value=np.nan)
 
