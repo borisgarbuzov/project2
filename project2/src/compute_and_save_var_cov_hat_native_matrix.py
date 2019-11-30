@@ -1,5 +1,5 @@
 import numpy as np
-
+from src.support_bound import support_bound
 
 def cov_hat_t_free(sample: np.array, lag:int) -> float:
     sample_size = len(sample)
@@ -23,6 +23,9 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count, sample_size_ar
 
     i = 0
     for sample_size in sample_size_array:
+    # need to import
+        max_lag = round(support_bound(sample_size))
+
         # for lag_step in max_lag_array:
         for lag in range(max_lag_array[i]):
             cov_array = np.full(shape=replication_count, fill_value=np.nan)

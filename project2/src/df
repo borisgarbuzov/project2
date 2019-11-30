@@ -1,0 +1,49 @@
+Help on module precision:
+
+NNAAMMEE
+    precision
+
+FFUUNNCCTTIIOONNSS
+    bbiiaass__aarrrraayy__bbyy__aarrrraayy__aanndd__ddoouubbllee__aarrrraayy(true_array:<built-in function array>, est_double_array:<built-in function array>) -> <built-in function array>
+        bias for every t
+        
+        :param true_array: array of true values for every t_par value
+        :param est_double_array: columns correspond to t_par values, and each row is a replication
+        :return: array of bias's corresponding to each t_par value
+    
+    mmeeaann__aarrrraayy__bbyy__ddoouubbllee__aarrrraayy(est_double_array:<built-in function array>) -> <built-in function array>
+        mean for every t
+        
+        :param est_double_array: columns correspond to t_par values, and each row is a replication
+        :return: array of mean's corresponding to each t_par value
+    
+    mmssee__aarrrraayy__bbyy__aarrrraayy__aanndd__ddoouubbllee__aarrrraayy(true_array:<built-in function array>, est_double_array:<built-in function array>) -> <built-in function array>
+        Find mean squared error (MSE) for every t
+        
+        :param true_array: array of true values for every t_par value
+        :param est_double_array: columns correspond to t_par values, and each row is a replication
+        :return: array of mse's corresponding to each t_par value
+    
+    mmssee__vvaalluuee__bbyy__aarrrraayy__aanndd__aarrrraayy(true_array:<built-in function array>, est_array:<built-in function array>) -> float
+        Mean squared error by array and array
+        
+        :param true_array: true value
+        :param est_array: array of est values
+        :return: mse value
+    
+    mmssee__vvaalluuee__bbyy__vvaalluuee__aanndd__aarrrraayy(true_value:float, est_array:<built-in function array>) -> float
+        Mean squared error by value and array
+        
+        :param true_value: true value
+        :param est_array: array
+        :return: mse value
+    
+    vvaarriiaannccee__aarrrraayy__bbyy__ddoouubbllee__aarrrraayy(est_double_array:<built-in function array>) -> <built-in function array>
+        variance for every t
+        
+        :param est_double_array: columns correspond to t_par values, and each row is a replication
+        :return: array of variance's corresponding to each t_par value
+
+FFIILLEE
+    /home/ubuntu/environment/project2/project2/src/precision.py
+
