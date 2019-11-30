@@ -4,10 +4,17 @@ import numpy as np
 
 def var_cov_hat_bootstrap_statistic(paired_product_array: np.array,
                                     block_sum_array: np.array,
-                                    sample_size: int) -> int:
+                                    sample_size: int,
+                                    g_array=None) -> float:
+    if g_array is None:
+        g_array = np.random.normal(0, 2, len(block_sum_array))
+
+    if len(g_array) != len(block_sum_array):
+        raise IndexError("g_array size should be as block_sum_array, not",
+                         len(g_array))
+
     batch_size_value = batch_size(sample_size=sample_size)
     z_value = np.sum(paired_product_array) / sample_size
-    g_array = np.random.normal(0, 2, len(block_sum_array))
 
     partial_sum = 0
 

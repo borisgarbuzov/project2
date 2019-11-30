@@ -14,7 +14,6 @@ def var_cell_bootstrap(sample_size: int,
     s_array = np.full(shape=replication_size, fill_value=np.nan)
 
     for replication in range(replication_size):
-        # sample maybe temporary because I don't know what sample should be
         sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,
                                        sigma=sigma, noise_type=noise_type)
         paired_product_array = paired_products(sample=sample, lag=lag)
@@ -25,4 +24,3 @@ def var_cell_bootstrap(sample_size: int,
             sample_size=sample_size)
 
     return np.var(s_array)
-
