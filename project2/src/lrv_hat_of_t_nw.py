@@ -5,9 +5,10 @@ from src.true_lrv_of_t import true_lrv_ma1_of_t
 import src.custom_kernel
 import src.precision
 import numpy as np
+from src.b_nw import b_nw
     
     
-def lrv_hat_of_t_nw(cov_double_aray: np.array) -> np.array:
+def lrv_hat_of_t_nw(cov_double_aray: np.array, sample_size: int) -> np.array:
     """
     estimate newey west.
 
@@ -17,8 +18,10 @@ def lrv_hat_of_t_nw(cov_double_aray: np.array) -> np.array:
     t_par_count = len(cov_double_aray[0])
     res_array = np.full(shape=t_par_count, fill_value=0.0)
 
+    b_nw_value = b_nw(sample_size=sample_size)
+
     for lag in range(len(cov_double_aray)):
-        K = src.custom_kernel.triangular_kernel(v=lag)
+        K = src.custom_kernel.triangular_kernel(v=lag / (sample_size * b_nw_value))
         for t_par_index in range(t_par_count):
             res_array[t_par_index] += cov_double_aray[lag][t_par_index] * K
 
