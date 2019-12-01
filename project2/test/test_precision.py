@@ -339,12 +339,13 @@ class Test_precision_correct(unittest.TestCase):
         print('\n\n===============================================================================')
         print('Testing "bias_array_by_array_and_double_array"')
         start_time = timer()
-        returned = src.precision.variance_array_by_double_array(est_double_array=est_double_array)
+        returned = src.precision.bias_array_by_array_and_double_array(true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]])
         duration = timer() - start_time
 
         self.assertListAlmostEqual(list(returned), list(true_returned), places=4)
 
         print('Test parameters:')
+        print('true_array = ', true_array)
         print('est_double_array = ', est_double_array)
 
         print('\nreturned = ', type(returned))

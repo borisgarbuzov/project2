@@ -1,3 +1,21 @@
+"""
+[1000 2000 3000 4000 5000]
+Matrix:  0.7354644009997173 secs
+Dict:    0.5799892780000846 secs
+
+[ 1000  2000  3000  4000  5000  6000  7000  8000  9000 10000]
+Matrix:  2.3802585929997804 secs
+Dict:    2.372086022000076 secs
+
+[ 1000  2000  3000  4000  5000  6000  7000  8000  9000 10000 11000 12000
+ 13000 14000 15000 16000 17000 18000 19000 20000]
+Matrix:  10.752176271999815 secs
+Dict:    10.519024473999707 secs
+
+
+"""
+
+
 import numpy as np
 from src.support_bound import support_bound
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
@@ -55,7 +73,7 @@ def compute_and_save_var_cov_hat_native_dict(replication_count: int, sample_size
 
 
 if __name__ == '__main__':
-    sample_size_array = np.arange(1000, 3001, 1000)
+    sample_size_array = np.arange(1000, 40001, 1000)
     start_time = timer()
     res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=3,
                                                      sample_size_array=sample_size_array,
@@ -63,10 +81,9 @@ if __name__ == '__main__':
                                                      sigma=2,
                                                      noise_type='bernoulli')
     duration = timer() - start_time
-    print('Matrix: ', duration, ' secs')
-    print(np.around(res1, decimals=3))
-
-    print('\n===================================\n')
+    print(sample_size_array)
+    print('Matrix:\t', duration, 'secs')
+    
 
     start_time = timer()
     res2 = compute_and_save_var_cov_hat_native_dict(replication_count=3,
@@ -75,7 +92,11 @@ if __name__ == '__main__':
                                                    sigma=2,
                                                    noise_type='bernoulli')
     duration = timer() - start_time
-    print('Dict: ', duration, ' secs')
+    print('Dict:\t', duration, 'secs')
     
+    print('=========================================\n')
+    
+    print(np.around(res1, decimals=3))
+    print()
     for key, value in res2.items():
         print(key, ' = ', np.around(value, decimals=3))

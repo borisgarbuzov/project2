@@ -1,0 +1,12 @@
+#!/bin/bash
+cd ..
+echo -enn "\033[37;1;41m Doing git pull... \033[0m"
+git checkout
+git pull
+cd docs
+make clean
+echo -enn "\033[37;1;41m Collecting documentation from modules... \033[0m"
+sphinx-apidoc -o rst ../project2/
+echo -enn "\033[37;1;41m Make html page... \033[0m"
+make html
+echo -enn "\033[37;1;41m Done! \033[0m"

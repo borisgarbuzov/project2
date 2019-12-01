@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>src package &#8212; project2 1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="test package" href="test.html" />
+    <link rel="prev" title="Welcome to documentation!" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="src-package">
+<h1>src package<a class="headerlink" href="#src-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.b_cov">
+<span id="src-b-cov-module"></span><h2>src.b_cov module<a class="headerlink" href="#module-src.b_cov" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.b_cov.b_cov">
+<code class="sig-prename descclassname">src.b_cov.</code><code class="sig-name descname">b_cov</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em><span class="sig-paren">)</span><a class="headerlink" href="#src.b_cov.b_cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.b_nw">
+<span id="src-b-nw-module"></span><h2>src.b_nw module<a class="headerlink" href="#module-src.b_nw" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.b_nw.b_nw">
+<code class="sig-prename descclassname">src.b_nw.</code><code class="sig-name descname">b_nw</code><span class="sig-paren">(</span><em class="sig-param">sample_size: int</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.b_nw.b_nw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute bandwidth for newey west.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t_par_count</strong> – count of t</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float number</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.batch_size">
+<span id="src-batch-size-module"></span><h2>src.batch_size module<a class="headerlink" href="#module-src.batch_size" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.batch_size.batch_size">
+<code class="sig-prename descclassname">src.batch_size.</code><code class="sig-name descname">batch_size</code><span class="sig-paren">(</span><em class="sig-param">sample_size: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#src.batch_size.batch_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="src-block-sums-module">
+<h2>src.block_sums module<a class="headerlink" href="#src-block-sums-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.coef">
+<span id="src-coef-module"></span><h2>src.coef module<a class="headerlink" href="#module-src.coef" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.coef.coef">
+<code class="sig-prename descclassname">src.coef.</code><code class="sig-name descname">coef</code><span class="sig-paren">(</span><em class="sig-param">t_par</em><span class="sig-paren">)</span><a class="headerlink" href="#src.coef.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.compute_and_save_cov_and_cov_hats">
+<span id="src-compute-and-save-cov-and-cov-hats-module"></span><h2>src.compute_and_save_cov_and_cov_hats module<a class="headerlink" href="#module-src.compute_and_save_cov_and_cov_hats" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.compute_and_save_cov_and_cov_hats.compute_and_save_cov_and_cov_hats">
+<code class="sig-prename descclassname">src.compute_and_save_cov_and_cov_hats.</code><code class="sig-name descname">compute_and_save_cov_and_cov_hats</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em>, <em class="sig-param">t_par_count</em>, <em class="sig-param">gamma_count</em>, <em class="sig-param">mean</em>, <em class="sig-param">sigma</em>, <em class="sig-param">lag</em>, <em class="sig-param">type_process</em>, <em class="sig-param">noise_type</em>, <em class="sig-param">diag_or_horiz</em><span class="sig-paren">)</span><a class="headerlink" href="#src.compute_and_save_cov_and_cov_hats.compute_and_save_cov_and_cov_hats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.compute_and_save_v_vs_nw">
+<span id="src-compute-and-save-v-vs-nw-module"></span><h2>src.compute_and_save_v_vs_nw module<a class="headerlink" href="#module-src.compute_and_save_v_vs_nw" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.compute_and_save_v_vs_nw.compute_and_save_v_vs_nw">
+<code class="sig-prename descclassname">src.compute_and_save_v_vs_nw.</code><code class="sig-name descname">compute_and_save_v_vs_nw</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em>, <em class="sig-param">t_par_count</em>, <em class="sig-param">mean</em>, <em class="sig-param">sigma</em>, <em class="sig-param">noise_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.compute_and_save_v_vs_nw.compute_and_save_v_vs_nw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.compute_and_save_var_cov_hat_native_matrix">
+<span id="src-compute-and-save-var-cov-hat-native-matrix-module"></span><h2>src.compute_and_save_var_cov_hat_native_matrix module<a class="headerlink" href="#module-src.compute_and_save_var_cov_hat_native_matrix" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.compute_and_save_var_cov_hat_native_matrix.compute_and_save_var_cov_hat_native_matrix">
+<code class="sig-prename descclassname">src.compute_and_save_var_cov_hat_native_matrix.</code><code class="sig-name descname">compute_and_save_var_cov_hat_native_matrix</code><span class="sig-paren">(</span><em class="sig-param">replication_count</em>, <em class="sig-param">sample_size_array</em>, <em class="sig-param">max_lag_array</em><span class="sig-paren">)</span><a class="headerlink" href="#src.compute_and_save_var_cov_hat_native_matrix.compute_and_save_var_cov_hat_native_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.cov_double_array_of_t">
+<span id="src-cov-double-array-of-t-module"></span><h2>src.cov_double_array_of_t module<a class="headerlink" href="#module-src.cov_double_array_of_t" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.cov_double_array_of_t.cov_double_array_of_t">
+<code class="sig-prename descclassname">src.cov_double_array_of_t.</code><code class="sig-name descname">cov_double_array_of_t</code><span class="sig-paren">(</span><em class="sig-param">sample: numpy.array</em>, <em class="sig-param">t_par_count: int</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.cov_double_array_of_t.cov_double_array_of_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute covariance double array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample</strong> – array</p></li>
+<li><p><strong>t_par_count</strong> – count of t</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>double array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.cov_hat_of_t">
+<span id="src-cov-hat-of-t-module"></span><h2>src.cov_hat_of_t module<a class="headerlink" href="#module-src.cov_hat_of_t" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.cov_hat_of_t.cov_hat_of_t">
+<code class="sig-prename descclassname">src.cov_hat_of_t.</code><code class="sig-name descname">cov_hat_of_t</code><span class="sig-paren">(</span><em class="sig-param">sample</em>, <em class="sig-param">t_par</em>, <em class="sig-param">lag</em><span class="sig-paren">)</span><a class="headerlink" href="#src.cov_hat_of_t.cov_hat_of_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.cov_hat_t_free">
+<span id="src-cov-hat-t-free-module"></span><h2>src.cov_hat_t_free module<a class="headerlink" href="#module-src.cov_hat_t_free" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.cov_hat_t_free.cov_hat_t_free">
+<code class="sig-prename descclassname">src.cov_hat_t_free.</code><code class="sig-name descname">cov_hat_t_free</code><span class="sig-paren">(</span><em class="sig-param">sample: numpy.array</em>, <em class="sig-param">lag: int</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.cov_hat_t_free.cov_hat_t_free" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.create_noise">
+<span id="src-create-noise-module"></span><h2>src.create_noise module<a class="headerlink" href="#module-src.create_noise" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.create_noise.create_noise">
+<code class="sig-prename descclassname">src.create_noise.</code><code class="sig-name descname">create_noise</code><span class="sig-paren">(</span><em class="sig-param">noise_size: int</em>, <em class="sig-param">mean: float</em>, <em class="sig-param">sigma: float</em>, <em class="sig-param">noise_type: str</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.create_noise.create_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>create “gaussian” or “bernoulli” noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>noise_size</strong> – size of noise</p></li>
+<li><p><strong>mean</strong> – mean</p></li>
+<li><p><strong>sigma</strong> – sigma</p></li>
+<li><p><strong>noise_type</strong> – type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float noise</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.create_t_par_array">
+<span id="src-create-t-par-array-module"></span><h2>src.create_t_par_array module<a class="headerlink" href="#module-src.create_t_par_array" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.create_t_par_array.create_t_par_array">
+<code class="sig-prename descclassname">src.create_t_par_array.</code><code class="sig-name descname">create_t_par_array</code><span class="sig-paren">(</span><em class="sig-param">t_par_count</em><span class="sig-paren">)</span><a class="headerlink" href="#src.create_t_par_array.create_t_par_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.custom_kernel">
+<span id="src-custom-kernel-module"></span><h2>src.custom_kernel module<a class="headerlink" href="#module-src.custom_kernel" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.custom_kernel.boxcar_kernel">
+<code class="sig-prename descclassname">src.custom_kernel.</code><code class="sig-name descname">boxcar_kernel</code><span class="sig-paren">(</span><em class="sig-param">v</em><span class="sig-paren">)</span><a class="headerlink" href="#src.custom_kernel.boxcar_kernel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.custom_kernel.gaussian_kernel">
+<code class="sig-prename descclassname">src.custom_kernel.</code><code class="sig-name descname">gaussian_kernel</code><span class="sig-paren">(</span><em class="sig-param">v</em><span class="sig-paren">)</span><a class="headerlink" href="#src.custom_kernel.gaussian_kernel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.custom_kernel.triangular_kernel">
+<code class="sig-prename descclassname">src.custom_kernel.</code><code class="sig-name descname">triangular_kernel</code><span class="sig-paren">(</span><em class="sig-param">v</em><span class="sig-paren">)</span><a class="headerlink" href="#src.custom_kernel.triangular_kernel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.diagonal_sample_scaled_noise">
+<span id="src-diagonal-sample-scaled-noise-module"></span><h2>src.diagonal_sample_scaled_noise module<a class="headerlink" href="#module-src.diagonal_sample_scaled_noise" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.diagonal_sample_scaled_noise.diagonal_sample_scaled_noise">
+<code class="sig-prename descclassname">src.diagonal_sample_scaled_noise.</code><code class="sig-name descname">diagonal_sample_scaled_noise</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em>, <em class="sig-param">mean</em>, <em class="sig-param">sigma</em>, <em class="sig-param">noise_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.diagonal_sample_scaled_noise.diagonal_sample_scaled_noise" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.diagonal_sample_tvma1">
+<span id="src-diagonal-sample-tvma1-module"></span><h2>src.diagonal_sample_tvma1 module<a class="headerlink" href="#module-src.diagonal_sample_tvma1" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.diagonal_sample_tvma1.diagonal_sample_tvma1">
+<code class="sig-prename descclassname">src.diagonal_sample_tvma1.</code><code class="sig-name descname">diagonal_sample_tvma1</code><span class="sig-paren">(</span><em class="sig-param">sample_size: int</em>, <em class="sig-param">mean: float</em>, <em class="sig-param">sigma: float</em>, <em class="sig-param">noise_type: str</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.diagonal_sample_tvma1.diagonal_sample_tvma1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create diagonal sample tvma1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample_size</strong> – len of sample</p></li>
+<li><p><strong>mean</strong> – mean</p></li>
+<li><p><strong>sigma</strong> – sigma</p></li>
+<li><p><strong>noise_type</strong> – type</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>diagonal sample tvma1</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.horizontal_sample_scaled_noise">
+<span id="src-horizontal-sample-scaled-noise-module"></span><h2>src.horizontal_sample_scaled_noise module<a class="headerlink" href="#module-src.horizontal_sample_scaled_noise" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.horizontal_sample_scaled_noise.horizontal_sample_scaled_noise">
+<code class="sig-prename descclassname">src.horizontal_sample_scaled_noise.</code><code class="sig-name descname">horizontal_sample_scaled_noise</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em>, <em class="sig-param">t_par_count</em>, <em class="sig-param">mean</em>, <em class="sig-param">sigma</em>, <em class="sig-param">noise_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.horizontal_sample_scaled_noise.horizontal_sample_scaled_noise" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.horizontal_sample_tvma1">
+<span id="src-horizontal-sample-tvma1-module"></span><h2>src.horizontal_sample_tvma1 module<a class="headerlink" href="#module-src.horizontal_sample_tvma1" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.horizontal_sample_tvma1.horizontal_sample_tvma1">
+<code class="sig-prename descclassname">src.horizontal_sample_tvma1.</code><code class="sig-name descname">horizontal_sample_tvma1</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em>, <em class="sig-param">t_par_count</em>, <em class="sig-param">mean</em>, <em class="sig-param">sigma</em>, <em class="sig-param">noise_type</em><span class="sig-paren">)</span><a class="headerlink" href="#src.horizontal_sample_tvma1.horizontal_sample_tvma1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.lrv_hat_of_t_nw">
+<span id="src-lrv-hat-of-t-nw-module"></span><h2>src.lrv_hat_of_t_nw module<a class="headerlink" href="#module-src.lrv_hat_of_t_nw" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.lrv_hat_of_t_nw.lrv_hat_of_t_nw">
+<code class="sig-prename descclassname">src.lrv_hat_of_t_nw.</code><code class="sig-name descname">lrv_hat_of_t_nw</code><span class="sig-paren">(</span><em class="sig-param">cov_double_aray: numpy.array</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.lrv_hat_of_t_nw.lrv_hat_of_t_nw" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimate newey west.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cov_matrix</strong> – covariance double array</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of newey west</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.lrv_hat_of_t_nw_2">
+<span id="src-lrv-hat-of-t-nw-2-module"></span><h2>src.lrv_hat_of_t_nw_2 module<a class="headerlink" href="#module-src.lrv_hat_of_t_nw_2" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.lrv_hat_of_t_nw_2.lrv_hat_of_t_nw_2">
+<code class="sig-prename descclassname">src.lrv_hat_of_t_nw_2.</code><code class="sig-name descname">lrv_hat_of_t_nw_2</code><span class="sig-paren">(</span><em class="sig-param">sample</em>, <em class="sig-param">t_par</em><span class="sig-paren">)</span><a class="headerlink" href="#src.lrv_hat_of_t_nw_2.lrv_hat_of_t_nw_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.nw_mse">
+<span id="src-nw-mse-module"></span><h2>src.nw_mse module<a class="headerlink" href="#module-src.nw_mse" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.nw_mse.main">
+<code class="sig-prename descclassname">src.nw_mse.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param">replication_count</em>, <em class="sig-param">t_par_count</em>, <em class="sig-param">sigma</em>, <em class="sig-param">sample_size</em>, <em class="sig-param">mean</em><span class="sig-paren">)</span><a class="headerlink" href="#src.nw_mse.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.paired_products">
+<span id="src-paired-products-module"></span><h2>src.paired_products module<a class="headerlink" href="#module-src.paired_products" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.paired_products.paired_products">
+<code class="sig-prename descclassname">src.paired_products.</code><code class="sig-name descname">paired_products</code><span class="sig-paren">(</span><em class="sig-param">sample: numpy.array</em>, <em class="sig-param">lag: int</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.paired_products.paired_products" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.plot_double_array">
+<span id="src-plot-double-array-module"></span><h2>src.plot_double_array module<a class="headerlink" href="#module-src.plot_double_array" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.plot_double_array.plot_double_array">
+<code class="sig-prename descclassname">src.plot_double_array.</code><code class="sig-name descname">plot_double_array</code><span class="sig-paren">(</span><em class="sig-param">x_array</em>, <em class="sig-param">hat_double_array</em>, <em class="sig-param">true_array</em>, <em class="sig-param">title</em>, <em class="sig-param">x_label</em>, <em class="sig-param">par_list</em>, <em class="sig-param">axis='column'</em>, <em class="sig-param">y_label='value'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.plot_double_array.plot_double_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.plot_two_arrays">
+<span id="src-plot-two-arrays-module"></span><h2>src.plot_two_arrays module<a class="headerlink" href="#module-src.plot_two_arrays" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.plot_two_arrays.plot_two_arrays">
+<code class="sig-prename descclassname">src.plot_two_arrays.</code><code class="sig-name descname">plot_two_arrays</code><span class="sig-paren">(</span><em class="sig-param">x_array</em>, <em class="sig-param">first_array</em>, <em class="sig-param">first_label</em>, <em class="sig-param">second_array</em>, <em class="sig-param">second_label</em>, <em class="sig-param">true_array</em>, <em class="sig-param">title</em>, <em class="sig-param">x_label</em>, <em class="sig-param">par_list</em>, <em class="sig-param">y_label='value'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.plot_two_arrays.plot_two_arrays" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.precision">
+<span id="src-precision-module"></span><h2>src.precision module<a class="headerlink" href="#module-src.precision" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.precision.bias_array_by_array_and_double_array">
+<code class="sig-prename descclassname">src.precision.</code><code class="sig-name descname">bias_array_by_array_and_double_array</code><span class="sig-paren">(</span><em class="sig-param">true_array: numpy.array</em>, <em class="sig-param">est_double_array: numpy.array</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.precision.bias_array_by_array_and_double_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>bias for every t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_array</strong> – array of true values for every t_par value</p></li>
+<li><p><strong>est_double_array</strong> – columns correspond to t_par values, and each row is a replication</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of bias’s corresponding to each t_par value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.precision.mean_array_by_double_array">
+<code class="sig-prename descclassname">src.precision.</code><code class="sig-name descname">mean_array_by_double_array</code><span class="sig-paren">(</span><em class="sig-param">est_double_array: numpy.array</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.precision.mean_array_by_double_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean for every t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>est_double_array</strong> – columns correspond to t_par values, and each row is a replication</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of mean’s corresponding to each t_par value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.precision.mse_array_by_array_and_double_array">
+<code class="sig-prename descclassname">src.precision.</code><code class="sig-name descname">mse_array_by_array_and_double_array</code><span class="sig-paren">(</span><em class="sig-param">true_array: numpy.array</em>, <em class="sig-param">est_double_array: numpy.array</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.precision.mse_array_by_array_and_double_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find mean squared error (MSE) for every t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_array</strong> – array of true values for every t_par value</p></li>
+<li><p><strong>est_double_array</strong> – columns correspond to t_par values, and each row is a replication</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of mse’s corresponding to each t_par value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.precision.mse_value_by_array_and_array">
+<code class="sig-prename descclassname">src.precision.</code><code class="sig-name descname">mse_value_by_array_and_array</code><span class="sig-paren">(</span><em class="sig-param">true_array: numpy.array</em>, <em class="sig-param">est_array: numpy.array</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.precision.mse_value_by_array_and_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean squared error by array and array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_array</strong> – true value</p></li>
+<li><p><strong>est_array</strong> – array of est values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mse value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.precision.mse_value_by_value_and_array">
+<code class="sig-prename descclassname">src.precision.</code><code class="sig-name descname">mse_value_by_value_and_array</code><span class="sig-paren">(</span><em class="sig-param">true_value: float</em>, <em class="sig-param">est_array: numpy.array</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.precision.mse_value_by_value_and_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean squared error by value and array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>true_value</strong> – true value</p></li>
+<li><p><strong>est_array</strong> – array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mse value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.precision.variance_array_by_double_array">
+<code class="sig-prename descclassname">src.precision.</code><code class="sig-name descname">variance_array_by_double_array</code><span class="sig-paren">(</span><em class="sig-param">est_double_array: numpy.array</em><span class="sig-paren">)</span> &#x2192; numpy.array<a class="headerlink" href="#src.precision.variance_array_by_double_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance for every t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>est_double_array</strong> – columns correspond to t_par values, and each row is a replication</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of variance’s corresponding to each t_par value</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.third_use_case">
+<span id="src-third-use-case-module"></span><h2>src.third_use_case module<a class="headerlink" href="#module-src.third_use_case" title="Permalink to this headline">¶</a></h2>
+<p>User gives for example,
+model=MA1
+sample_size_min = 100
+sample_size_max = 100
+sample_size_by = 100
+coefficient of MA1 = (n^2)
+sigma=2
+r=3
+methods = {NW, T}</p>
+<dl class="class">
+<dt id="src.third_use_case.MA1">
+<em class="property">class </em><code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">MA1</code><span class="sig-paren">(</span><em class="sig-param">sample_size</em>, <em class="sig-param">coef=1</em><span class="sig-paren">)</span><a class="headerlink" href="#src.third_use_case.MA1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.third_use_case.TimeSeries" title="src.third_use_case.TimeSeries"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.third_use_case.TimeSeries</span></code></a></p>
+<dl class="method">
+<dt id="src.third_use_case.MA1.generate">
+<code class="sig-name descname">generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.third_use_case.MA1.generate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="src.third_use_case.TimeSeries">
+<em class="property">class </em><code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">TimeSeries</code><a class="headerlink" href="#src.third_use_case.TimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="method">
+<dt id="src.third_use_case.TimeSeries.generate">
+<em class="property">abstract </em><code class="sig-name descname">generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.third_use_case.TimeSeries.generate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="src.third_use_case.compute_MSE">
+<code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">compute_MSE</code><span class="sig-paren">(</span><em class="sig-param">sample: numpy.array</em>, <em class="sig-param">true_value: float</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.third_use_case.compute_MSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.third_use_case.newey_west">
+<code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">newey_west</code><span class="sig-paren">(</span><em class="sig-param">sample: numpy.array</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.third_use_case.newey_west" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.third_use_case.plot_third_use_case">
+<code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">plot_third_use_case</code><span class="sig-paren">(</span><em class="sig-param">sample_size_array</em>, <em class="sig-param">threshold_MSE_array</em>, <em class="sig-param">newey_west_MSE_array</em><span class="sig-paren">)</span><a class="headerlink" href="#src.third_use_case.plot_third_use_case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.third_use_case.third_use_case">
+<code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">third_use_case</code><span class="sig-paren">(</span><em class="sig-param">sample_size_min</em>, <em class="sig-param">sample_size_max</em>, <em class="sig-param">sample_size_by</em>, <em class="sig-param">replications</em>, <em class="sig-param">sigma</em>, <em class="sig-param">model</em>, <em class="sig-param">coef</em><span class="sig-paren">)</span><a class="headerlink" href="#src.third_use_case.third_use_case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.third_use_case.threshold">
+<code class="sig-prename descclassname">src.third_use_case.</code><code class="sig-name descname">threshold</code><span class="sig-paren">(</span><em class="sig-param">sample: numpy.array</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#src.third_use_case.threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.true_cov_of_t">
+<span id="src-true-cov-of-t-module"></span><h2>src.true_cov_of_t module<a class="headerlink" href="#module-src.true_cov_of_t" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.true_cov_of_t.true_cov_ma1_of_t">
+<code class="sig-prename descclassname">src.true_cov_of_t.</code><code class="sig-name descname">true_cov_ma1_of_t</code><span class="sig-paren">(</span><em class="sig-param">t_par</em>, <em class="sig-param">sigma</em>, <em class="sig-param">lag</em><span class="sig-paren">)</span><a class="headerlink" href="#src.true_cov_of_t.true_cov_ma1_of_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.true_cov_of_t.true_cov_scaled_noise_of_t">
+<code class="sig-prename descclassname">src.true_cov_of_t.</code><code class="sig-name descname">true_cov_scaled_noise_of_t</code><span class="sig-paren">(</span><em class="sig-param">t_par</em>, <em class="sig-param">sigma</em>, <em class="sig-param">lag</em><span class="sig-paren">)</span><a class="headerlink" href="#src.true_cov_of_t.true_cov_scaled_noise_of_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.true_lrv_of_t">
+<span id="src-true-lrv-of-t-module"></span><h2>src.true_lrv_of_t module<a class="headerlink" href="#module-src.true_lrv_of_t" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="src.true_lrv_of_t.true_lrv_ma1_of_t">
+<code class="sig-prename descclassname">src.true_lrv_of_t.</code><code class="sig-name descname">true_lrv_ma1_of_t</code><span class="sig-paren">(</span><em class="sig-param">sigma</em>, <em class="sig-param">t_par</em><span class="sig-paren">)</span><a class="headerlink" href="#src.true_lrv_of_t.true_lrv_ma1_of_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="src.true_lrv_of_t.true_lrv_scaled_noise_of_t">
+<code class="sig-prename descclassname">src.true_lrv_of_t.</code><code class="sig-name descname">true_lrv_scaled_noise_of_t</code><span class="sig-paren">(</span><em class="sig-param">sigma</em>, <em class="sig-param">t_par</em><span class="sig-paren">)</span><a class="headerlink" href="#src.true_lrv_of_t.true_lrv_scaled_noise_of_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="src-var-cell-bootstrap-module">
+<h2>src.var_cell_bootstrap module<a class="headerlink" href="#src-var-cell-bootstrap-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="src-var-cov-hat-bootstrap-statistic-module">
+<h2>src.var_cov_hat_bootstrap_statistic module<a class="headerlink" href="#src-var-cov-hat-bootstrap-statistic-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">project2</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.b_cov">src.b_cov module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.b_nw">src.b_nw module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.batch_size">src.batch_size module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src-block-sums-module">src.block_sums module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.coef">src.coef module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.compute_and_save_cov_and_cov_hats">src.compute_and_save_cov_and_cov_hats module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.compute_and_save_v_vs_nw">src.compute_and_save_v_vs_nw module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.compute_and_save_var_cov_hat_native_matrix">src.compute_and_save_var_cov_hat_native_matrix module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.cov_double_array_of_t">src.cov_double_array_of_t module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.cov_hat_of_t">src.cov_hat_of_t module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.cov_hat_t_free">src.cov_hat_t_free module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.create_noise">src.create_noise module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.create_t_par_array">src.create_t_par_array module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.custom_kernel">src.custom_kernel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.diagonal_sample_scaled_noise">src.diagonal_sample_scaled_noise module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.diagonal_sample_tvma1">src.diagonal_sample_tvma1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.horizontal_sample_scaled_noise">src.horizontal_sample_scaled_noise module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.horizontal_sample_tvma1">src.horizontal_sample_tvma1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.lrv_hat_of_t_nw">src.lrv_hat_of_t_nw module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.lrv_hat_of_t_nw_2">src.lrv_hat_of_t_nw_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.nw_mse">src.nw_mse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.paired_products">src.paired_products module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.plot_double_array">src.plot_double_array module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.plot_two_arrays">src.plot_two_arrays module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.precision">src.precision module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.third_use_case">src.third_use_case module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.true_cov_of_t">src.true_cov_of_t module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.true_lrv_of_t">src.true_lrv_of_t module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src-var-cell-bootstrap-module">src.var_cell_bootstrap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src-var-cov-hat-bootstrap-statistic-module">src.var_cov_hat_bootstrap_statistic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Welcome to documentation!</a></li>
+      <li>Next: <a href="test.html" title="next chapter">test package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Boris.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0+/a556145</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/rst/src.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
