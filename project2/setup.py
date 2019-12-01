@@ -11,7 +11,8 @@ setup(
         'numpy',
         'matplotlib',
         'pandas',
-        'scikit-learn'
+        'scikit-learn',
+        'sphinx'
     ],
     python_requires='>=3.5'
 )
