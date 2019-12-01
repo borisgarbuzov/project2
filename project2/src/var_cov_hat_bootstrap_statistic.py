@@ -14,7 +14,7 @@ def var_cov_hat_bootstrap_statistic(paired_product_array: np.array,
                          len(g_array))
 
     batch_size_value = batch_size(sample_size=sample_size)
-    z_value = np.sum(paired_product_array) / sample_size
+    z_value = np.sum(paired_product_array) * (batch_size_value / sample_size)
 
     partial_sum = 0
 
