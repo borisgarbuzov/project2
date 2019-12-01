@@ -1,46 +1,74 @@
 import numpy as np
 from src.support_bound import support_bound
-
-def cov_hat_t_free(sample: np.array, lag:int) -> float:
-    sample_size = len(sample)
-
-    if lag < 0:
-        raise ValueError("lag should be equal or more than 0")
-    elif lag > sample_size - 1:
-        raise ValueError("lag should be less than sample size - 1")
-
-    partial_sum = 0
-
-    for index in range(sample_size - lag):
-        partial_sum += sample[index] * sample[index + lag]
-
-    return partial_sum / sample_size
+from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.cov_hat_t_free import cov_hat_t_free
+from timeit import default_timer as timer
 
 
-def compute_and_save_var_cov_hat_native_matrix(replication_count, sample_size_array, max_lag_array):
+def max_lag_array(sample_size_array: np.array) -> np.array:
+    return np.array([int(support_bound(sample_size)) + 1 for sample_size in list(sample_size_array)])
+
+
+def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
+                                               sigma: float, noise_type: str) -> np.array:
+    max_lag_array = [int(support_bound(sample_size)) + 1 for sample_size in sample_size_array]
+
     var_cov_hat_native_matrix = np.full(shape=(sample_size_array[-1], max_lag_array[-1]), fill_value=np.nan)
     print(var_cov_hat_native_matrix.shape)
 
-    i = 0
-    for sample_size in sample_size_array:
-    # need to import
-        max_lag = round(support_bound(sample_size))
+    for i, sample_size in enumerate(sample_size_array):
+        # max lag for current sample_size
+        max_lag = max_lag_array[i]  # int(support_bound(sample_size)) + 1
 
-        # for lag_step in max_lag_array:
-        for lag in range(max_lag_array[i]):
+        for lag in range(max_lag + 1):
             cov_array = np.full(shape=replication_count, fill_value=np.nan)
 
             for r in range(replication_count):
-                sample = np.ones(lag + 1)  # generate_tvma1
+                sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean, sigma=sigma, noise_type=noise_type)
                 cov_array[r] = cov_hat_t_free(sample, lag)
-            var_cov_hat_native_matrix[lag, sample_size_array.index(sample_size)] = np.var(cov_array)
-        print()
-        print(sample_size, max_lag_array[i])
-        print(var_cov_hat_native_matrix)
-        i += 1
+
+            var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
     return var_cov_hat_native_matrix
 
 
+def compute_and_save_var_cov_hat_native_dict(replication_count: int, sample_size_array: np.array, mean: float,
+                                             sigma: float, noise_type: str) -> dict:
+    var_cov_hat_native_dict = dict()
+
+    for sample_size in sample_size_array:
+        # max lag for current sample_size
+        max_lag = int(support_bound(sample_size)) + 1
+
+        for lag in range(max_lag + 1):
+            cov_array = np.full(shape=replication_count, fill_value=np.nan)
+
+            for r in range(replication_count):
+                sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean, sigma=sigma, noise_type=noise_type)
+                cov_array[r] = cov_hat_t_free(sample, lag)
+
+            var_cov_hat_native_dict[sample_size] = np.var(cov_array)
+    return var_cov_hat_native_dict
+
+
 if __name__ == '__main__':
-    res = compute_and_save_var_cov_hat_native_matrix(replication_count=3, sample_size_array=[1, 2, 3, 4, 5],
-                                                     max_lag_array=[1, 2, 3, 4, 5])
+    start_time = timer()
+    res = compute_and_save_var_cov_hat_native_matrix(replication_count=3,
+                                                     sample_size_array=[1000, 2000, 3000, 4000, 5000],
+                                                     mean=0,
+                                                     sigma=2,
+                                                     noise_type='bernoulli')
+    duration = timer() - start_time
+    print('Matrix: ', duration)
+    print(res)
+
+    print('\n===================================\n')
+
+    start_time = timer()
+    res = compute_and_save_var_cov_hat_native_dict(replication_count=3,
+                                                   sample_size_array=[1000, 2000, 3000, 4000, 5000],
+                                                   mean=0,
+                                                   sigma=2,
+                                                   noise_type='bernoulli')
+    duration = timer() - start_time
+    print('Dict: ', duration)
+    print(res)
