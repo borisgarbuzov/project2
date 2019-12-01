@@ -1,17 +1,21 @@
-import os
+from os.path import dirname
 import matplotlib.pyplot as plt
+import os
 
 
 def plot_two_arrays(x_array, first_array, first_label, second_array,
                     second_label, true_array, title,
                     x_label, par_list, y_label='value'):
-    # create directory for output if doesn't exist
-    if not os.path.exists('output'):
-        os.makedirs('output')
+    # create directory for output if it doesn't exist
+    parent_dir = dirname(dirname(__file__))
+    output_folder = os.path.join(parent_dir, "output")
+
+    if not os.path.exists(output_folder):
+        os.mkdir(output_folder)
 
     # create file name for plot
-    file_name = 'output/plot for ' + title + str(par_list).replace(': ',
-                                                                   '=') + '.png'
+    file_name = os.path.join(output_folder, 'plot for') + title + str(
+        par_list).replace(': ', '=') + '.png'
 
     # get values out of par_list and make it string
     caption = ""

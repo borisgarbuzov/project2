@@ -13,3 +13,4 @@ __pycache__/
 *.xml
 *.svg
 !requirements.txt
+!/project2/data/*.csv

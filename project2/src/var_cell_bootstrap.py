@@ -6,14 +6,14 @@ import numpy as np
 
 
 def var_cell_bootstrap(sample_size: int,
-                       replication_size: int,
+                       replication_count: int,
                        lag: int,
                        mean: int,
                        sigma: int,
                        noise_type: str) -> float:
-    s_array = np.full(shape=replication_size, fill_value=np.nan)
+    s_array = np.full(shape=replication_count, fill_value=np.nan)
 
-    for replication in range(replication_size):
+    for replication in range(replication_count):
         sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,
                                        sigma=sigma, noise_type=noise_type)
         paired_product_array = paired_products(sample=sample, lag=lag)
