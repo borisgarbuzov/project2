@@ -1,14 +1,74 @@
-import src.cov_hat_t_free
 import numpy as np
+from src.support_bound import support_bound
+from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.cov_hat_t_free import cov_hat_t_free
+from timeit import default_timer as timer
 
 
-def compute_and_save_var_cov_hat_native_matrix(replication_count, sample_size_array, max_lag_array):
-    for sample_size in sample_size_array:
-        for lag in max_lag_array:
-            var_cov_hat_native_matrix = np.full(shape=(sample_size, lag), fill_value=np.nan)
+def max_lag_array(sample_size_array: np.array) -> np.array:
+    return np.array([int(support_bound(sample_size)) + 1 for sample_size in list(sample_size_array)])
+
+
+def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
+                                               sigma: float, noise_type: str) -> np.array:
+    max_lag_array = [int(support_bound(sample_size)) + 1 for sample_size in sample_size_array]
+
+    var_cov_hat_native_matrix = np.full(shape=(sample_size_array[-1], max_lag_array[-1]), fill_value=np.nan)
+    print(var_cov_hat_native_matrix.shape)
+
+    for i, sample_size in enumerate(sample_size_array):
+        # max lag for current sample_size
+        max_lag = max_lag_array[i]  # int(support_bound(sample_size)) + 1
+
+        for lag in range(max_lag + 1):
             cov_array = np.full(shape=replication_count, fill_value=np.nan)
 
             for r in range(replication_count):
-                cov_array[r] = src.cov_hat_t_free.cov_hat_t_free(sample, lag)
+                sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean, sigma=sigma, noise_type=noise_type)
+                cov_array[r] = cov_hat_t_free(sample, lag)
 
-            var_cov_hat_native_matrix[sample_size, lag] = np.var(cov_array)
+            var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
+    return var_cov_hat_native_matrix
+
+
+def compute_and_save_var_cov_hat_native_dict(replication_count: int, sample_size_array: np.array, mean: float,
+                                             sigma: float, noise_type: str) -> dict:
+    var_cov_hat_native_dict = dict()
+
+    for sample_size in sample_size_array:
+        # max lag for current sample_size
+        max_lag = int(support_bound(sample_size)) + 1
+
+        for lag in range(max_lag + 1):
+            cov_array = np.full(shape=replication_count, fill_value=np.nan)
+
+            for r in range(replication_count):
+                sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean, sigma=sigma, noise_type=noise_type)
+                cov_array[r] = cov_hat_t_free(sample, lag)
+
+            var_cov_hat_native_dict[sample_size] = np.var(cov_array)
+    return var_cov_hat_native_dict
+
+
+if __name__ == '__main__':
+    start_time = timer()
+    res = compute_and_save_var_cov_hat_native_matrix(replication_count=3,
+                                                     sample_size_array=[1000, 2000, 3000, 4000, 5000],
+                                                     mean=0,
+                                                     sigma=2,
+                                                     noise_type='bernoulli')
+    duration = timer() - start_time
+    print('Matrix: ', duration)
+    print(res)
+
+    print('\n===================================\n')
+
+    start_time = timer()
+    res = compute_and_save_var_cov_hat_native_dict(replication_count=3,
+                                                   sample_size_array=[1000, 2000, 3000, 4000, 5000],
+                                                   mean=0,
+                                                   sigma=2,
+                                                   noise_type='bernoulli')
+    duration = timer() - start_time
+    print('Dict: ', duration)
+    print(res)

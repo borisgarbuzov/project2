@@ -93,33 +93,4 @@ def bias_array_by_array_and_double_array(true_array: np.array, est_double_array:
 
 
 if __name__ == '__main__':
-    print(mse_value_by_value_and_array(true_value=3, est_array=[1,2,3,4,5]))
-    
-    print(mse_value_by_array_and_array(true_array=[1,2,3,4,5], est_array=[6,7,8,9,10]))
-
-    print()
-    print(mse_array_by_array_and_double_array(true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]]))
-
-    print(mse_array_by_array_and_double_array(true_array=[9, 9, 9, 9], est_double_array=[[1, 1, 1, 1], [5, 5, 5, 5], [7, 7, 7, 7]]))
-
-    print(mse_array_by_array_and_double_array(true_array=[7, 1, 3, 2],
-                                              est_double_array=[[8, 7, 5, 3], [1, 2, 3, 4], [9, 6, 2, 8]]))
-
-    print()
-    print(mean_array_by_double_array(est_double_array=[[1,2,3],[4,5,6],[7,8,9]]))
-
-    print(mean_array_by_double_array(est_double_array=[[8, 7, 5, 3], [1, 2, 3, 4], [9, 6, 2, 8]]))
-
-    print(mean_array_by_double_array(est_double_array=[[8, 7, 5], [1, 2, 3], [9, 6, 2], [3, 4, 9], [8, 0, 3]]))
-
-    print()
-    print(variance_array_by_double_array(est_double_array=[[1,2,3],[4,5,6],[7,8,9]]))
-
-    print(variance_array_by_double_array(est_double_array=[[8, 7, 5, 3], [1, 2, 3, 4], [9, 6, 2, 8]]))
-
-    print()
-    print(bias_array_by_array_and_double_array(true_array=[1,2,3], est_double_array=[[1,2,3],[4,5,6],[7,8,9]]))
-
-    print()
-    print(np.var([8, 1, 9]))
-    print(np.var([7, 2, 6]))
+    pass

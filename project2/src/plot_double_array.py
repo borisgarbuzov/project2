@@ -1,5 +1,6 @@
-import os
+from os.path import dirname
 import matplotlib.pyplot as plt
+import os
 
 
 def plot_double_array(x_array,
@@ -10,9 +11,12 @@ def plot_double_array(x_array,
                       par_list,
                       axis='column',
                       y_label='value'):
-    # create directory for output if doesn't exist
-    if not os.path.exists('output'):
-        os.mkdir('output')
+    # create directory for output if it doesn't exist
+    parent_dir = dirname(dirname(__file__))
+    output_folder = os.path.join(parent_dir, "output")
+
+    if not os.path.exists(output_folder):
+        os.mkdir(output_folder)
 
     if axis == 'row':
         hat_double_array = hat_double_array.T
@@ -28,8 +32,8 @@ def plot_double_array(x_array,
 
     plt.style.use('seaborn')
 
-    file_name = 'output/plot for ' + title + str(par_list).replace(': ',
-                                                                   '=') + '.png'
+    file_name = os.path.join(output_folder, 'plot for') + title + str(
+        par_list).replace(': ', '=') + '.png'
 
     for ax_value in range(hat_double_array.shape[1]):
         plt.plot(x_array, hat_double_array[:, ax_value])

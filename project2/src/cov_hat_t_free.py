@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def cov_hat_t_free(sample: np.array, lag:int) -> float:
+def cov_hat_t_free(sample: np.array, lag: int) -> float:
     sample_size = len(sample)
 
     if lag < 0:
