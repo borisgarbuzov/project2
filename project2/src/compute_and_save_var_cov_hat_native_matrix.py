@@ -37,7 +37,6 @@ def max_lag_array(sample_size_array: np.array) -> np.array:
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
                                                sigma: float, noise_type: str) -> np.array:
-                                                   
     # create directory for data if it doesn't exist
     parent_dir = os.path.dirname(dirname(__file__))
     data_folder = os.path.join(parent_dir, "data")
