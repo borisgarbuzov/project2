@@ -4,7 +4,7 @@ os_type = platform.system()
 if os_type == 'Linux':
     os.system("sudo apt install cloc")
     os.system("echo '==============================================================================='")
-    os.system("echo 'STATS OF ALL PROJECT'")
+    os.system("echo 'TOTAL'")
     os.system("cloc project2")
     os.system("echo '==============================================================================='")
     os.system("echo 'STATS OF SRC'")
