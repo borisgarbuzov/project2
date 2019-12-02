@@ -1,5 +1,6 @@
 from src.create_t_par_array import create_t_par_array
 from src.cov_hat_of_t import cov_hat_of_t
+from src.support_bound import support_bound
 import numpy as np
 
 
@@ -12,18 +13,18 @@ def cov_double_array_of_t(sample: np.array, t_par_count: int) -> np.array:
     :return: double array
     """
     sample_size = len(sample)
-    lag_array = np.arange(start=0, stop=sample_size, step=1)
+    max_lag = int(support_bound(sample_size=sample_size))
 
-    cov_double_array = np.full(shape=(len(lag_array), t_par_count),
+    cov_double_array = np.full(shape=(max_lag, t_par_count),
                                fill_value=np.nan)
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
-    for lag_index, lag in enumerate(lag_array):
+    for lag in range(max_lag):
         for t_par_index in range(t_par_count):
-            cov_double_array[lag_index, t_par_index] = cov_hat_of_t(
+            cov_double_array[lag, t_par_index] = cov_hat_of_t(
                 sample=sample,
                 t_par=t_par_array[t_par_index],
                 lag=lag)
-        print("There are", len(lag_array) - (lag_index + 1), "lags left")
+        print("There are", max_lag - (lag + 1), "lags left")
 
     return cov_double_array
