@@ -41,6 +41,9 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     parent_dir = os.path.dirname(dirname(__file__))
     data_folder = os.path.join(parent_dir, "data")
     
+    if not os.path.exists(data_folder):
+        os.mkdir(data_folder)
+    
     max_lag_array = [int(support_bound(sample_size)) + 1 for sample_size in sample_size_array]
 
     # result matrix
