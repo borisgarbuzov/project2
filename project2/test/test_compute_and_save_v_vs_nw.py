@@ -10,7 +10,7 @@ class Test_compute_and_save_v_vs_nw(unittest.TestCase):
                                             sigma = 2,
                                             noise_type = 'bernoulli'):
         print('\n\n===============================================================================')
-        print('Testing "compute_and_save_cov_and_cov_hats"')
+        print('Testing "compute_and_save_v_vs_nw"')
         start_time = timer()
         compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma, noise_type)
         end_time = timer() - start_time
