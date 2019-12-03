@@ -21,12 +21,13 @@ Dict:    44.31950395199965 secs
 """
 
 
-import numpy as np
 from src.support_bound import support_bound
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.cov_hat_t_free import cov_hat_t_free
 from timeit import default_timer as timer
+import numpy as np
 import pandas as pd
+import datetime
 from os.path import dirname
 import os
 
@@ -36,13 +37,22 @@ def max_lag_array(sample_size_array: np.array) -> np.array:
 
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
-                                               sigma: float, noise_type: str) -> np.array:
-    # create directory for data if it doesn't exist
-    parent_dir = os.path.dirname(dirname(__file__))
-    data_folder = os.path.join(parent_dir, "data")
-    
-    if not os.path.exists(data_folder):
-        os.mkdir(data_folder)
+                                               sigma: float, noise_type: str, save: False) -> np.array:
+                                                   
+    if save:                                
+        # create directory for data if it doesn't exist
+        parent_dir = os.path.dirname(dirname(__file__))
+        data_folder = os.path.join(parent_dir, "data")
+        
+        if not os.path.exists(data_folder):
+            os.mkdir(data_folder)
+    else:
+        # create directory for data if it doesn't exist
+        parent_dir = os.path.dirname(dirname(__file__))
+        data_folder = os.path.join(parent_dir, "output")
+        
+        if not os.path.exists(data_folder):
+            os.mkdir(data_folder)
     
     max_lag_array = [int(support_bound(sample_size)) + 1 for sample_size in sample_size_array]
 
@@ -72,21 +82,31 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
 
     df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix, index=index_names, columns=column_names)
     
-    df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix.csv"))
+    if save:
+        df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix.csv"))
+    else:
+        now = datetime.datetime.now()
+        date = '{}'.format(now.strftime("%m-%d-%YT%H:%M:%S-%f"))
+        df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix_{}.csv".format(date)))
             
     return var_cov_hat_native_matrix
 
 
-if __name__ == '__main__':
+def __main():
     sample_size_array = np.arange(1000, 3001, 1000)
     start_time = timer()
-    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=3,
-                                                     sample_size_array=sample_size_array,
-                                                     mean=0,
-                                                     sigma=2,
-                                                     noise_type='bernoulli')
+    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
+                                                      sample_size_array=sample_size_array,
+                                                      mean=0,
+                                                      sigma=2,
+                                                      noise_type='gaussian', 
+                                                      save=False)
     duration = timer() - start_time
     print(np.around(res1, decimals=4))
-    print('=========================================\n')
+    print('=========================================')
     print('Matrix duration:\t', duration, 'secs')
     print('=========================================\n')
+    
+    
+if __name__ == '__main__':
+    __main()

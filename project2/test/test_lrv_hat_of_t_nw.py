@@ -7,11 +7,42 @@ import unittest
 
 
 class Test_lrv_hat_of_t_nw(unittest.TestCase):
+    def test_run_lrv_hat_of_t_nw(self, t_par_count=11,
+                                 sample_size=20,
+                                 mean=0,
+                                 sigma=2,
+                                 noise_type='gaussian'):
+
+        print('\n\n===============================================================================')
+        print('Testing RUN "lrv_hat_of_t_nw"')
+        diagonal_sample = diagonal_sample_tvma1(sample_size=sample_size,
+                                                mean=mean,
+                                                sigma=sigma,
+                                                noise_type=noise_type)
+                                      
+        cov_double_array = cov_double_array_of_t(sample=diagonal_sample,
+                                                t_par_count=t_par_count)
+        start_time = timer()
+        returned = lrv_hat_of_t_nw(cov_double_aray=cov_double_array, sample_size=sample_size)
+        print('Test parameters:')
+        print('cov_double_aray_size = ', cov_double_array.shape)
+
+        print('\nreturned = ', type(returned))
+        if isinstance(returned, list):
+            print('returned shape = ', len(returned))
+        elif isinstance(returned, np.ndarray):
+            print('returned shape = ', returned.shape)
+        print('returned = ', returned)
+
+        print("\nDuration: {:g} secs".format(timer() - start_time))
+        print('End of RUN test {}'.format('lrv_hat_of_t_nw'))
+        print('===============================================================================\n')
+        
     def test_lrv_hat_of_t_nw(self, t_par_count=11,
-                             sample_size=20,
+                             sample_size=1000,
                              mean=0,
                              sigma=2,
-                             noise_type='bernoulli'):
+                             noise_type='gaussian'):
 
         print('\n\n===============================================================================')
         print('Testing "lrv_hat_of_t_nw"')
