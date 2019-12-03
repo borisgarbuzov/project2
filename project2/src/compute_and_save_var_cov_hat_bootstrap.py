@@ -49,7 +49,8 @@ def compute_and_save_var_cov_hat_bootstrap(sample_size_from: int,
     df_variance_matrix = pd.DataFrame(variance_double_array, index=index_names,
                                       columns=column_names)
 
-    df_variance_matrix.to_csv(os.path.join(data_folder, "variance_matrix.csv"))
+    df_variance_matrix.to_csv(os.path.join(data_folder,
+                                           "var_cov_hat_bootstrap_matrix.csv"))
 
 
 if __name__ == '__main__':

@@ -17,19 +17,46 @@ class Test_cov_hat_of_t(unittest.TestCase):
         start_time = timer()
         returned = cov_hat_of_t(sample=diagonal_sample, t_par=t_par, lag=lag)
         print('Test parameters:')
-        print('sample = ', diagonal_sample)
-        print('t_par = ', t_par)
-        print('lag = ', lag)
+        print('sample =', diagonal_sample)
+        print('t_par =', t_par)
+        print('lag =', lag)
 
-        print('\nreturned = ', type(returned))
+        print('\nreturned =', type(returned))
         if isinstance(returned, list):
-            print('returned shape = ', len(returned))
+            print('returned shape =', len(returned))
         elif isinstance(returned, np.ndarray):
-            print('returned shape = ', returned.shape)
-        print('returned = ', returned)
+            print('returned shape =', returned.shape)
+        print('returned =', returned)
 
         print("\nDuration: {:g} secs".format(timer() - start_time))
         print('End of test {}'.format('cov_hat_of_t'))
+        print('===============================================================================\n')
+
+    def test_run_deterministic_cov_hat_of_t(self, sample = np.array([1, 2, 3]),
+                                            t_par=0.5, lag=0, expected=2.12):
+
+        print('\n\n===============================================================================')
+        print('Testing "deterministic_test_cov_hat_of_t"')
+
+        start_time = timer()
+        returned = cov_hat_of_t(sample=sample, t_par=t_par, lag=lag)
+        print('Test parameters:')
+        print('sample =', sample)
+        print('t_par =', t_par)
+        print('lag =', lag)
+        print('expected =', expected)
+
+        self.assertEqual(round(returned, 2), expected)
+
+        print('\nreturned =', type(returned))
+        if isinstance(returned, list):
+            print('returned shape =', len(returned))
+        elif isinstance(returned, np.ndarray):
+            print('returned shape =', returned.shape)
+        print('returned =', returned)
+
+        print("\nDuration: {:g} secs".format(timer() - start_time))
+        print('End of test {}'.format('deterministic_test_cov_hat_of_t'))
         print('===============================================================================\n')
 
 
