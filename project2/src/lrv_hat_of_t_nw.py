@@ -60,36 +60,17 @@ def main():
 if __name__ == '__main__':
     # main()
     
-    sample_size = 100
-    t_par_count = 5
-    mean = 0
-    sigma = 2
-    noise_type = 'bernoulli'
+    sample_size = 2
 
-    diagonal_sample = diagonal_sample_tvma1(sample_size=sample_size,
-                                            mean=mean,
-                                            sigma=sigma,
-                                            noise_type=noise_type)
+    double_array = [ 
+        [1,2,3],
+        [5,6,7]
+        ]
+    out = lrv_hat_of_t_nw(cov_double_aray=double_array, sample_size=sample_size)
+    print(out)
     
-    cov_double_array = cov_double_array_of_t(sample=diagonal_sample,
-                                                t_par_count=t_par_count)
-                                                
-    print(cov_double_array)
-    print()
+    # out = [3.02698221 4.43237865 5.8377751 ]
     
-    # newey west array
-    nw_array = lrv_hat_of_t_nw(cov_double_aray=cov_double_array, sample_size=sample_size)
-
-    true_array = np.full(shape=t_par_count, fill_value=np.nan)
-    t_par_array = create_t_par_array(t_par_count)
-    for index, t_par in enumerate(t_par_array):
-        true_array[index] = true_lrv_ma1_of_t(sigma=sigma, t_par=t_par)
-
-    print('true_array: \t',true_array)
-    print('nw_array: \t', nw_array)
-
-    mse_precision = src.precision.mse_value_by_array_and_array(true_array=true_array, est_array=nw_array)
-    print('mse_precision: \t', mse_precision)
     
     
     """

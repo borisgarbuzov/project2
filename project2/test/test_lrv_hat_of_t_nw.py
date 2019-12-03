@@ -38,11 +38,15 @@ class Test_lrv_hat_of_t_nw(unittest.TestCase):
         print('End of RUN test {}'.format('lrv_hat_of_t_nw'))
         print('===============================================================================\n')
         
-    def test_lrv_hat_of_t_nw(self, t_par_count=11,
-                             sample_size=1000,
+    def test_lrv_hat_of_t_nw(self, t_par_count=3,
+                             sample_size=2,
                              mean=0,
                              sigma=2,
-                             noise_type='gaussian'):
+                             noise_type='gaussian', 
+                             true_returned=[]):
+                                 
+                                 
+                                 
 
         print('\n\n===============================================================================')
         print('Testing "lrv_hat_of_t_nw"')

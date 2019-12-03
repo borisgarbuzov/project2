@@ -38,21 +38,8 @@ def max_lag_array(sample_size_array: np.array) -> np.array:
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
                                                sigma: float, noise_type: str, save: False) -> np.array:
-                                                   
-    if save:                                
-        # create directory for data if it doesn't exist
-        parent_dir = os.path.dirname(dirname(__file__))
-        data_folder = os.path.join(parent_dir, "data")
-        
-        if not os.path.exists(data_folder):
-            os.mkdir(data_folder)
-    else:
-        # create directory for data if it doesn't exist
-        parent_dir = os.path.dirname(dirname(__file__))
-        data_folder = os.path.join(parent_dir, "output")
-        
-        if not os.path.exists(data_folder):
-            os.mkdir(data_folder)
+            
+    
     
     max_lag_array = [int(support_bound(sample_size)) + 1 for sample_size in sample_size_array]
 
@@ -82,12 +69,22 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
 
     df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix, index=index_names, columns=column_names)
     
+    # create directory for data if it doesn't exist
+    parent_dir = os.path.dirname(dirname(__file__))                                       
     if save:
+        data_folder = os.path.join(parent_dir, "data")
+        if not os.path.exists(data_folder):
+            os.mkdir(data_folder)
         df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix.csv"))
     else:
+        data_folder = os.path.join(parent_dir, "output")
+        if not os.path.exists(data_folder):
+            os.mkdir(data_folder)
         now = datetime.datetime.now()
-        date = '{}'.format(now.strftime("%m-%d-%YT%H:%M:%S-%f"))
-        df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix_{}.csv".format(date)))
+        date = '{}'.format(now.strftime("%H:%M:%S:%f"))
+        st = '_' + date
+        st = ''
+        df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix_{}.csv".format(st)))
             
     return var_cov_hat_native_matrix
 
@@ -109,4 +106,10 @@ def __main():
     
     
 if __name__ == '__main__':
-    __main()
+    # __main()
+    
+    now = datetime.datetime.now()
+    date = '{}'.format(now.strftime("%H:%M:%S:%f"))
+    st = "var_cov_hat_native_matrix_{}.csv".format(date)
+    print(st)
+    
