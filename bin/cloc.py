@@ -12,6 +12,7 @@ if os_type == 'Linux':
     os.system("echo '==============================================================================='")
     os.system("echo 'STATS OF TEST'")
     os.system("cloc project2/project2/test")
+    os.system("echo '==============================================================================='")
 elif os_type == 'Windows':
     os.system("""@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall'))""")
     # os.system("""runas /user:Administrator "choco install cloc""")
