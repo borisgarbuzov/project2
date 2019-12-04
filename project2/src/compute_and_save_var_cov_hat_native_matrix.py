@@ -95,7 +95,7 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
 def __main():
     sample_size_array = np.arange(1000, 3001, 1000)
     start_time = timer()
-    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
+    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
                                                       sample_size_array=sample_size_array,
                                                       mean=0,
                                                       sigma=2,
