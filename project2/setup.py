@@ -12,7 +12,8 @@ setup(
         'matplotlib',
         'pandas',
         'scikit-learn',
-        'sphinx'
+        'sphinx',
+        'coverage'
     ],
     python_requires='>=3.5'
 )

@@ -2,6 +2,7 @@ output/
 __pycache__/
 .idea/
 *.egg-info/
+*pyc
 *.pdf
 *.csv
 *.jpeg

@@ -21,8 +21,14 @@ def lrv_hat_of_t_nw(cov_double_aray: np.array, sample_size: int) -> np.array:
     b_nw_value = b_nw(sample_size=sample_size)
 
     for lag in range(len(cov_double_aray)):
-        K = src.custom_kernel.triangular_kernel(v=lag / (sample_size * b_nw_value))
+        print("lrv_hat_of_t_nw: lag =", lag)
+        if lag == 0:
+            rep = 1
+        else :
+            rep = 2
+        K = src.custom_kernel.triangular_kernel(v=lag / (sample_size * b_nw_value)) * rep
         for t_par_index in range(t_par_count):
+
             res_array[t_par_index] += cov_double_aray[lag][t_par_index] * K
 
     return res_array
