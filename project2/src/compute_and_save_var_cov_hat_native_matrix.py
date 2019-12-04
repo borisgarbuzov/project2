@@ -66,16 +66,17 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     # save DataFrame to .csv
     now = datetime.datetime.now()
     # create directory for data if it doesn't exist
-    parent_dir = os.path.dirname(dirname(__file__))                                       
+    parent_dir = dirname(dirname(__file__))
     if is_data:
         data_folder = os.path.join(parent_dir, "data")
         date = ''
-    else:
+    if not is_data:
         data_folder = os.path.join(parent_dir, "output")
-        date = '_{}'.format(now.strftime("%H:%M:%S:%f"))
+        date = '_{}'.format(now.strftime("%H;%M;%S;%f"))
     if not os.path.exists(data_folder):
         os.mkdir(data_folder)
-    df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix{}.csv".format(date)))
+    df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder,
+                                                     "var_cov_hat_native_matrix{}.csv".format(date)))
             
     return var_cov_hat_native_matrix
     
