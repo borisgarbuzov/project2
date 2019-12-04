@@ -73,6 +73,8 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     else:
         data_folder = os.path.join(parent_dir, "output")
         date = '_{}'.format(now.strftime("%H:%M:%S:%f"))
+    if not os.path.exists(data_folder):
+        os.mkdir(data_folder)
     df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix{}.csv".format(date)))
             
     return var_cov_hat_native_matrix
