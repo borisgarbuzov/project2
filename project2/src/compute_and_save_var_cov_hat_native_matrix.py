@@ -25,10 +25,10 @@ from src.support_bound import support_bound
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.cov_hat_t_free import cov_hat_t_free
 from timeit import default_timer as timer
+from os.path import dirname
 import numpy as np
 import pandas as pd
 import datetime
-from os.path import dirname
 import os
 
 

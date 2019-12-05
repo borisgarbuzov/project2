@@ -1,6 +1,7 @@
 from os.path import dirname
 import matplotlib.pyplot as plt
 import os
+import datetime
 
 
 def plot_double_array(x_array,
@@ -32,8 +33,10 @@ def plot_double_array(x_array,
 
     plt.style.use('seaborn')
 
+    now = datetime.datetime.now()
     file_name = os.path.join(output_folder, 'plot for') + title + str(
-        par_list).replace(': ', '=') + '.png'
+        par_list).replace(': ', '=') + '_' + now.strftime("%H;%M;%S;%f") + \
+                '.png'
 
     for ax_value in range(hat_double_array.shape[1]):
         plt.plot(x_array, hat_double_array[:, ax_value])

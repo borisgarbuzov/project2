@@ -32,6 +32,7 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
         true_lrv_ma1_array[index] = true_lrv_ma1_of_t(sigma=sigma, t_par=t_par)
         double_sum_nw_array[index] = lrv_hat_of_t_nw_2(sample=sample,
                                                        t_par=t_par)
+        print("t_par left:", len(t_par_array) - (index + 1))
 
     plot_two_arrays(x_array=t_par_array,
                     first_array=double_sum_nw_array,

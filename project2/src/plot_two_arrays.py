@@ -1,6 +1,7 @@
 from os.path import dirname
 import matplotlib.pyplot as plt
 import os
+import datetime
 
 
 def plot_two_arrays(x_array, first_array, first_label, second_array,
@@ -14,8 +15,10 @@ def plot_two_arrays(x_array, first_array, first_label, second_array,
         os.mkdir(output_folder)
 
     # create file name for plot
+    now = datetime.datetime.now()
     file_name = os.path.join(output_folder, 'plot for') + title + str(
-        par_list).replace(': ', '=') + '.png'
+        par_list).replace(': ', '=') + '_' + now.strftime("%H;%M;%S;%f") + \
+                '.png'
 
     # get values out of par_list and make it string
     caption = ""

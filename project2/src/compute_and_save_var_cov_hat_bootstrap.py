@@ -1,9 +1,10 @@
 from src.var_cell_bootstrap import var_cell_bootstrap
 from src.support_bound import support_bound
+from os.path import dirname
 import numpy as np
 import pandas as pd
-from os.path import dirname
 import os
+import datetime
 
 
 def compute_and_save_var_cov_hat_bootstrap(sample_size_from: int,
@@ -12,14 +13,8 @@ def compute_and_save_var_cov_hat_bootstrap(sample_size_from: int,
                                            replication_count: int,
                                            mean: int,
                                            sigma: int,
-                                           noise_type: str):
-    # create directory for data if it doesn't exist
-    parent_dir = dirname(dirname(__file__))
-    data_folder = os.path.join(parent_dir, "data")
-
-    if not os.path.exists(data_folder):
-        os.mkdir(data_folder)
-
+                                           noise_type: str,
+                                           is_data: bool):
     sample_size_array = np.arange(start=sample_size_from, stop=sample_size_to,
                                   step=sample_size_by)
 
@@ -49,8 +44,19 @@ def compute_and_save_var_cov_hat_bootstrap(sample_size_from: int,
     df_variance_matrix = pd.DataFrame(variance_double_array, index=index_names,
                                       columns=column_names)
 
+    now = datetime.datetime.now()
+    parent_dir = dirname(dirname(__file__))
+    if is_data:
+        data_folder = os.path.join(parent_dir, "data")
+        date = ''
+    if not is_data:
+        data_folder = os.path.join(parent_dir, "output")
+        date = '_{}'.format(now.strftime("%H;%M;%S;%f"))
+    if not os.path.exists(data_folder):
+        os.mkdir(data_folder)
     df_variance_matrix.to_csv(os.path.join(data_folder,
-                                           "var_cov_hat_bootstrap_matrix.csv"))
+                                           "var_cov_hat_bootstrap_matrix{}"
+                                           ".csv".format(date)))
 
 
 if __name__ == '__main__':
@@ -60,4 +66,5 @@ if __name__ == '__main__':
                                            replication_count=10,
                                            mean=0,
                                            sigma=2,
-                                           noise_type="gaussian")
+                                           noise_type="gaussian",
+                                           is_data=False)
