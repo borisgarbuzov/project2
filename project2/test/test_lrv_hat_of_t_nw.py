@@ -23,7 +23,7 @@ class Test_run_lrv_hat_of_t_nw(unittest.TestCase):
         cov_double_array = cov_double_array_of_t(sample=diagonal_sample,
                                                 t_par_count=t_par_count)
         start_time = timer()
-        returned = lrv_hat_of_t_nw(cov_double_aray=cov_double_array, sample_size=sample_size)
+        returned = lrv_hat_of_t_nw(cov_double_array=cov_double_array, sample_size=sample_size)
         duration = timer() - start_time
         print('Test parameters:')
         print('t_par_count = ', t_par_count)
@@ -58,7 +58,7 @@ class Test_lrv_hat_of_t_nw(unittest.TestCase):
         print('Testing "lrv_hat_of_t_nw"')
         
         start_time = timer()
-        returned = lrv_hat_of_t_nw(cov_double_aray=cov_double_array, sample_size=sample_size)
+        returned = lrv_hat_of_t_nw(cov_double_array=cov_double_array, sample_size=sample_size)
         duration = timer() - start_time
         
         self.assertListAlmostEqual(list(returned), list(true_returned), places=4)
