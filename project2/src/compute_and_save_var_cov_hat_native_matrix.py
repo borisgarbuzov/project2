@@ -89,7 +89,7 @@ if __name__ == '__main__':
                                                       mean=0,
                                                       sigma=2,
                                                       noise_type='gaussian', 
-                                                      is_data=True)
+                                                      is_data=False)
     duration = timer() - start_time
     print(np.around(res1, decimals=4))
     print('=========================================')

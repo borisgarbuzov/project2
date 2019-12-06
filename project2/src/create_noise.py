@@ -19,3 +19,22 @@ def create_noise(noise_size: int, mean: float, sigma: float,
         return sigma * ((2 * classic_bernoulli) - 1)
     else:
         raise ValueError("noise_type should be 'gaussian' or 'bernoulli'.")
+
+
+if __name__ == '__main__':
+    bernoulli_noise = create_noise(noise_size = 1000, 
+    mean = 0, 
+    sigma = 2,
+    noise_type = "bernoulli")
+    bernoulli_var = np.var(bernoulli_noise)
+    print("bernoulli_var = ", bernoulli_var)
+
+    gaussian_noise = create_noise(noise_size = 1000, 
+    mean = 0, 
+    sigma = 2,
+    noise_type = "gaussian")
+    gaussian_var = np.var(gaussian_noise)
+    print("gaussian_var = ", gaussian_var)
+    
+    
+
