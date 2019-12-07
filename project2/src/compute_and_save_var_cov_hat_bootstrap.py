@@ -38,6 +38,7 @@ def compute_and_save_var_cov_hat_bootstrap(sample_size_from: int,
 
     column_names = ["sample size " + str(sample_size) for sample_size in
                     sample_size_array]
+    column_names.insert(0, "lag")
 
     index_names = ["lag " + str(lag) for lag in range(max_lag)]
 
