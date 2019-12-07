@@ -5,6 +5,14 @@ import numpy as np
 
 
 def lrv_hat_of_single_t_nw_2(sample: np.array, t_par: float) -> float:
+    '''
+    This function should give the same result as lrv_hat_of_single_t_nw,
+    though it does not so far. 
+    In this connection, we need to look at lag bounds. 
+    It returns the value for a single t_par. 
+    Recently renamed. Was lrv_hat_of_t_nw_2.
+    Note that here we do nt have the explicit notion of lag. 
+    '''
     sample_size = len(sample)
     b_cov_value = b_cov(sample_size=sample_size)
     b_nw_value = b_nw(sample_size=sample_size)
@@ -15,7 +23,8 @@ def lrv_hat_of_single_t_nw_2(sample: np.array, t_par: float) -> float:
             kernel_cov = gaussian_kernel(v=((np.minimum(i, j) / sample_size) -
                                             t_par) / b_cov_value) * (1 / (
                     sample_size * b_cov_value))
-            kernel_nw = triangular_kernel(v=np.abs(i - j) / (sample_size *
+            lag = i-j
+            kernel_nw = triangular_kernel(v=np.abs(lag) / (sample_size *
                                                              b_nw_value))
             nw_hat += kernel_cov * kernel_nw * x_i * x_j
         print("lrv_hat_of_single_t_nw_2 external sum", len(sample) - i)

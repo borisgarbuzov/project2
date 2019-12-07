@@ -21,7 +21,8 @@ def read_and_plot_var_cov_hat_csv():
                          sample_size in bootstrap.columns]
 
     bootstrap_lag_0 = np.array(bootstrap.loc['lag 0'])
-    native_matrix_lag_0 = np.array(native_matrix.loc['lag 0'])
+    # * sample_size ???
+    native_matrix_lag_0 = np.array(native_matrix.loc['lag 0']) 
 
     plot_two_arrays(x_array=sample_size_array,
                     first_array=bootstrap_lag_0,
