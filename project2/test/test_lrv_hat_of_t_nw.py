@@ -53,7 +53,7 @@ class Test_lrv_hat_of_t_nw(unittest.TestCase):
             self.assertAlmostEqual(a, b, places)
 
     def test_lrv_hat_of_t_nw(self, sample_size=2, cov_double_array = [[1,2,3],[5,6,7]], 
-                             true_returned=[3.02698221, 4.43237865, 5.8377751]):
+                             true_returned=[5.05396442, 6.86475731, 8.67555019]):
         print('\n\n===============================================================================')
         print('Testing "lrv_hat_of_t_nw"')
         
