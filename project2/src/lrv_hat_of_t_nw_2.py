@@ -1,22 +1,12 @@
-from src.custom_kernel import gaussian_kernel, triangular_kernel
-from src.b_cov import b_cov
-from src.b_nw import b_nw
+from src.lrv_hat_of_single_t_nw_2 import lrv_hat_of_single_t_nw_2
 import numpy as np
 
 
-def lrv_hat_of_t_nw_2(sample, t_par):
-    sample_size = len(sample)
-    b_cov_value = b_cov(sample_size=sample_size)
-    b_nw_value = b_nw(sample_size=sample_size)
+def lrv_hat_of_t_nw_2(sample: np.array, t_par_array: np.array) -> np.array:
+    lrv_hat_of_t_nw_2_array = np.full(shape=len(t_par_array), fill_value=np.nan)
+    for t_index, t_par in enumerate(t_par_array):
+        lrv_hat_of_t_nw_2_array[t_index] = lrv_hat_of_single_t_nw_2(sample=sample,
+                                                                    t_par=t_par)
+        print("lrv_hat_of_t_nw_2 t_par left", len(t_par_array) - (t_index + 1))
 
-    nw_hat = 0
-    for i, x_i in enumerate(sample, start=1):
-        for j, x_j in enumerate(sample, start=1):
-            kernel_cov = gaussian_kernel(v=((np.minimum(i, j) / sample_size) -
-                                            t_par) / b_cov_value) * (1 / (
-                    sample_size * b_cov_value))
-            kernel_nw = triangular_kernel(v=np.abs(i - j) / (sample_size *
-                                                             b_nw_value))
-            nw_hat += kernel_cov * kernel_nw * x_i * x_j
-
-    return nw_hat
+    return lrv_hat_of_t_nw_2_array

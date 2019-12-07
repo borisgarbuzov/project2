@@ -1,11 +1,24 @@
-from src.coef import coef
-from src.true_cov_of_t import true_cov_scaled_noise_of_t
+from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t, \
+    true_lrv_scaled_noise_of_single_t
+import numpy as np
 
 
-def true_lrv_ma1_of_t(sigma, t_par):
-    lrv = sigma ** 2 * (1 + coef(t_par)) ** 2
-    return lrv
+def true_lrv_ma1_of_t(sigma: int, t_par_array: np.array) -> np.array:
+    true_lrv_ma1_array = np.full(shape=len(t_par_array), fill_value=np.nan)
+    for t_index, t_par in enumerate(t_par_array):
+        true_lrv_ma1_array[t_index] = true_lrv_ma1_of_single_t(sigma=sigma,
+                                                               t_par=t_par)
+        print("true_lrv_ma1_of_t t_par left", len(t_par_array) - (t_index + 1))
+
+    return true_lrv_ma1_array
 
 
-def true_lrv_scaled_noise_of_t(sigma, t_par):
-    return true_cov_scaled_noise_of_t(t_par, sigma, lag=0)
+def true_lrv_scaled_noise_of_t(sigma: int, t_par_array: np.array) -> np.array:
+    true_lrv_scaled_noise_array = np.full(shape=len(t_par_array),
+                                          fill_value=np.nan)
+    for t_index, t_par in enumerate(t_par_array):
+        true_lrv_scaled_noise_array[t_index] = true_lrv_scaled_noise_of_single_t(
+            sigma=sigma, t_par=t_par)
+        print("true_lrv_ma1_of_t t_par left", len(t_par_array) - (t_index + 1))
+
+    return true_lrv_scaled_noise_array

@@ -4,7 +4,6 @@ from src.cov_double_array_of_t import cov_double_array_of_t
 from src.create_t_par_array import create_t_par_array
 from src.true_lrv_of_t import true_lrv_ma1_of_t
 import src.precision
-import numpy as np
 
 
 def main(replication_count, t_par_count, sigma, sample_size, mean):
@@ -23,10 +22,8 @@ def main(replication_count, t_par_count, sigma, sample_size, mean):
         nw_array = lrv_hat_of_t_nw(cov_double_aray=cov_double_array)
         nw_matrix.append(nw_array)
 
-    true_array = np.full(shape=t_par_count, fill_value=np.nan)
     t_par_array = create_t_par_array(t_par_count)
-    for index, t_par in enumerate(t_par_array):
-        true_array[index] = true_lrv_ma1_of_t(sigma=sigma, t_par=t_par)
+    true_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
 
     print(src.precision.mse_matrix(true_array, nw_matrix))
 

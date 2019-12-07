@@ -1,12 +1,14 @@
 from os.path import dirname
 import matplotlib.pyplot as plt
+import numpy as np
 import os
 import datetime
 
 
 def plot_two_arrays(x_array, first_array, first_label, second_array,
-                    second_label, true_array, title,
-                    x_label, par_list, y_label='value'):
+                    second_label, title, x_label, par_list="",
+                    true_array=np.array([]),
+                    y_label='value'):
     # create directory for output if it doesn't exist
     parent_dir = dirname(dirname(__file__))
     output_folder = os.path.join(parent_dir, "output")
@@ -16,7 +18,7 @@ def plot_two_arrays(x_array, first_array, first_label, second_array,
 
     # create file name for plot
     now = datetime.datetime.now()
-    file_name = os.path.join(output_folder, 'plot for') + title + str(
+    file_name = os.path.join(output_folder, 'plot for ') + title + str(
         par_list).replace(': ', '=') + '_' + now.strftime("%H;%M;%S;%f") + \
                 '.png'
 
@@ -33,8 +35,9 @@ def plot_two_arrays(x_array, first_array, first_label, second_array,
 
     plt.plot(x_array, first_array, color='blue', label=first_label)
     plt.plot(x_array, second_array, color='red', label=second_label)
-    plt.plot(x_array, true_array, color="black", linewidth=2,
-             label='True value')
+    if true_array.any():
+        plt.plot(x_array, true_array, color="black", linewidth=2,
+                 label='True value')
 
     plt.xlabel(x_label + '\n' + caption)
     plt.ylabel(y_label)
