@@ -8,7 +8,7 @@ import numpy as np
 from src.b_nw import b_nw
     
 
-def lrv_hat_of_t_nw_for_each_t(t_column: np.array) -> float:
+def lrv_hat_of_t_nw_single_t(t_column: np.array) -> float:
     sample_size = len(t_column)
     b_nw_value = b_nw(sample_size=sample_size)
     out_value = 0.0
@@ -23,7 +23,7 @@ def lrv_hat_of_t_nw_for_each_t(t_column: np.array) -> float:
     return out_value
         
     
-def lrv_hat_of_t_nw_TEST(cov_double_array: np.array, sample_size: int) -> np.array:
+def lrv_hat_of_t_nw(cov_double_array: np.array, sample_size: int) -> np.array:
     """
     estimate newey west.
 
@@ -35,39 +35,11 @@ def lrv_hat_of_t_nw_TEST(cov_double_array: np.array, sample_size: int) -> np.arr
 
     for t_par_index in range(t_par_count):
         t_column = np.array(cov_double_array)[:, t_par_index]
-        res_array[t_par_index] = lrv_hat_of_t_nw_for_each_t(t_column=t_column)
+        res_array[t_par_index] = lrv_hat_of_t_nw_single_t(t_column=t_column)
 
-    return res_array
-
-    
-def lrv_hat_of_t_nw(cov_double_array: np.array, sample_size: int) -> np.array:
-    """
-    estimate newey west.
-
-    :param cov_matrix: covariance double array
-    :return: array of newey west
-    """
-    t_par_count = len(cov_double_array[0])
-    res_array = np.full(shape=t_par_count, fill_value=0.0)
-
-    b_nw_value = b_nw(sample_size=sample_size)
-
-    for lag in range(len(cov_double_array)):
-        print("lrv_hat_of_t_nw: lag =", lag)
-        if lag == 0:
-            rep = 1
-        else :
-            rep = 2
-        K = src.custom_kernel.triangular_kernel(v=lag / (sample_size * b_nw_value)) * rep
-        for t_par_index in range(t_par_count):
-
-            res_array[t_par_index] += cov_double_array[lag][t_par_index] * K
     return res_array
 
 
 if __name__ == '__main__':
     try1 = lrv_hat_of_t_nw(cov_double_array=[[1,2,3],[5,6,7]], sample_size=2)
-    try2 = lrv_hat_of_t_nw_TEST(cov_double_array=[[1,2,3],[5,6,7]], sample_size=2)
     print(try1)
-    print(try2)
-    # true_returned=[3.02698221, 4.43237865, 5.8377751]):
