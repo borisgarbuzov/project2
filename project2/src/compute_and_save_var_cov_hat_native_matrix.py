@@ -22,7 +22,8 @@ Dict:    44.31950395199965 secs
 
 
 from src.support_bound import support_bound
-from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+# from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
 from src.cov_hat_t_free import cov_hat_t_free
 from timeit import default_timer as timer
 from os.path import dirname
@@ -52,7 +53,10 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
             cov_array = np.full(shape=replication_count, fill_value=np.nan)
 
             for r in range(replication_count):
-                sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean, sigma=sigma, noise_type=noise_type)
+                sample = horizontal_sample_tvma1(sample_size=sample_size,
+                                                 t_par_count=11, mean=mean,
+                                                 sigma=sigma,
+                                                 noise_type=noise_type)[5, :]
                 cov_array[r] = cov_hat_t_free(sample, lag)
 
             var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
