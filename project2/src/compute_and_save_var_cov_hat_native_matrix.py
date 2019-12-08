@@ -37,9 +37,29 @@ import os
 #     return np.array([int(support_bound(sample_size)) + 1 for sample_size in list(sample_size_array)])
 
 
-def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
-                                               sigma: float, noise_type: str, is_data: bool) -> np.array:
-    max_lag_array = [int(support_bound(sample_size)) + 1 for sample_size in sample_size_array]
+def compute_and_save_var_cov_hat_native_matrix_gaussian(replication_count: int, sample_size_array: np.array, mean: float,
+                                                          sigma: float, noise_type='gaussian', is_data=False) -> np.array:
+    return __compute_and_save_var_cov_hat_native_matrix(replication_count=replication_count,
+                                                        sample_size_array=sample_size_array,
+                                                        mean=mean,
+                                                        sigma=sigma,
+                                                        noise_type=noise_type, 
+                                                        is_data=is_data)                                
+
+
+def compute_and_save_var_cov_hat_native_matrix_bernoulli(replication_count: int, sample_size_array: np.array, mean: float,
+                                                          sigma: float, noise_type='bernoulli', is_data=False) -> np.array:
+    return __compute_and_save_var_cov_hat_native_matrix(replication_count=replication_count,
+                                                        sample_size_array=sample_size_array,
+                                                        mean=mean,
+                                                        sigma=sigma,
+                                                        noise_type=noise_type, 
+                                                        is_data=is_data)  
+
+
+def __compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
+                                               sigma: float, noise_type='gaussian', is_data=False) -> np.array:
+    max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
 
     # result matrix
     var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1] + 1, len(sample_size_array)), fill_value=np.nan)
@@ -54,16 +74,19 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
 
             for r in range(replication_count):
                 sample = horizontal_sample_tvma1(sample_size=sample_size,
-                                                 t_par_count=11, mean=mean,
+                                                 t_par_count=11, 
+                                                 mean=mean,
                                                  sigma=sigma,
                                                  noise_type=noise_type)[5, :]
                 cov_array[r] = cov_hat_t_free(sample, lag)
 
             var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
-            print(lag, ' lags left')
+            print(lag, ' lags pass')
             
     # convert to Pandas DataFrame
     column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
+    # column_names.insert(0, "lag")
+    
     index_names = ["lag " + str(lag) for lag in range(max(max_lag_array) + 1)]
     df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix, index=index_names, columns=column_names)
     
@@ -73,10 +96,10 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     parent_dir = dirname(dirname(__file__))
     if is_data:
         data_folder = os.path.join(parent_dir, "data")
-        date = ''
+        date = '_{}'.format(noise_type)
     if not is_data:
         data_folder = os.path.join(parent_dir, "output")
-        date = '_{}'.format(now.strftime("%H;%M;%S;%f"))
+        date = '_{}_{}'.format(noise_type, now.strftime("%H;%M;%S;%f"))
     if not os.path.exists(data_folder):
         os.mkdir(data_folder)
     df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder,
@@ -86,14 +109,13 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     
     
 if __name__ == '__main__':
-    sample_size_array = np.arange(1000, 1001, 1000)
+    sample_size_array = np.arange(100, 301, 100)
     start_time = timer()
-    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
-                                                      sample_size_array=sample_size_array,
-                                                      mean=0,
-                                                      sigma=2,
-                                                      noise_type='gaussian', 
-                                                      is_data=False)
+    res1 = compute_and_save_var_cov_hat_native_matrix_gaussian(replication_count=10,
+                                                               sample_size_array=sample_size_array,
+                                                               mean=0,
+                                                               sigma=2,
+                                                               is_data=False)
     duration = timer() - start_time
     print(np.around(res1, decimals=4))
     print('=========================================')
