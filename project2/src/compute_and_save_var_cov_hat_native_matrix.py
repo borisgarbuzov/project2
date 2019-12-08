@@ -37,28 +37,8 @@ import os
 #     return np.array([int(support_bound(sample_size)) + 1 for sample_size in list(sample_size_array)])
 
 
-def compute_and_save_var_cov_hat_native_matrix_gaussian(replication_count: int, sample_size_array: np.array, mean: float,
-                                                          sigma: float, noise_type='gaussian', is_data=False) -> np.array:
-    return __compute_and_save_var_cov_hat_native_matrix(replication_count=replication_count,
-                                                        sample_size_array=sample_size_array,
-                                                        mean=mean,
-                                                        sigma=sigma,
-                                                        noise_type=noise_type, 
-                                                        is_data=is_data)                                
-
-
-def compute_and_save_var_cov_hat_native_matrix_bernoulli(replication_count: int, sample_size_array: np.array, mean: float,
-                                                          sigma: float, noise_type='bernoulli', is_data=False) -> np.array:
-    return __compute_and_save_var_cov_hat_native_matrix(replication_count=replication_count,
-                                                        sample_size_array=sample_size_array,
-                                                        mean=mean,
-                                                        sigma=sigma,
-                                                        noise_type=noise_type, 
-                                                        is_data=is_data)  
-
-
-def __compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
-                                               sigma: float, noise_type='gaussian', is_data=False) -> np.array:
+def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
+                                               sigma: float, noise_type: str, is_data: bool) -> np.array:
     max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
 
     # result matrix
@@ -81,14 +61,15 @@ def __compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_
                 cov_array[r] = cov_hat_t_free(sample, lag)
 
             var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
-            print(lag, ' lags pass')
+            print('lags left:', max_lag - lag)
+            # print(lag, ' lags pass')
             
     # convert to Pandas DataFrame
     column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
-    # column_names.insert(0, "lag")
     
     index_names = ["lag " + str(lag) for lag in range(max(max_lag_array) + 1)]
     df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix, index=index_names, columns=column_names)
+    df_var_cov_hat_native_matrix.index.name = 'lag' 
     
     # save DataFrame to .csv
     now = datetime.datetime.now()
@@ -111,11 +92,12 @@ def __compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_
 if __name__ == '__main__':
     sample_size_array = np.arange(100, 301, 100)
     start_time = timer()
-    res1 = compute_and_save_var_cov_hat_native_matrix_gaussian(replication_count=10,
-                                                               sample_size_array=sample_size_array,
-                                                               mean=0,
-                                                               sigma=2,
-                                                               is_data=False)
+    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
+                                                      sample_size_array=sample_size_array,
+                                                      mean=0,
+                                                      sigma=2,
+                                                      noise_type='gaussian',
+                                                      is_data=False)
     duration = timer() - start_time
     print(np.around(res1, decimals=4))
     print('=========================================')
