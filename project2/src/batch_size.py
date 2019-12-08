@@ -1,2 +1,3 @@
 def batch_size(sample_size: int) -> int:
-    return 2
+    batch_size = 1 * sample_size ** (1 / 3)
+    return int(batch_size)

@@ -4,7 +4,7 @@ from src.b_nw import b_nw
 import numpy as np
 
 
-def lrv_hat_of_single_t_nw_2(sample: np.array, t_par: float) -> float:
+def lrv_hat_nw_2_of_single_t(sample: np.array, t_par: float) -> float:
     '''
     This function should give the same result as lrv_hat_of_single_t_nw,
     though it does not so far. 

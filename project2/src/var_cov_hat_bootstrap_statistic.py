@@ -8,8 +8,8 @@ def var_cov_hat_bootstrap_statistic(block_sum_array: np.array,
     batch_size_value = batch_size(sample_size=sample_size)
 
     if g_array is None:
-        g_array = np.random.normal(0, 2,
-                                   len(block_sum_array - batch_size_value))
+        g_array = np.random.normal(0, 1, len(block_sum_array -
+                                             batch_size_value))
 
     if len(g_array) != len(block_sum_array - batch_size_value):
         raise IndexError("g_array size should be as block_sum_array, not",
