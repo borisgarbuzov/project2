@@ -10,7 +10,8 @@ class Test_cov_double_array_of_t(unittest.TestCase):
                                    sample_size=20,
                                    mean=0,
                                    sigma=2,
-                                   noise_type='bernoulli'):
+                                   noise_type='bernoulli',
+                                   is_threshold=False):
 
         print('\n\n===============================================================================')
         print('Testing "cov_double_array_of_t"')
@@ -20,7 +21,8 @@ class Test_cov_double_array_of_t(unittest.TestCase):
                                                 noise_type=noise_type)
         start_time = timer()
         returned = cov_double_array_of_t(sample=diagonal_sample,
-                                         t_par_count=t_par_count)
+                                         t_par_count=t_par_count,
+                                         is_threshold=is_threshold)
         print('Test parameters:')
         print('sample_size = ', diagonal_sample.shape)
         print('t_par_count = ', t_par_count)

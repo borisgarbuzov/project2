@@ -1,10 +1,11 @@
 from src.create_t_par_array import create_t_par_array
 from src.cov_hat_of_t import cov_hat_of_t
 from src.support_bound import support_bound
+from src.threshold_max_lag import threshold_max_lag
 import numpy as np
 
 
-def cov_double_array_of_t(sample: np.array, t_par_count: int) -> np.array:
+def cov_double_array_of_t(sample: np.array, t_par_count: int, is_threshold = False) -> np.array:
     """
     compute covariance double array.
 
@@ -13,7 +14,11 @@ def cov_double_array_of_t(sample: np.array, t_par_count: int) -> np.array:
     :return: double array
     """
     sample_size = len(sample)
-    max_lag = int(support_bound(sample_size=sample_size)) + 1
+    if is_threshold == True:
+        max_lag = int(threshold_max_lag(sample_size=sample_size)) + 1
+    else:
+        max_lag = int(support_bound(sample_size=sample_size)) + 1
+
 
     cov_double_array = np.full(shape=(max_lag, t_par_count),
                                fill_value=np.nan)
