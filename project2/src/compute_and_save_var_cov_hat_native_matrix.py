@@ -1,26 +1,3 @@
-"""
-[1000 2000 3000 4000 5000]
-Matrix:  0.7354644009997173 secs
-Dict:    0.5799892780000846 secs
-
-[ 1000  2000  3000  4000  5000  6000  7000  8000  9000 10000]
-Matrix:  2.3802585929997804 secs
-Dict:    2.372086022000076 secs
-
-[ 1000  2000  3000  4000  5000  6000  7000  8000  9000 10000 11000 12000
- 13000 14000 15000 16000 17000 18000 19000 20000]
-Matrix:  10.752176271999815 secs
-Dict:    10.519024473999707 secs
-
-[ 1000  2000  3000  4000  5000  6000  7000  8000  9000 10000 11000 12000
- 13000 14000 15000 16000 17000 18000 19000 20000 21000 22000 23000 24000
- 25000 26000 27000 28000 29000 30000 31000 32000 33000 34000 35000 36000
- 37000 38000 39000 40000]
-Matrix:  44.49741579300007 secs
-Dict:    44.31950395199965 secs
-"""
-
-
 from src.support_bound import support_bound
 # from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
@@ -31,10 +8,6 @@ import numpy as np
 import pandas as pd
 import datetime
 import os
-
-
-# def max_lag_array(sample_size_array: np.array) -> np.array:
-#     return np.array([int(support_bound(sample_size)) + 1 for sample_size in list(sample_size_array)])
 
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
@@ -62,7 +35,6 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
 
             var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
             print('lags left:', max_lag - lag)
-            # print(lag, ' lags pass')
             
     # convert to Pandas DataFrame
     column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
@@ -90,16 +62,16 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     
     
 if __name__ == '__main__':
-    sample_size_array = np.arange(100, 301, 100)
+    sample_size_array = np.arange(1000, 20001, 100)
     start_time = timer()
-    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
+    res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
                                                       sample_size_array=sample_size_array,
                                                       mean=0,
                                                       sigma=2,
                                                       noise_type='gaussian',
                                                       is_data=False)
     duration = timer() - start_time
-    print(np.around(res1, decimals=4))
+    print(np.around(res, decimals=4))
     print('=========================================')
     print('Matrix duration:\t', duration, 'secs')
     print('=========================================\n')
