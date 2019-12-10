@@ -2,7 +2,7 @@ from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.cov_double_array_of_t import cov_double_array_of_t
 from src.create_t_par_array import create_t_par_array
 from src.true_lrv_of_t import true_lrv_ma1_of_t
-from src.lrv_hat_nw_of_single_t import lrv_hat_nw_of_single_t
+from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
 import src.precision
 import numpy as np
         
@@ -19,7 +19,7 @@ def lrv_hat_nw_of_t(cov_double_array: np.array, sample_size: int) -> np.array:
 
     for t_par_index in range(t_par_count):
         t_column = np.array(cov_double_array)[:, t_par_index]
-        res_array[t_par_index] = lrv_hat_nw_of_single_t(t_column=t_column)
+        res_array[t_par_index] = lrv_hat_nw_t_free(t_column=t_column, sample_size=sample_size)
 
     return res_array
 

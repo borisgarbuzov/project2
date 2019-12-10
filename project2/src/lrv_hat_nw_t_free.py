@@ -3,8 +3,13 @@ import src.custom_kernel
 from src.b_nw import b_nw
     
 
-def lrv_hat_nw_of_single_t(t_column: np.array) -> float:
-    sample_size = len(t_column)
+def lrv_hat_nw_t_free(t_column: np.array, sample_size) -> float:
+    '''
+    In place of deprecated 
+    lrv_hat_nw_of_single_t
+    sample_size used to be computed as a length of t_column
+    Since now we do not have the full set of lags, we accept it as an argument. 
+    '''
     b_nw_value = b_nw(sample_size=sample_size)
     out_value = 0.0
     
