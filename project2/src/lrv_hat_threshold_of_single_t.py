@@ -1,11 +1,11 @@
-from src.treshold_indicator import treshold_indicator
+from src.threshold_indicator import threshold_indicator
 import numpy as np
 
 
 def lrv_hat_threshold_of_single_t(cov_hat_column: np.array,
                                   sample_size: int) -> int:
     max_lag = len(cov_hat_column)
-    cum_sum = cov_hat_column[0] * treshold_indicator(sample_size=sample_size,
+    cum_sum = cov_hat_column[0] * threshold_indicator(sample_size=sample_size,
                                                      cov_hat=cov_hat_column[0],
                                                      lag=0)
 
