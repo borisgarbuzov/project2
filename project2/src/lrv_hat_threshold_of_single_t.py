@@ -10,7 +10,7 @@ def lrv_hat_threshold_of_single_t(cov_hat_column: np.array,
                                                      lag=0)
 
     for lag in range(1, max_lag):
-        term = 2 * cov_hat_column[lag] * treshold_indicator(
+        term = 2 * cov_hat_column[lag] * threshold_indicator(
             sample_size=sample_size, cov_hat=cov_hat_column[lag], lag=lag)
         cum_sum += term
 
