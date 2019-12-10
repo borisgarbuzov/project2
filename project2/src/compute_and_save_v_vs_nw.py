@@ -1,6 +1,6 @@
 from src.cov_double_array_of_t import cov_double_array_of_t
 from src.lrv_hat_nw_2_of_t import lrv_hat_nw_2_of_t
-from src.lrv_hat_of_t_nw import lrv_hat_of_t_nw
+from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.create_t_par_array import create_t_par_array
@@ -21,7 +21,7 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
     cov_double_array = cov_double_array_of_t(sample=sample, t_par_count=11)
-    original_nw_array = lrv_hat_of_t_nw(cov_double_array=cov_double_array,
+    original_nw_array = lrv_hat_nw_of_t(cov_double_array=cov_double_array,
                                         sample_size=sample_size)
 
     true_lrv_ma1_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)

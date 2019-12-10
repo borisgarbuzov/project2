@@ -19,7 +19,6 @@ def cov_double_array_of_t(sample: np.array, t_par_count: int, is_threshold = Fal
     else:
         max_lag = int(support_bound(sample_size=sample_size)) + 1
 
-
     cov_double_array = np.full(shape=(max_lag, t_par_count),
                                fill_value=np.nan)
     t_par_array = create_t_par_array(t_par_count=t_par_count)
@@ -30,6 +29,7 @@ def cov_double_array_of_t(sample: np.array, t_par_count: int, is_threshold = Fal
                 sample=sample,
                 t_par=t_par_array[t_par_index],
                 lag=lag)
-        print("There are", max_lag - (lag + 1), "lags left")
+        print("cov_double_array_of_t there are", max_lag - (lag + 1),
+              "lags left")
 
     return cov_double_array
