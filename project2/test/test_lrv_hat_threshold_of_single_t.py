@@ -4,16 +4,18 @@ import numpy as np
 import unittest
 
 class Test_lrv_hat_threshold_of_single_t(unittest.TestCase):
-    def test_lrv_hat_threshold_of_single_t(self,
-                                            cov_hat_column = np.array([1,  1000]),
-                                            sample_size = 10):
+    def test_lrv_hat_threshold_of_single_t(self):
         print('\n\n===============================================================================')
         print('Testing "lrv_hat_threshold_of_single_t"')
 
         start_time = timer()
+        small = 0.1
+        big = 1000
+        sample_size = 10 # will it be used?
+        cov_hat_column = np.array([small, big])
         returned = lrv_hat_threshold_of_single_t(cov_hat_column = cov_hat_column, sample_size = sample_size)
         duration = timer() - start_time
-        expected = 1
+        expected = 2*big
         print('Test parameters:')
         print('cov_hat_column = ', cov_hat_column)
         print('sample_size = ', sample_size)
