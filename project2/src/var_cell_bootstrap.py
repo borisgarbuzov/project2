@@ -13,9 +13,10 @@ def var_cell_bootstrap(sample_size: int,
                        noise_type: str) -> float:
     s_array = np.full(shape=replication_count, fill_value=np.nan)
 
+    sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,
+                                   sigma=sigma, noise_type=noise_type)
+
     for replication in range(replication_count):
-        sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,
-                                       sigma=sigma, noise_type=noise_type)
         paired_product_array = paired_products(sample=sample, lag=lag)
         block_sum_array = block_sums(paired_product_array=paired_product_array)
         s_array[replication] = var_cov_hat_bootstrap_statistic(
