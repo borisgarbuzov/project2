@@ -18,8 +18,8 @@ def lrv_hat_nw_of_t(cov_double_array: np.array, sample_size: int) -> np.array:
     res_array = np.full(shape=t_par_count, fill_value=0.0)
 
     for t_par_index in range(t_par_count):
-        t_column = np.array(cov_double_array)[:, t_par_index]
-        res_array[t_par_index] = lrv_hat_nw_t_free(t_column=t_column, sample_size=sample_size)
+        cov_column = np.array(cov_double_array)[:, t_par_index]
+        res_array[t_par_index] = lrv_hat_nw_t_free(cov_column=cov_column, sample_size=sample_size)
 
     return res_array
 
