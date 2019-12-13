@@ -40,5 +40,5 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
 
 
 if __name__ == '__main__':
-    compute_and_save_v_vs_nw(sample_size=100, t_par_count=11, mean=0,
+    compute_and_save_v_vs_nw(sample_size=1000, t_par_count=11, mean=0,
                              sigma=2, noise_type='gaussian')

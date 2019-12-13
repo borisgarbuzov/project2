@@ -7,4 +7,5 @@ def threshold_indicator(sample_size, cov_hat, lag):
     ratio = abs(cov_hat) / sd_cov_hat(sample_size)
     is_ratio_bigger = (ratio > zhou_treshold(sample_size))
     indicator_value = int(is_ratio_bigger)
+    # indicator_value = 1 # new temporary line. Will be commented later. 
     return indicator_value

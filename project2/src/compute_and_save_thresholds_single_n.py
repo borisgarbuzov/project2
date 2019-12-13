@@ -47,7 +47,7 @@ def compute_and_save_threshold_single_n(sample_size: int,
 
 
 if __name__ == '__main__':
-    compute_and_save_threshold_single_n(sample_size=1000,
+    compute_and_save_threshold_single_n(sample_size=10000,
                                         t_par_count=11,
                                         mean=0,
                                         sigma=2,
