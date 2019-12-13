@@ -18,8 +18,8 @@ def var_cov_hat_bootstrap_statistic(block_sum_array: np.array,
     partial_sum = 0
 
     for index in range(len(block_sum_array) - batch_size_value):
-        partial_sum += block_sum_array[index] - block_sum_array[
-            index + batch_size_value] * g_array[index]
+        partial_sum += (block_sum_array[index] - block_sum_array[
+            index + batch_size_value]) * g_array[index]
 
     s_value = partial_sum / np.sqrt(sample_size * 2 * batch_size_value)
 
