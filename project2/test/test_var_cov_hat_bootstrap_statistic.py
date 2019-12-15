@@ -1,3 +1,5 @@
+# Currently fails
+# After bootstrap formula changed
 from src.var_cov_hat_bootstrap_statistic import var_cov_hat_bootstrap_statistic
 from timeit import default_timer as timer
 import numpy as np

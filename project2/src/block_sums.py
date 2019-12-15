@@ -2,6 +2,11 @@ from src.batch_size import batch_size
 import numpy as np
 
 
+# This is Q in the bootstrap. 
+# It looks like stable function. 
+# Has deterministic test that passed successfully. 
+# Before, batch size was a constant = 2. 
+# Batch size should return integer. 
 def block_sums(paired_product_array: np.array) -> np.array:
     sample_size = len(paired_product_array)
     batch_size_value = batch_size(sample_size=sample_size)
