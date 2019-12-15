@@ -37,11 +37,6 @@ def compute_and_save_threshold_single_n(sample_size: int,
         threshold_hat_double_array[:, replication] = lrv_hat_threshold_of_t(
             cov_double_array=cov_double_array,
             sample_size=sample_size)
-            
-    print('res_array = ', len(threshold_hat_double_array[0]))
-    print('t_par_array = ', len(t_par_array))
-    print('true_lrv_ma1_array = ', len(true_lrv_ma1_array))
-    print('threshold_hat_double_array = ', threshold_hat_double_array)
 
     plot_double_array(x_array=t_par_array,
                       hat_double_array=threshold_hat_double_array,
