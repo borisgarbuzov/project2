@@ -8,22 +8,20 @@ import unittest
 
 class Test_var_cov_hat_bootstrap_statistic(unittest.TestCase):
     def test_var_cov_hat_bootstrap_statistic(self,
-                                             paired_product_array = np.array([1., 4., 9., 16., 25.]),
                                              block_sum_array = np.array([5, 13, 25, 41]),
                                              sample_size = 5,
                                              g_array=np.array([0, 1, 0, -1]), #if g_array same in original var_cov...
-                                             true_return = -8.854377448471462
+                                             true_return = round(-6.260990337, 4)
                                              ):
         print('\n\n===============================================================================')
         print('Testing "var_cov_hat_bootstrap_statistic"')
 
         start_time = timer()
-        s_value = var_cov_hat_bootstrap_statistic(paired_product_array, block_sum_array, sample_size, g_array)
+        s_value = round(var_cov_hat_bootstrap_statistic(block_sum_array, sample_size, g_array), 4)
         self.assertEqual(s_value, true_return)
         end_time = timer() - start_time
 
         print('Test parameters:')
-        print('paired_product_array =', paired_product_array)
         print('block_sum_array =', block_sum_array)
         print('sample_size =', sample_size)
         print('g_array =', g_array)
