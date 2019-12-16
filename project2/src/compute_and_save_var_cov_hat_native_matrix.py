@@ -1,4 +1,5 @@
 from src.support_bound import support_bound
+# from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
 from src.cov_hat_t_free import cov_hat_t_free
 from timeit import default_timer as timer
@@ -9,25 +10,19 @@ import datetime
 import os
 
 
-def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
-                                               sample_size_array: np.array,
-                                               mean: float,
-                                               sigma: float,
-                                               noise_type: str,
-                                               is_data: bool) -> np.array:
-    max_lag_array = [support_bound(sample_size) for sample_size in sample_size_array]
+def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
+                                               sigma: float, noise_type: str, is_data: bool) -> np.array:
+    max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
 
     # result matrix
-    var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1],
-                                               len(sample_size_array)),
-                                        fill_value=np.nan)
+    var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1] + 1, len(sample_size_array)), fill_value=np.nan)
     
     for i, sample_size in enumerate(sample_size_array):
         # max lag for current sample_size
         max_lag = max_lag_array[i]
         
         print('sample size:', sample_size)
-        for lag in range(max_lag):
+        for lag in range(3): #max_lag + 1):
             cov_array = np.full(shape=replication_count, fill_value=np.nan)
 
             for r in range(replication_count):
@@ -44,10 +39,8 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
     # convert to Pandas DataFrame
     column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
     
-    index_names = ["lag " + str(lag) for lag in range(max(max_lag_array))]
-    df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix,
-                                                index=index_names,
-                                                columns=column_names)
+    index_names = ["lag " + str(lag) for lag in range(max(max_lag_array) + 1)]
+    df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix, index=index_names, columns=column_names)
     df_var_cov_hat_native_matrix.index.name = 'lag' 
     
     # save DataFrame to .csv
@@ -69,16 +62,17 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
     
     
 if __name__ == '__main__':
-    sample_size_array = np.arange(1000, 2001, 1000)
+    sample_size_array = np.arange(1000, 20001, 1000)
     start_time = timer()
-    res = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
+    res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
                                                      sample_size_array=sample_size_array,
                                                      mean=0,
                                                      sigma=2,
                                                      noise_type='gaussian',
-                                                     is_data=False)
+                                                     is_data=True)
     duration = timer() - start_time
     print(np.around(res, decimals=4))
     print('=========================================')
     print('Matrix duration:\t', duration, 'secs')
     print('=========================================\n')
+    
