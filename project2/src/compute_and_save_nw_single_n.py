@@ -9,8 +9,11 @@ import numpy as np
         
     
 def compute_and_save_nw_single_n(sample_size: int, 
-                                 t_par_count: int, mean: float, sigma: float,
-                                 noise_type: str, replication_count: int) -> np.array:
+                                 t_par_count: int,
+                                 mean: float,
+                                 sigma: float,
+                                 noise_type: str,
+                                 replication_count: int) -> np.array:
     """
     
     :param cov_double_array: covariance double array
