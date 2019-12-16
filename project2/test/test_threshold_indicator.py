@@ -2,7 +2,7 @@ from timeit import default_timer as timer
 from src.threshold_indicator import threshold_indicator
 import unittest
 
-class Test_treshold_indicator(unittest.TestCase):
+class Test_threshold_indicator(unittest.TestCase):
     def test_threshold_indicator(self,
                                  sample_size = 10,
                                  cov_hat = 0,
@@ -13,7 +13,7 @@ class Test_treshold_indicator(unittest.TestCase):
         start_time = timer()
         returned = threshold_indicator(sample_size, cov_hat, lag)
         duration = timer() - start_time
-        expected = 1
+        expected = 0
         self.assertEqual(returned, expected)
         
         print('Test parameters:')
