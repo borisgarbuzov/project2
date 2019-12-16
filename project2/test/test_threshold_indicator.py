@@ -3,10 +3,10 @@ from src.threshold_indicator import threshold_indicator
 import unittest
 
 class Test_treshold_indicator(unittest.TestCase):
-    def test_treshold_indicator(self,
-                                sample_size = 10,
-                                cov_hat = 0,
-                                lag = 0):
+    def test_threshold_indicator(self,
+                                 sample_size = 10,
+                                 cov_hat = 0,
+                                 lag = 0):
         print('\n\n===============================================================================')
         print('Testing "threshold_indicator"')
         
