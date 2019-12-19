@@ -17,5 +17,8 @@ def precision_of_t(true_array: np.array,
     return_of_bias = bias_array_by_array_and_double_array(true_array=true_array,
                                                           est_double_array=est_double_array)
 
-    return np.array([return_of_mse, return_of_mean, return_of_variance, return_of_bias])
-    
+    return {"mse:": return_of_mse,
+            "mean:": return_of_mean,
+            "variance:": return_of_variance,
+            "bias:": return_of_bias
+    }
