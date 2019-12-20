@@ -19,3 +19,9 @@ def precision_t_free(true_value: float, est_array: np.array):
     return_of_bias_t_free = bias_t_free(true_value, est_array)
     return_of_variance_t_free = variance_t_free(est_array)
     return_of_mse_t_free = mse_t_free(true_value, est_array)
+    
+    return {'mean_t_free:':return_of_mean_t_free,
+            'bias_t_free:':return_of_bias_t_free,
+            'variance_t_free:':return_of_variance_t_free,
+            'mse_t_free:':return_of_mse_t_free
+    }
