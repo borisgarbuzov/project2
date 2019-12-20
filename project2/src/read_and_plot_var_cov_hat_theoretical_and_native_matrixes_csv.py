@@ -42,10 +42,12 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
         native_matrix_lag[index] *= sample_size
         theoretical_lag[index] *= sample_size
 
+    native_matrix_lag_mean = np.full(shape=native_matrix_lag.shape, fill_value=float(np.mean(native_matrix_lag)))
+
     plot_two_arrays(x_array=sample_size_array,
                     first_array=theoretical_lag,
                     first_label='theoretical with lag {}'.format(what_lag),
-                    second_array=native_matrix_lag,
+                    second_array=native_matrix_lag,     # or native_matrix_lag_mean
                     second_label='native matrix with lag {}'.format(what_lag),
                     title="theoretical vs native matrixes with lag={} and {} noise".format(what_lag, noise_type),
                     x_label="sample size")
