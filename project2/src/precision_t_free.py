@@ -13,4 +13,9 @@ def variance_r_free(est_array: np.array):
     
 def mse_t_free(true_value: float, est_array: np.array):
     return mean_squared_error(true_array, est_array)
-    
+
+def precision_t_free(true_value: float, est_array: np.array):
+    return_of_mean_t_free = mean_t_free(est_array)
+    return_of_bias_t_free = bias_t_free(true_value, est_array)
+    return_of_variance_r_free = variance_r_free(est_array)
+    return_of_mse_t_free = mse_t_free(true_value, est_array)
