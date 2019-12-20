@@ -89,8 +89,10 @@ def bias_array_by_array_and_double_array(true_array: np.array, est_double_array:
     bias_array = np.full(shape=t_par_count, fill_value=np.nan)
     mean_array = mean_array_by_double_array(est_double_array=est_double_array)
     for t in range(t_par_count):
-        bias_array[t] = bias_t_free(true_value=true_array[t], est_array=est_double_array[2]) 
-        #bias_array[t] = mean_array[t] - true_array[t]
+        #bias_array[t] = bias_t_free(true_value=true_array[t], est_array=est_double_array[2]) 
+        # The above is an attempt to use t_free for of_t, but it works wrong
+        # The dimensions are wrong. If it is commented, deterministic tests are OK. 
+        bias_array[t] = mean_array[t] - true_array[t]
     return bias_array
 
 
