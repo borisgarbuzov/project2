@@ -18,13 +18,13 @@ def compute_and_save_var_cov_hat_bootstrap(sample_size_from: int,
     sample_size_array = np.arange(start=sample_size_from, stop=sample_size_to,
                                   step=sample_size_by)
 
-    max_lag = support_bound(sample_size=sample_size_array[-1])
+    max_lag = int(support_bound(sample_size=sample_size_array[-1])) + 1
 
     variance_double_array = np.full(shape=(max_lag, len(sample_size_array)),
                                     fill_value=np.nan)
 
     for col_index, sample_size in enumerate(sample_size_array):
-        max_lag_by_sample_size = support_bound(sample_size=sample_size)
+        max_lag_by_sample_size = int(support_bound(sample_size=sample_size)) + 1
         for lag in range(max_lag_by_sample_size):
             variance_double_array[lag, col_index] = var_cell_bootstrap(
                 sample_size=sample_size,

@@ -1,6 +1,6 @@
 import numpy as np
 import src.custom_kernel
-from src.b_nw import b_nw
+from src.support_bound import support_bound
     
 
 def lrv_hat_nw_t_free(cov_column: np.array, sample_size: int) -> float:
@@ -10,7 +10,6 @@ def lrv_hat_nw_t_free(cov_column: np.array, sample_size: int) -> float:
     sample_size used to be computed as a length of cov_column
     Since now we do not have the full set of lags, we accept it as an argument. 
     '''
-    b_nw_value = b_nw(sample_size=sample_size)
     out_value = 0.0
     
     for lag in range(len(cov_column)):
@@ -18,6 +17,7 @@ def lrv_hat_nw_t_free(cov_column: np.array, sample_size: int) -> float:
             rep = 1
         else:
             rep = 2
-        K = src.custom_kernel.triangular_kernel(v=lag / (sample_size * b_nw_value)) * rep
+        K = src.custom_kernel.triangular_kernel(
+            v=lag / support_bound(sample_size=sample_size)) * rep
         out_value += cov_column[lag] * K
     return out_value

@@ -17,7 +17,7 @@ def cov_double_array_of_t(sample: np.array, t_par_count: int, is_threshold = Fal
     if is_threshold == True:
         max_lag = threshold_max_lag(sample_size=sample_size)
     else:
-        max_lag = support_bound(sample_size=sample_size)
+        max_lag = int(support_bound(sample_size=sample_size)) + 1
 
     cov_double_array = np.full(shape=(max_lag, t_par_count),
                                fill_value=np.nan)

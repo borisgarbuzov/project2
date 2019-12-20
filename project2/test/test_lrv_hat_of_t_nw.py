@@ -52,13 +52,15 @@ class Test_lrv_hat_nw_of_t(unittest.TestCase):
         for a, b in zip(list1, list2):
             self.assertAlmostEqual(a, b, places)
 
-    def test_lrv_hat_nw_of_t(self, sample_size=2, cov_double_array = [[1,2,3],[5,6,7]], 
-                             true_returned=[5.05396442, 6.86475731, 8.67555019]):
+    def test_lrv_hat_nw_of_t(self, sample_size=2,
+                             cov_double_array = [[1,2,3], [5,6,7]],
+                             true_returned=[3.063, 4.4756, 5.8882]):
         print('\n\n===============================================================================')
         print('Testing "lrv_hat_nw_of_t"')
         
         start_time = timer()
-        returned = lrv_hat_nw_of_t(cov_double_array=cov_double_array, sample_size=sample_size)
+        returned = lrv_hat_nw_of_t(cov_double_array=cov_double_array,
+                                   sample_size=sample_size)
         duration = timer() - start_time
         
         self.assertListAlmostEqual(list(returned), list(true_returned), places=4)
@@ -68,7 +70,7 @@ class Test_lrv_hat_nw_of_t(unittest.TestCase):
         print('cov_double_array = ', cov_double_array)
         print('true_returned = ', true_returned)
         
-        print('\ncov_double_aray_size = ', np.array(cov_double_array).shape)
+        print('\ncov_double_array_size = ', np.array(cov_double_array).shape)
 
         print('\nreturned = ', type(returned))
         if isinstance(returned, list):

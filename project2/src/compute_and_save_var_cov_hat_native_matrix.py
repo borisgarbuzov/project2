@@ -12,10 +12,13 @@ import os
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
                                                sigma: float, noise_type: str, is_data: bool) -> np.array:
-    max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
+    max_lag_array = [int(support_bound(sample_size)) for sample_size in
+                     sample_size_array]
 
     # result matrix
-    var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1] + 1, len(sample_size_array)), fill_value=np.nan)
+    var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1] + 1,
+                                               len(sample_size_array)),
+                                        fill_value=np.nan)
     
     for i, sample_size in enumerate(sample_size_array):
         # max lag for current sample_size
@@ -40,7 +43,9 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
     
     index_names = ["lag " + str(lag) for lag in range(max(max_lag_array) + 1)]
-    df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix, index=index_names, columns=column_names)
+    df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix,
+                                                index=index_names,
+                                                columns=column_names)
     df_var_cov_hat_native_matrix.index.name = 'lag' 
     
     # save DataFrame to .csv
