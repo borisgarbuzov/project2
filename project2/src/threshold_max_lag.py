@@ -12,6 +12,6 @@ def threshold_max_lag(sample_size: int) -> int:
 	:return: max lag for threshold integer
 	"""
 	const = 1
-	degree = 1/3
+	degree = 1/2
 	bound = const * sample_size**degree
 	return int(bound) + 1

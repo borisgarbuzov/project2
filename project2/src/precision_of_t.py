@@ -1,6 +1,5 @@
 import numpy as np
 from sklearn.metrics import mean_squared_error
-from src.bias_t_free import bias_t_free
 
 
 def mse_value_by_value_and_array(true_value: float, est_array: np.array) -> float:
