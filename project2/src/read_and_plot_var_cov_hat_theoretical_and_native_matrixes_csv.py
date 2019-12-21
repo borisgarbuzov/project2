@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import re
-from src.plot_two_arrays import plot_two_arrays
+from src.plot_arrays import plot_arrays
 
 
 def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: str, what_lag: int) -> None:
@@ -44,13 +44,20 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
 
     native_matrix_lag_mean = np.full(shape=native_matrix_lag.shape, fill_value=float(np.mean(native_matrix_lag)))
 
-    plot_two_arrays(x_array=sample_size_array,
-                    first_array=theoretical_lag,
-                    first_label='theoretical with lag {}'.format(what_lag),
-                    second_array=native_matrix_lag,     # or native_matrix_lag_mean
-                    second_label='native matrix with lag {}'.format(what_lag),
-                    title="theoretical vs native matrixes with lag={} and {} noise".format(what_lag, noise_type),
-                    x_label="sample size")
+    # теперь для использования plot_array надо сформировать arrays_dict за
+    # примером смотри read_and_plot_var_cov_hat_csv. В arrays_dict передаешь в
+    # качестве ключа название графика а в качестве значения массив,
+    # количество ничем не ограничено можно сделать хоть 10 линий, но лучше
+    # не надо)
+
+    plot_arrays(x_array=sample_size_array,
+                # first_array=theoretical_lag,
+                # first_label='theoretical with lag {}'.format(what_lag),
+                # second_array=native_matrix_lag,
+                # or native_matrix_lag_mean
+                # second_label='native matrix with lag {}'.format(what_lag),
+                title="theoretical vs native matrixes with lag={} and {} noise".format(what_lag, noise_type),
+                x_label="sample size")
     print('DONE')
 
 

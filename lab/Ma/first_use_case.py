@@ -2,7 +2,7 @@ import numpy as np
 from sample import *
 from newey_west_estimator import *
 from threshold_estimator import *
-from plot_two_arrays import *
+from plot_arrays import *
 
 
 def first_use_case(sample_size_min, sample_size_max, sample_size_by,

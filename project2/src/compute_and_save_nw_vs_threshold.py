@@ -4,7 +4,7 @@ from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.lrv_hat_threshold_of_t import lrv_hat_threshold_of_t
-from src.plot_two_arrays import plot_two_arrays
+from src.plot_arrays import plot_arrays
 
 
 def compute_and_save_nw_vs_threshold(sample_size: int,
@@ -32,16 +32,16 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
         sample_size=sample_size)
     true_lrv_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
 
-    plot_two_arrays(x_array=t_par_array,
-                    first_array=nw_lrv_array,
-                    first_label="Newey-West LRV",
-                    second_array=threshold_lrv_array,
-                    second_label="Threshold LRV",
-                    title="Threshold vs Newey-West",
-                    x_label="t par",
-                    par_list=par_list,
-                    true_array=true_lrv_array,
-                    y_label="LRV")
+    arrays_dict = {"Newey-West LRV": nw_lrv_array,
+                   "Threshold LRV": threshold_lrv_array}
+
+    plot_arrays(x_array=t_par_array,
+                arrays_dict=arrays_dict,
+                title="Threshold vs Newey-West",
+                x_label="t par",
+                par_list=par_list,
+                true_array=true_lrv_array,
+                y_label="LRV")
 
 
 if __name__ == '__main__':

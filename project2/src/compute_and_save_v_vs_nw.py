@@ -4,7 +4,7 @@ from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.create_t_par_array import create_t_par_array
-from src.plot_two_arrays import plot_two_arrays
+from src.plot_arrays import plot_arrays
 
 
 def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
@@ -28,15 +28,15 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
     double_sum_nw_array = lrv_hat_nw_2_of_t(sample=sample,
                                             t_par_array=t_par_array)
 
-    plot_two_arrays(x_array=t_par_array,
-                    first_array=double_sum_nw_array,
-                    first_label='Double sum Newey-West',
-                    second_array=original_nw_array,
-                    second_label='Original Newey-West',
-                    true_array=true_lrv_ma1_array,
-                    title='Double sum vs original Newey-West',
-                    x_label='t par',
-                    par_list=par_list)
+    arrays_dict = {"Double sum Newey-West": double_sum_nw_array,
+                   "Original Newey-West": original_nw_array}
+
+    plot_arrays(x_array=t_par_array,
+                arrays_dict=arrays_dict,
+                true_array=true_lrv_ma1_array,
+                title='Double sum vs original Newey-West',
+                x_label='t par',
+                par_list=par_list)
 
 
 if __name__ == '__main__':
