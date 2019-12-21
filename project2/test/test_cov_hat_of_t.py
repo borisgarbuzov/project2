@@ -5,11 +5,11 @@ import numpy as np
 import unittest
 
 
-class Test_cov_hat_of_t(unittest.TestCase):
-    def test_cov_hat_of_t(self, t_par=0, lag=0):
+class Test_run_cov_hat_of_t(unittest.TestCase):
+    def test_run_cov_hat_of_t(self, t_par=0, lag=0):
 
         print('\n\n===============================================================================')
-        print('Testing "cov_hat_of_t"')
+        print('RUN testing "cov_hat_of_t"')
         diagonal_sample = diagonal_sample_tvma1(sample_size=20,
                                                 mean=0,
                                                 sigma=2,
@@ -29,17 +29,20 @@ class Test_cov_hat_of_t(unittest.TestCase):
         print('returned =', returned)
 
         print("\nDuration: {:g} secs".format(timer() - start_time))
-        print('End of test {}'.format('cov_hat_of_t'))
+        print('End of RUN test {}'.format('cov_hat_of_t'))
         print('===============================================================================\n')
 
-    def test_run_deterministic_cov_hat_of_t(self, sample = np.array([1, 2, 3]),
-                                            t_par=0.5, lag=0, expected=2.12):
+
+class Test_cov_hat_of_t(unittest.TestCase):
+    def test_cov_hat_of_t(self, sample = np.array([1, 2, 3]),
+                          t_par=0.5, lag=0, expected=2.12):
 
         print('\n\n===============================================================================')
-        print('Testing "deterministic_test_cov_hat_of_t"')
+        print('Testing "cov_hat_of_t"')
 
         start_time = timer()
         returned = cov_hat_of_t(sample=sample, t_par=t_par, lag=lag)
+        duration = timer() - start_time
         print('Test parameters:')
         print('sample =', sample)
         print('t_par =', t_par)
@@ -55,8 +58,8 @@ class Test_cov_hat_of_t(unittest.TestCase):
             print('returned shape =', returned.shape)
         print('returned =', returned)
 
-        print("\nDuration: {:g} secs".format(timer() - start_time))
-        print('End of test {}'.format('deterministic_test_cov_hat_of_t'))
+        print("\nDuration: {:g} secs".format(duration))
+        print('End of test {}'.format('cov_hat_of_t'))
         print('===============================================================================\n')
 
 
