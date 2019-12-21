@@ -4,7 +4,7 @@ from timeit import default_timer as timer
 import src.precision_of_t
 
 
-class Test_run_precision(unittest.TestCase):
+class Test_run_precision_of_t(unittest.TestCase):
     def test_run_mse_value_by_value_and_array(self, true_value=3, est_array=[1,2,3,4,5]):
         print('\n\n===============================================================================')
         print('RUN testing "mse_value_by_value_and_array"')

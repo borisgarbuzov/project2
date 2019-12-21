@@ -1,6 +1,5 @@
 import numpy as np
 from sklearn.metrics import mean_squared_error
-import src.bias_t_free
 
 def mean_t_free(est_array: np.array):
     return np.mean(est_array)
