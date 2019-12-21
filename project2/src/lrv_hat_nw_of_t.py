@@ -3,7 +3,7 @@ from src.cov_double_array_of_t import cov_double_array_of_t
 from src.create_t_par_array import create_t_par_array
 from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
-import src.precision
+import src.precision_of_t
 import numpy as np
         
     
