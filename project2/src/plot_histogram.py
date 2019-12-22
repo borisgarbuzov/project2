@@ -5,11 +5,11 @@ import os
 import datetime
 
 
-def plot_histogram(hat_array: np.array,
+def plot_histogram(arrays_dict: dict,
                    true_value: float,
                    title: str,
-                   label: str,
-                   par_list: dict):
+                   par_list: dict,
+                   true_label = "True value"):
     # create directory for output if it doesn't exist
     parent_dir = dirname(dirname(__file__))
     output_folder = os.path.join(parent_dir, "output")
@@ -34,12 +34,14 @@ def plot_histogram(hat_array: np.array,
 
     plt.style.use('seaborn')
 
-    plt.hist(hat_array, color='red', alpha=0.7, label=label)
+    for label, array in arrays_dict.items():
+        if not np.isnan(array).any():
+            plt.hist(array, alpha=0.65, label=label)
 
-    plt.axvline(true_value, color='blue', label="true lrv", linewidth=3)
+    plt.axvline(true_value, color='black', label=true_label, linewidth=3)
 
     plt.xlabel("values" + '\n' + caption)
-    plt.title(title)
+    plt.title(title.capitalize())
 
     # legend automatically choose best place
     plt.legend(framealpha=1, frameon=False)

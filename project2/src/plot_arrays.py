@@ -5,8 +5,14 @@ import os
 import datetime
 
 
-def plot_arrays(x_array, arrays_dict, title, x_label, par_list="",
-                true_array=np.array([]), y_label='value'):
+def plot_arrays(x_array,
+                arrays_dict,
+                title,
+                x_label,
+                par_list="",
+                true_array=np.array([]),
+                true_label="True value",
+                y_label='value'):
     # create directory for output if it doesn't exist
     parent_dir = dirname(dirname(__file__))
     output_folder = os.path.join(parent_dir, "output")
@@ -36,7 +42,7 @@ def plot_arrays(x_array, arrays_dict, title, x_label, par_list="",
 
     if true_array.any():
         plt.plot(x_array, true_array, color="black", linewidth=2,
-                 label='True value')
+                 label=true_label)
 
     plt.xlabel(x_label + '\n' + caption)
     plt.ylabel(y_label)

@@ -4,6 +4,7 @@ from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.lrv_hat_threshold_of_t import lrv_hat_threshold_of_t
+from src.support_bound import support_bound
 from src.plot_arrays import plot_arrays
 
 
@@ -23,10 +24,14 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
-    cov_double_array = cov_double_array_of_t(sample=sample, t_par_count=11)
+    cov_double_array = cov_double_array_of_t(sample=sample, t_par_count=11,
+                                             is_threshold=True)
 
-    nw_lrv_array = lrv_hat_nw_of_t(cov_double_array=cov_double_array,
-                                   sample_size=sample_size)
+    max_lag = int(support_bound(sample_size=sample_size)) + 1
+
+    nw_lrv_array = lrv_hat_nw_of_t(
+        cov_double_array=cov_double_array[:max_lag, :],
+        sample_size=sample_size)
     threshold_lrv_array = lrv_hat_threshold_of_t(
         cov_double_array=cov_double_array,
         sample_size=sample_size)
@@ -45,7 +50,7 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
 
 
 if __name__ == '__main__':
-    compute_and_save_nw_vs_threshold(sample_size=10000,
+    compute_and_save_nw_vs_threshold(sample_size=1000,
                                      t_par_count=11,
                                      mean=0,
                                      sigma=2,

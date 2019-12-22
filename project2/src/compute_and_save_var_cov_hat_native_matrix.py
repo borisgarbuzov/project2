@@ -25,7 +25,7 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
         max_lag = max_lag_array[i]
         
         print('sample size:', sample_size)
-        for lag in range(3): #max_lag + 1):
+        for lag in range(max_lag + 1):
             cov_array = np.full(shape=replication_count, fill_value=np.nan)
 
             for r in range(replication_count):
