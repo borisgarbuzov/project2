@@ -25,7 +25,7 @@ def compute_and_save_var_cov_hat_semi_bootstrap(sample_size_from: int,
     for col_index, sample_size in enumerate(sample_size_array):
         max_lag_by_sample_size = int(support_bound(sample_size=sample_size)) + 1
         for lag in range(max_lag_by_sample_size):
-            semi_bootstrap_array[col_index] = semi_bootstrap(
+            semi_bootstrap_array[lag, col_index] = semi_bootstrap(
                 sample_size=sample_size,
                 lag=0,
                 mean=mean,
@@ -37,7 +37,7 @@ def compute_and_save_var_cov_hat_semi_bootstrap(sample_size_from: int,
     column_names = ["sample size " + str(sample_size) for sample_size in
                     sample_size_array]
 
-    index_names = ["lag " + str(lag) for lag in range(1)]
+    index_names = ["lag " + str(lag) for lag in range(max_lag)]
 
     df_variance_matrix = pd.DataFrame(semi_bootstrap_array,
                                       index=index_names,
