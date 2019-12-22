@@ -13,7 +13,6 @@ class Test_run_precision_t_free(unittest.TestCase):
         print('Test parameters:')
         print('est_array = ', est_array)
         self.assertEqual(returned, expected)
-        print(1)
         print('\nreturned = ', type(returned))
         print('returned = ', returned)
         print('expected = ', expected)
