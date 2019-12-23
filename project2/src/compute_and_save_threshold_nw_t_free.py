@@ -5,7 +5,7 @@ from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
 from src.true_lrv_t_free import true_lrv_t_free
 from src.support_bound import support_bound
 from src.threshold_max_lag import threshold_max_lag
-from src.plot_histogram import plot_histogram
+from src.plot_histogram import plot_histograms
 import numpy as np
 
 
@@ -40,7 +40,7 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                        max_lag=max_lag)
         if lrv_type == "threshold" or lrv_type == "both":
             threshold_t_free_array[replication] = lrv_hat_threshold_t_free(
-                cov_hat_column=cov_column[threshold_max_lag_value],
+                cov_hat_column=cov_column[:threshold_max_lag_value],
                 sample_size=sample_size)
         if lrv_type == "nw" or lrv_type == "both":
             nw_t_free_array[replication] = lrv_hat_nw_t_free(
@@ -52,14 +52,14 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
     arrays_dict = {"Newey-West": nw_t_free_array,
                    "Threshold": threshold_t_free_array}
 
-    plot_histogram(arrays_dict=arrays_dict,
-                   true_value=true_lrv,
-                   title="{} t free lrv".format(lrv_type),
-                   par_list=par_list)
+    plot_histograms(arrays_dict=arrays_dict,
+                    true_value=true_lrv,
+                    title="{} t free lrv".format(lrv_type),
+                    par_list=par_list)
 
 
 if __name__ == '__main__':
-    compute_and_save_threshold_nw_t_free(sample_size=10000,
+    compute_and_save_threshold_nw_t_free(sample_size=1000,
                                          replication_count=1000,
                                          mean=0,
                                          sigma=2,

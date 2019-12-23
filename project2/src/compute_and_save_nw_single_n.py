@@ -5,7 +5,7 @@ from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.plot_double_array import plot_double_array
 from src.support_bound import support_bound
-import src.precision
+# import src.precision
 import numpy as np
         
     

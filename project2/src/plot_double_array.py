@@ -1,7 +1,5 @@
-from os.path import dirname
+from src.plot_preparations import plot_preparations
 import matplotlib.pyplot as plt
-import os
-import datetime
 
 
 def plot_double_array(x_array,
@@ -12,31 +10,12 @@ def plot_double_array(x_array,
                       par_list,
                       axis='column',
                       y_label='value'):
-    # create directory for output if it doesn't exist
-    parent_dir = dirname(dirname(__file__))
-    output_folder = os.path.join(parent_dir, "output")
-
-    if not os.path.exists(output_folder):
-        os.mkdir(output_folder)
+    file_name, caption = plot_preparations(title=title, par_list=par_list)
 
     if axis == 'row':
         hat_double_array = hat_double_array.T
 
-    # get values out of par_list and make it string
-    caption = ""
-    for i, key in enumerate(par_list, start=1):
-        caption += str(key) + " = " + str(par_list[key])
-        if i % 3 == 0:
-            caption += "\n"
-        elif i != len(par_list):
-            caption += ", "
-
     plt.style.use('seaborn')
-
-    now = datetime.datetime.now()
-    file_name = os.path.join(output_folder, 'plot for') + title + str(
-        par_list).replace(': ', '=') + '_' + now.strftime("%H;%M;%S;%f") + \
-                '.png'
 
     for ax_value in range(hat_double_array.shape[1]):
         plt.plot(x_array, hat_double_array[:, ax_value])

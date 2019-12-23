@@ -1,36 +1,14 @@
-from os.path import dirname
+from src.plot_preparations import plot_preparations
 import matplotlib.pyplot as plt
 import numpy as np
-import os
-import datetime
 
 
-def plot_histogram(arrays_dict: dict,
-                   true_value: float,
-                   title: str,
-                   par_list: dict,
-                   true_label = "True value"):
-    # create directory for output if it doesn't exist
-    parent_dir = dirname(dirname(__file__))
-    output_folder = os.path.join(parent_dir, "output")
-
-    if not os.path.exists(output_folder):
-        os.mkdir(output_folder)
-
-    # create file name for plot
-    now = datetime.datetime.now()
-    file_name = os.path.join(output_folder, 'plot for ') + title + str(
-        par_list).replace(': ', '=') + '_' + now.strftime("%H;%M;%S;%f") + \
-                '.png'
-
-    # get values out of par_list and make it string
-    caption = ""
-    for i, key in enumerate(par_list, start=1):
-        caption += str(key) + " = " + str(par_list[key])
-        if i % 3 == 0:
-            caption += "\n"
-        elif i != len(par_list):
-            caption += ", "
+def plot_histograms(arrays_dict: dict,
+                    true_value: float,
+                    title: str,
+                    par_list: dict,
+                    true_label="True value"):
+    file_name, caption = plot_preparations(title=title, par_list=par_list)
 
     plt.style.use('seaborn')
 
