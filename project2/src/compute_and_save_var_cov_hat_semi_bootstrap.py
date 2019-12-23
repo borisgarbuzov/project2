@@ -67,4 +67,4 @@ if __name__ == '__main__':
                                                 mean=0,
                                                 sigma=2,
                                                 noise_type="gaussian",
-                                                is_data=False)
+                                                is_data=True)
