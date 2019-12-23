@@ -1,6 +1,7 @@
 from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.cov_double_array_of_t import cov_double_array_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.support_bound import support_bound
 from timeit import default_timer as timer
 import numpy as np
 import unittest
@@ -19,9 +20,12 @@ class Test_run_lrv_hat_nw_of_t(unittest.TestCase):
                                                 mean=mean,
                                                 sigma=sigma,
                                                 noise_type=noise_type)
-                                      
+
+        max_lag = int(support_bound(sample_size=sample_size)) + 1
+
         cov_double_array = cov_double_array_of_t(sample=diagonal_sample,
-                                                t_par_count=t_par_count)
+                                                 t_par_count=t_par_count,
+                                                 max_lag=max_lag)
         start_time = timer()
         returned = lrv_hat_nw_of_t(cov_double_array=cov_double_array, sample_size=sample_size)
         duration = timer() - start_time

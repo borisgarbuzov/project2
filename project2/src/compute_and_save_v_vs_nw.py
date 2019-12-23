@@ -5,6 +5,7 @@ from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.create_t_par_array import create_t_par_array
 from src.plot_arrays import plot_arrays
+from src.support_bound import support_bound
 
 
 def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
@@ -20,7 +21,11 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
-    cov_double_array = cov_double_array_of_t(sample=sample, t_par_count=11)
+    max_lag = int(support_bound(sample_size=sample_size)) + 1
+
+    cov_double_array = cov_double_array_of_t(sample=sample,
+                                             t_par_count=11,
+                                             max_lag=max_lag)
     original_nw_array = lrv_hat_nw_of_t(cov_double_array=cov_double_array,
                                         sample_size=sample_size)
 

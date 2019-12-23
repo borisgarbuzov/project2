@@ -6,6 +6,7 @@ from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.lrv_hat_threshold_of_t import lrv_hat_threshold_of_t
 from src.support_bound import support_bound
 from src.plot_arrays import plot_arrays
+from src.threshold_max_lag import threshold_max_lag
 
 
 def compute_and_save_nw_vs_threshold(sample_size: int,
@@ -24,16 +25,20 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
 
     t_par_array = create_t_par_array(t_par_count=t_par_count)
 
-    cov_double_array = cov_double_array_of_t(sample=sample, t_par_count=11,
-                                             is_threshold=True)
+    support_bound_value = int(support_bound(sample_size=sample_size)) + 1
+    threshold_max_lag_value = threshold_max_lag(sample_size=sample_size)
 
-    max_lag = int(support_bound(sample_size=sample_size)) + 1
+    max_lag = max(support_bound_value, threshold_max_lag_value)
+
+    cov_double_array = cov_double_array_of_t(sample=sample,
+                                             t_par_count=11,
+                                             max_lag=max_lag)
 
     nw_lrv_array = lrv_hat_nw_of_t(
-        cov_double_array=cov_double_array[:max_lag, :],
+        cov_double_array=cov_double_array[:support_bound_value, :],
         sample_size=sample_size)
     threshold_lrv_array = lrv_hat_threshold_of_t(
-        cov_double_array=cov_double_array,
+        cov_double_array=cov_double_array[:threshold_max_lag_value, :],
         sample_size=sample_size)
     true_lrv_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
 

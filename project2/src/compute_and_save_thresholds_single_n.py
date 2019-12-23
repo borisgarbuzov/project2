@@ -4,6 +4,7 @@ from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.cov_double_array_of_t import cov_double_array_of_t
 from src.plot_double_array import plot_double_array
+from src.threshold_max_lag import threshold_max_lag
 import numpy as np
 
 
@@ -26,6 +27,8 @@ def compute_and_save_threshold_single_n(sample_size: int,
     t_par_array = create_t_par_array(t_par_count=t_par_count)
     true_lrv_ma1_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
 
+    max_lag = threshold_max_lag(sample_size=sample_size)
+
     for replication in range(replication_count):
         sample = diagonal_sample_tvma1(sample_size=sample_size,
                                        mean=mean,
@@ -33,7 +36,7 @@ def compute_and_save_threshold_single_n(sample_size: int,
                                        noise_type=noise_type)
         cov_double_array = cov_double_array_of_t(sample=sample,
                                                  t_par_count=t_par_count,
-                                                 is_threshold=True)
+                                                 max_lag=max_lag)
         threshold_hat_double_array[:, replication] = lrv_hat_threshold_of_t(
             cov_double_array=cov_double_array,
             sample_size=sample_size)

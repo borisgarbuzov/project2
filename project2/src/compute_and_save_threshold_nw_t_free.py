@@ -4,6 +4,7 @@ from src.lrv_hat_threshold_t_free import lrv_hat_threshold_t_free
 from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
 from src.true_lrv_t_free import true_lrv_t_free
 from src.support_bound import support_bound
+from src.threshold_max_lag import threshold_max_lag
 from src.plot_histogram import plot_histogram
 import numpy as np
 
@@ -25,7 +26,10 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
 
     true_lrv = true_lrv_t_free(sigma=sigma)
 
-    max_lag = int(support_bound(sample_size=sample_size)) + 1
+    support_bound_value = int(support_bound(sample_size=sample_size)) + 1
+    threshold_max_lag_value = threshold_max_lag(sample_size=sample_size)
+
+    max_lag = max(support_bound_value, threshold_max_lag_value)
 
     for replication in range(replication_count):
         sample = diagonal_sample_tvma1(sample_size=sample_size,
@@ -33,14 +37,14 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                        sigma=sigma,
                                        noise_type=noise_type)
         cov_column = cov_column_t_free(sample=sample,
-                                       is_threshold=True)
+                                       max_lag=max_lag)
         if lrv_type == "threshold" or lrv_type == "both":
             threshold_t_free_array[replication] = lrv_hat_threshold_t_free(
-                cov_hat_column=cov_column,
+                cov_hat_column=cov_column[threshold_max_lag_value],
                 sample_size=sample_size)
         if lrv_type == "nw" or lrv_type == "both":
             nw_t_free_array[replication] = lrv_hat_nw_t_free(
-                cov_column=cov_column[:max_lag],
+                cov_column=cov_column[:support_bound_value],
                 sample_size=sample_size)
         print("compute_and_save_threshold_nw_t_free", replication_count -
               (replication + 1), "left")
