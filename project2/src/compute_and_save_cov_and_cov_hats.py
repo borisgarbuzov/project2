@@ -5,6 +5,7 @@ from src.horizontal_sample_scaled_noise import horizontal_sample_scaled_noise
 from src.create_t_par_array import create_t_par_array
 from src.true_cov_of_t import true_cov_ma1_of_t
 from src.cov_hat_of_t import cov_hat_of_t
+from src.cov_hat_t_free import cov_hat_t_free
 from src.plot_double_array import plot_double_array
 import numpy as np
 
@@ -18,6 +19,13 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                                       type_process,
                                       noise_type,
                                       diag_or_horiz):
+    """
+    For all values of t, this function computes the true covariance and its estimates
+    using K(t).
+    Saves image image file. No CSV. 
+    If diag_or_horiz is horiz, we generate the 2d horizontal sample, 
+    and for each line we compute cov hats using the non-kernel formula. 
+    """
     par_list = {"sample_size": sample_size,
                 "t_par_count": t_par_count,
                 "gamma_count": gamma_count,
@@ -38,7 +46,10 @@ def compute_and_save_cov_and_cov_hats(sample_size,
         true_gamma_array[t_index] = true_cov_ma1_of_t(t_par=t_par_array[t_index],
                                                       sigma=sigma,
                                                       lag=lag)
-
+    """
+    For each index, generate a sample (later called replication)
+    and compute gamma.
+    """
     for index in range(gamma_count):
         if type_process == "MA1":
             if diag_or_horiz == "diag":
@@ -71,10 +82,14 @@ def compute_and_save_cov_and_cov_hats(sample_size,
         for t_index in range(t_par_count):
             if diag_or_horiz == "horiz":
                 sample = horizontal[t_index]
-            gamma_hat_double_array[t_index, index] = cov_hat_of_t(
-                sample=sample,
-                t_par=t_par_array[t_index],
-                lag=lag)
+                gamma_hat_double_array[t_index, index] = cov_hat_t_free(
+                    sample=sample,
+                    lag=lag)
+            else: 
+                gamma_hat_double_array[t_index, index] = cov_hat_of_t(
+                    sample=sample,
+                    t_par=t_par_array[t_index],
+                    lag=lag)
 
         print("There are", gamma_count - (index + 1), "replications left")
 
