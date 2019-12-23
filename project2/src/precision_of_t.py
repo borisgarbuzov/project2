@@ -1,5 +1,7 @@
 import numpy as np
 from sklearn.metrics import mean_squared_error
+from src.plot_preparations import plot_preparations
+import matplotlib.pyplot as plt
 
 
 def mse_value_by_value_and_array(true_value: float, est_array: np.array) -> float:
@@ -115,6 +117,52 @@ def precision_of_t(true_array: np.array,
             "variance": return_of_variance,
             "bias": return_of_bias
     }
+    
+def plot_precision(true_array: np.array,
+                    est_double_array: np.array):
+    precision_arrays = precision_of_t(true_array=true_array,
+                                        est_double_array=est_double_array,
+                                        par_list="")
+    mse = precision_arrays.get('mse')
+    bias = precision_arrays.get('bias')
+    mean = precision_arrays.get('mean')
+    variance = precision_arrays.get('variance')
+    
+    plt.style.use('seaborn')
+    plt.plot(mse)
+    file_name, caption = plot_preparations(par_list='', title='mse')
+    plt.tight_layout()
+    plt.xlabel('t_par' + '\n' + caption)
+    plt.ylabel('mse')
+    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.style.use('seaborn')
+    plt.plot(bias)
+    file_name, caption = plot_preparations(par_list='', title='bias')
+    plt.tight_layout()
+    plt.xlabel('t_par' + '\n' + caption)
+    plt.ylabel('bias')
+    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.style.use('seaborn')
+    plt.plot(mean)
+    file_name, caption = plot_preparations(par_list='', title='mean')
+    plt.tight_layout()
+    plt.xlabel('t_par' + '\n' + caption)
+    plt.ylabel('mean')
+    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    plt.style.use('seaborn')
+    plt.plot(variance)
+    file_name, caption = plot_preparations(par_list='', title='variance')
+    plt.tight_layout()
+    plt.xlabel('t_par' + '\n' + caption)
+    plt.ylabel('variance')
+    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
+    plt.close()
 
 
 if __name__ == '__main__':
