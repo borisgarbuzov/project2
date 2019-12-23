@@ -95,7 +95,8 @@ def bias_array_by_array_and_double_array(true_array: np.array, est_double_array:
     return bias_array
     
 def precision_of_t(true_array: np.array,
-                    est_double_array: np.array):
+                    est_double_array: np.array,
+                    par_list: dict):
     """
     Calls 4 single precision functions. 
     Returns 4 one-dimensional arrays, wrapped up in a list
@@ -109,10 +110,10 @@ def precision_of_t(true_array: np.array,
     return_of_bias = bias_array_by_array_and_double_array(true_array=true_array,
                                                           est_double_array=est_double_array)
 
-    return {"mse:": return_of_mse,
-            "mean:": return_of_mean,
-            "variance:": return_of_variance,
-            "bias:": return_of_bias
+    return {"mse": return_of_mse,
+            "mean": return_of_mean,
+            "variance": return_of_variance,
+            "bias": return_of_bias
     }
 
 
