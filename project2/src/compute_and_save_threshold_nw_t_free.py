@@ -14,7 +14,7 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                          mean: int,
                                          sigma: int,
                                          noise_type: str,
-                                         lrv_type: str):
+                                         lrv_est: str):
     par_list = {"sample_size": sample_size,
                 "replication_count": replication_count,
                 "mean": mean,
@@ -38,11 +38,11 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                        noise_type=noise_type)
         cov_column = cov_column_t_free(sample=sample,
                                        max_lag=max_lag)
-        if lrv_type == "threshold" or lrv_type == "both":
+        if lrv_est == "threshold" or lrv_est == "both":
             threshold_t_free_array[replication] = lrv_hat_threshold_t_free(
                 cov_hat_column=cov_column[:threshold_max_lag_value],
                 sample_size=sample_size)
-        if lrv_type == "nw" or lrv_type == "both":
+        if lrv_est == "nw" or lrv_est == "both":
             nw_t_free_array[replication] = lrv_hat_nw_t_free(
                 cov_column=cov_column[:support_bound_value],
                 sample_size=sample_size)
@@ -54,7 +54,7 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
 
     plot_histograms(arrays_dict=arrays_dict,
                     true_value=true_lrv,
-                    title="{} t free lrv".format(lrv_type),
+                    title="{} t free lrv".format(lrv_est),
                     par_list=par_list)
 
 
@@ -64,4 +64,4 @@ if __name__ == '__main__':
                                          mean=0,
                                          sigma=2,
                                          noise_type="gaussian",
-                                         lrv_type="both")
+                                         lrv_est="both")

@@ -7,14 +7,15 @@ def plot_histograms(arrays_dict: dict,
                     true_value: float,
                     title: str,
                     par_list: dict,
-                    true_label="True value"):
+                    true_label="True value",
+                    density=True):
     file_name, caption = plot_preparations(title=title, par_list=par_list)
 
     plt.style.use('seaborn')
 
     for label, array in arrays_dict.items():
         if not np.isnan(array).any():
-            plt.hist(array, alpha=0.65, label=label)
+            plt.hist(array, alpha=0.65, density=density, label=label)
 
     plt.axvline(true_value, color='black', label=true_label, linewidth=3)
 
