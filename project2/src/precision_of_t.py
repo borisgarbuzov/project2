@@ -118,7 +118,7 @@ def precision_of_t(true_array: np.array,
             "bias": return_of_bias
     }
     
-def plot_precision(true_array: np.array,
+def plot_precision_of_t(true_array: np.array,
                     est_double_array: np.array):
     precision_arrays = precision_of_t(true_array=true_array,
                                         est_double_array=est_double_array,
@@ -166,4 +166,7 @@ def plot_precision(true_array: np.array,
 
 
 if __name__ == '__main__':
-    pass
+    my_precision = precision_of_t(true_array=[1,2,3], est_double_array=[[1,2,3], [4,5,6], [7,8,9]], par_list="")
+    print("my_precision =\n", my_precision)
+    plot_precision_of_t(true_array=[1,2,3], est_double_array=[[1,2,3], [4,5,6], [7,8,9]])
+    
