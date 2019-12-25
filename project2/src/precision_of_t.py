@@ -162,6 +162,4 @@ def plot_precision_of_t(precision_arrays: dict):
 
 
 if __name__ == '__main__':
-    my_precision = precision_of_t(true_array=[1,2,3], est_double_array=[[1,2,3], [4,5,6], [7,8,9]], par_list="")
-    print("my_precision =\n", my_precision)
-    plot_precision_of_t(precision_arrays=my_precision)
+    pass
