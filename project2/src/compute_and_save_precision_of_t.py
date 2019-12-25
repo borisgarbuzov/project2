@@ -5,7 +5,7 @@ def compute_and_save_precision_of_t(true_array: np.array,
                                     est_double_array: np.array,
                                     par_list: dict):
     precision_arrays = precision_of_t(true_array, est_double_array, par_list)
-    print('Precision arrays:', precision_arrays)
+    print('Precision arrays:\n', precision_arrays)
     plot_precision_of_t(precision_arrays)
 
 if __name__ == '__main__':
