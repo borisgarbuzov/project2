@@ -125,7 +125,7 @@ def plot_precision_of_t(precision_arrays: dict):
     variance = precision_arrays.get('variance')
     
     plt.style.use('seaborn')
-    plt.plot(mse, marker='.')
+    plt.plot(mse, marker='o')
     file_name, caption = plot_preparations(par_list='', title='mse')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
