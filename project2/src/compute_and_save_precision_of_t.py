@@ -9,6 +9,6 @@ def compute_and_save_precision_of_t(true_array: np.array,
     plot_precision_of_t(precision_arrays)
 
 if __name__ == '__main__':
-    compute_and_save_precision_of_t(true_array=[1,2,3],
-                                    est_double_array=[[1,2,3], [4,5,6], [7,8,9]],
+    compute_and_save_precision_of_t(true_array=np.array([1,2,3]),
+                                    est_double_array=np.array([[1,2,3], [4,5,6], [7,8,9]]),
                                     par_list="")
