@@ -118,18 +118,14 @@ def precision_of_t(true_array: np.array,
             "bias": return_of_bias
     }
     
-def plot_precision_of_t(true_array: np.array,
-                    est_double_array: np.array):
-    precision_arrays = precision_of_t(true_array=true_array,
-                                        est_double_array=est_double_array,
-                                        par_list="")
+def plot_precision_of_t(precision_arrays: dict):
     mse = precision_arrays.get('mse')
     bias = precision_arrays.get('bias')
     mean = precision_arrays.get('mean')
     variance = precision_arrays.get('variance')
     
     plt.style.use('seaborn')
-    plt.plot(mse)
+    plt.plot(mse, marker='.')
     file_name, caption = plot_preparations(par_list='', title='mse')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
@@ -138,7 +134,7 @@ def plot_precision_of_t(true_array: np.array,
     plt.close()
     
     plt.style.use('seaborn')
-    plt.plot(bias)
+    plt.plot(bias, marker='.')
     file_name, caption = plot_preparations(par_list='', title='bias')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
@@ -147,7 +143,7 @@ def plot_precision_of_t(true_array: np.array,
     plt.close()
     
     plt.style.use('seaborn')
-    plt.plot(mean)
+    plt.plot(mean, marker='.')
     file_name, caption = plot_preparations(par_list='', title='mean')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
@@ -156,7 +152,7 @@ def plot_precision_of_t(true_array: np.array,
     plt.close()
     
     plt.style.use('seaborn')
-    plt.plot(variance)
+    plt.plot(variance, marker='.')
     file_name, caption = plot_preparations(par_list='', title='variance')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
@@ -168,5 +164,4 @@ def plot_precision_of_t(true_array: np.array,
 if __name__ == '__main__':
     my_precision = precision_of_t(true_array=[1,2,3], est_double_array=[[1,2,3], [4,5,6], [7,8,9]], par_list="")
     print("my_precision =\n", my_precision)
-    plot_precision_of_t(true_array=[1,2,3], est_double_array=[[1,2,3], [4,5,6], [7,8,9]])
-    
+    plot_precision_of_t(precision_arrays=my_precision)
