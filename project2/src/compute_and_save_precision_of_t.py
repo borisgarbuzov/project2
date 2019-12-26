@@ -1,4 +1,4 @@
-from src.precision_of_t import precision_of_t, plot_precision_of_t
+from src.precision_of_t import precision_of_t, plot_precision_of_t, plot_mult_precision_of_t
 import numpy as np
 
 def compute_and_save_precision_of_t(true_array: np.array,
@@ -7,6 +7,7 @@ def compute_and_save_precision_of_t(true_array: np.array,
     precision_arrays = precision_of_t(true_array, est_double_array, par_list)
     print('Precision arrays:\n', precision_arrays)
     plot_precision_of_t(precision_arrays)
+    plot_mult_precision_of_t(precision_arrays, "x_label", "y_label")
 
 if __name__ == '__main__':
     compute_and_save_precision_of_t(true_array=np.array([1,2,3]),

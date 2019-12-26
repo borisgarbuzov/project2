@@ -119,47 +119,32 @@ def precision_of_t(true_array: np.array,
     }
     
 def plot_precision_of_t(precision_arrays: dict):
-    mse = precision_arrays.get('mse')
-    bias = precision_arrays.get('bias')
-    mean = precision_arrays.get('mean')
-    variance = precision_arrays.get('variance')
-    
-    plt.style.use('seaborn')
-    plt.plot(mse, marker='o')
-    file_name, caption = plot_preparations(par_list='', title='mse')
-    plt.tight_layout()
-    plt.xlabel('t_par' + '\n' + caption)
-    plt.ylabel('mse')
-    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
-    plt.close()
-    
-    plt.style.use('seaborn')
-    plt.plot(bias, marker='o')
-    file_name, caption = plot_preparations(par_list='', title='bias')
-    plt.tight_layout()
-    plt.xlabel('t_par' + '\n' + caption)
-    plt.ylabel('bias')
-    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
-    plt.close()
-    
-    plt.style.use('seaborn')
-    plt.plot(mean, marker='o')
-    file_name, caption = plot_preparations(par_list='', title='mean')
-    plt.tight_layout()
-    plt.xlabel('t_par' + '\n' + caption)
-    plt.ylabel('mean')
-    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
-    plt.close()
-    
-    plt.style.use('seaborn')
-    plt.plot(variance, marker='o')
-    file_name, caption = plot_preparations(par_list='', title='variance')
-    plt.tight_layout()
-    plt.xlabel('t_par' + '\n' + caption)
-    plt.ylabel('variance')
-    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
-    plt.close()
+    for i in range(len(precision_arrays)):
+        name = tuple(precision_arrays.items())[i][0]
+        value = tuple(precision_arrays.items())[i][1]
+        plt.style.use('seaborn')
+        plt.plot(value, marker='o')
+        file_name, caption = plot_preparations(par_list='', title=name)
+        plt.tight_layout()
+        plt.xlabel('t_par' + '\n' + caption)
+        plt.ylabel(name)
+        plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
+        plt.close()
 
+def plot_mult_precision_of_t(precision_arrays: dict,
+                             x_label,
+                             y_label):
+    plt.style.use('seaborn')
+    for i in range(len(precision_arrays)):
+        name = tuple(precision_arrays.items())[i][0]
+        value = tuple(precision_arrays.items())[i][1]
+        plt.plot(value, marker='o')
+        file_name, caption = plot_preparations(par_list='', title='mult')
+    plt.tight_layout()
+    plt.xlabel(x_label + '\n' + caption)
+    plt.ylabel(y_label)
+    plt.savefig(fname=file_name, dpi=300, bbox_inches='tight')
+    plt.close()
 
 if __name__ == '__main__':
     pass
