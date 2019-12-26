@@ -9,6 +9,7 @@ def plot_double_array(x_array,
                       x_label,
                       par_list,
                       axis='column',
+                      true_label='True value',
                       y_label='value'):
     file_name, caption = plot_preparations(title=title, par_list=par_list)
 
@@ -21,7 +22,7 @@ def plot_double_array(x_array,
         plt.plot(x_array, hat_double_array[:, ax_value])
 
     plt.plot(x_array, true_array, color="black", linewidth=2,
-             label='True value')
+             label=true_label)
 
     plt.xlabel(x_label + '\n' + caption)
     plt.ylabel(y_label)
