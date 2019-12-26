@@ -134,7 +134,7 @@ def plot_precision_of_t(precision_arrays: dict):
     plt.close()
     
     plt.style.use('seaborn')
-    plt.plot(bias, marker='.')
+    plt.plot(bias, marker='o')
     file_name, caption = plot_preparations(par_list='', title='bias')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
@@ -143,7 +143,7 @@ def plot_precision_of_t(precision_arrays: dict):
     plt.close()
     
     plt.style.use('seaborn')
-    plt.plot(mean, marker='.')
+    plt.plot(mean, marker='o')
     file_name, caption = plot_preparations(par_list='', title='mean')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
@@ -152,7 +152,7 @@ def plot_precision_of_t(precision_arrays: dict):
     plt.close()
     
     plt.style.use('seaborn')
-    plt.plot(variance, marker='.')
+    plt.plot(variance, marker='o')
     file_name, caption = plot_preparations(par_list='', title='variance')
     plt.tight_layout()
     plt.xlabel('t_par' + '\n' + caption)
