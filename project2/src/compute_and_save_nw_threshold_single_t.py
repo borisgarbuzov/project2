@@ -8,6 +8,7 @@ from src.threshold_max_lag import threshold_max_lag
 from src.support_bound import support_bound
 from src.true_lrv_t_free import true_lrv_t_free
 from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t
+from src.compute_and_save_multi_precision_of_t import compute_and_save_multi_precision_of_t
 import numpy as np
 import numbers
 
@@ -59,7 +60,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                                    len(sample_size_array))
     else:
         raise ValueError(
-            't_par parameter should be "t_free" or float number not' + t_par)
+            't_par parameter should be "free" or float number not' + t_par)
 
     for col_index, sample_size in enumerate(sample_size_array):
         max_lag = max_lag_array[col_index]
@@ -78,6 +79,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                 cov_hat_column = cov_column_t_free(sample=sample,
                                                    max_lag=max_lag)
             else:
+                # This will never happen
                 raise ValueError('t_par parameter should be "t_free" or float number not' + t_par)
             threshold_double_array[replication, col_index] = \
                 lrv_hat_threshold_t_free(
@@ -106,11 +108,17 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                       axis='row',
                       true_label='True lrv',
                       y_label='LRV')
+    arrays_dict = {"Threshold": threshold_double_array,
+                   "Newey-West": nw_double_array}
 
+    compute_and_save_multi_precision_of_t(true_array=true_LRV_array,
+                                          est_dict=arrays_dict)
+                                          
+                                          
 
 if __name__ == '__main__':
     compute_and_save_nw_threshold_single_t(sample_size_from=1000,
-                                           sample_size_to=10001,
+                                           sample_size_to=40001,
                                            sample_size_by=1000,
                                            replication_count=5,
                                            mean=0,

@@ -65,6 +65,8 @@ def compute_and_save_multi_precision_of_t(true_array: np.array,
                                           est_dict: dict):
     precision_dict = compute_multi_precision_of_t(true_array, est_dict)
     plot_multi_precision_of_t(precision_dict, "t_par")
+    
+    
 if __name__ == '__main__':
     compute_and_save_multi_precision_of_t([1,2,3],
                                         {'est_double_array_1': [[1,2,3], [4,5,6], [7,8,9]],
