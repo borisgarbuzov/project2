@@ -11,8 +11,8 @@ def lrv_hat_threshold_t_free(cov_hat_column: np.array,
     print('sample_size=', sample_size)
     print('max_lag=', max_lag)
     indicator_value = threshold_indicator(sample_size=sample_size,
-                                                     cov_hat=cov_hat_column[0],
-                                                     lag=0)
+                                          cov_hat=cov_hat_column[0],
+                                          lag=0)
     indicator_array.append(indicator_value)
     cum_sum = cov_hat_column[0] * indicator_value
     for lag in range(1, max_lag):
