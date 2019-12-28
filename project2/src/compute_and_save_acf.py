@@ -10,6 +10,14 @@ def compute_and_save_acf(sample_size: int,
         mean: int,
         sigma: int,
         noise_type: str):
+    """
+    It saves to output directory, the sample autocovariance function for several lags
+    We generate the sample, given the default process, currently TVMA(1). 
+    If later we change the default process, we would need to change the call
+    diagonal_sample_tvma1 to something else. 
+    Currently, max lag is the one for threshold. 
+    Later, if need arises, we may introduce the max_lag argument. 
+    """
     par_list = {"sample_size": sample_size,
                 "mean": mean,
                 "sigma": sigma,

@@ -3,6 +3,12 @@ from src.plot_preparations import plot_preparations
 import numpy as np
 from matplotlib import pyplot as plt
 
+"""
+This module contains several functions, 
+connected to computation and output of precision. 
+It is still under construction. 
+"""
+
 def compute_multi_precision_of_t(true_array: np.array,
                            est_dict: dict):
     precision_dict = {}

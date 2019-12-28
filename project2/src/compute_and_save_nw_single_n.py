@@ -16,7 +16,9 @@ def compute_and_save_nw_single_n(sample_size: int,
                                  noise_type: str,
                                  replication_count: int) -> np.array:
     """
-    
+    This function computes r (replication_count) arrays of t-dependent NW estimates, 
+    first generating r samples of a given fixed n. 
+    Then it saves a sinle image to output directory. 
     :param cov_double_array: covariance double array
     :return: array of newey west
     """

@@ -4,6 +4,11 @@ import numpy as np
 def compute_and_save_precision_of_t(true_array: np.array,
                                     est_double_array: np.array,
                                     par_list: dict):
+    """
+    Mentioned in 
+    395 LRV 3a / computing 2 / project 2 / design / M: nw_precision_of_t design
+    Most likely, old and deprecated. 
+    """
     precision_arrays = precision_of_t(true_array, est_double_array, par_list)
     print('Precision arrays:\n', precision_arrays)
     plot_precision_of_t(precision_arrays)

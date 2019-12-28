@@ -21,6 +21,16 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                                            sigma: int,
                                            noise_type: str,
                                            t_par="free"):
+    """
+    For a series of sample sizes, 
+    this function generates r samples for each sample size, 
+    Illustrated in 
+    412 LRV3a / computing 2 / project 2 / vs_sample_size / M: NW and T vs sample size 
+    Saves 6 image files. 
+    For each of the two estimates, it computes and depicts the base estimates, 
+    and then all 4 precision indicators. 
+    It may be either for a given t or for t-free. 
+    """
     par_list = {
         "sample_size_from": sample_size_from,
         "sample_size_to": sample_size_to,

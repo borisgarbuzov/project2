@@ -15,6 +15,13 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                          sigma: int,
                                          noise_type: str,
                                          lrv_est: str):
+    """
+    Illustrated in 
+    402 LRV 3a / computing 2 / project 2 / Threshold / M: threshold t free
+    Saves a single image file with
+    histogram of replicated NW estimate threshold or both.
+    True value is marked on all histograms. 
+    """
     par_list = {"sample_size": sample_size,
                 "replication_count": replication_count,
                 "mean": mean,

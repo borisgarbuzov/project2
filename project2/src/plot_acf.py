@@ -16,6 +16,7 @@ def plot_acf(cov_hat,
     plt.style.use('seaborn')
 
     plt.stem(max_lag_array, cov_hat, use_line_collection=True)
+    # The following is to be replaced to work with cloudArray instead of cloud scalar. 
     plt.axhspan(cloud, np.negative(cloud), alpha=0.1, color='blue')
 
     plt.xlabel("lags" + '\n' + caption)

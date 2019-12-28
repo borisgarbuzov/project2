@@ -14,6 +14,12 @@ def compute_and_save_threshold_single_n(sample_size: int,
                                         sigma: int,
                                         noise_type: str,
                                         replication_count: int):
+    """
+    Saves a straw plot of several replicates of t-dependent threshold estimates
+    for the given sample_size. 
+    Illustrated in 
+    385 LRV3a / computing 2 / project 2 / tests / ME: Test the function
+    """
     par_list = {"sample_size": sample_size,
                 "t_par_count": t_par_count,
                 "mean": mean,
