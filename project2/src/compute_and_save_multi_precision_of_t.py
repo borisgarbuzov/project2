@@ -23,19 +23,19 @@ def compute_multi_precision_of_t(true_array: np.array,
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        bias_dict[str(name) + '_bias'] = precision_dict.get(name).get('bias')
+        bias_dict[str(name) + ' bias'] = precision_dict.get(name).get('bias')
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        mean_dict[str(name) + '_mean'] = precision_dict.get(name).get('mean')
+        mean_dict[str(name) + ' mean'] = precision_dict.get(name).get('mean')
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        mse_dict[str(name) + '_mse'] = precision_dict.get(name).get('mse')
+        mse_dict[str(name) + ' mse'] = precision_dict.get(name).get('mse')
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        variance_dict[str(name) + '_variance'] = precision_dict.get(name).get('variance')
+        variance_dict[str(name) + ' variance'] = precision_dict.get(name).get('variance')
     
     return {'bias': bias_dict,
             'mean': mean_dict,
@@ -44,14 +44,24 @@ def compute_multi_precision_of_t(true_array: np.array,
     }
 
 def plot_precision_of_t(precision_dict: dict,
+                        true_array: np.array,
+                        x_array: np.array,
                         x_label="t_par",
-                        y_label="value"):
+                        y_label="value",
+                        par_list=""):
     plt.style.use('seaborn')
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
         value = tuple(precision_dict.items())[i][1]
-        plt.plot(value, marker='o', label=name)
-        file_name, caption = plot_preparations(par_list='', title='multi_'+y_label)
+        plt.plot(x_array, value, marker='o', label=name)
+        file_name, caption = plot_preparations(par_list=par_list, title='multi_'+y_label)
+        
+    if name[-4:] == 'bias':
+        plt.axhline(y=0, color='black', linestyle='-', linewidth=2)
+    if name[-4:] == 'mean':
+        plt.plot(true_array, marker='o', label="true_array")
+        
+    plt.title(y_label)
     plt.tight_layout()
     plt.xlabel(x_label + '\n' + caption)
     plt.ylabel(y_label)
@@ -60,21 +70,36 @@ def plot_precision_of_t(precision_dict: dict,
     plt.close()
 
 def plot_multi_precision_of_t(precision_dict: dict,
-                              x_label="t_par"):
+                              true_array: np.array,
+                              x_array: np.array,
+                              x_label="t_par",
+                              par_list=""):
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
         plot_precision_of_t(precision_dict.get(name),
+                            true_array=true_array,
                             x_label="t_par",
-                            y_label=name)
+                            y_label=name,
+                            par_list=par_list,
+                            x_array=x_array)
     
 def compute_and_save_multi_precision_of_t(true_array: np.array,
-                                          est_dict: dict):
+                                          est_dict: dict,
+                                          x_array: np.array,
+                                          par_list="",
+                                          x_label="t_par"):
     precision_dict = compute_multi_precision_of_t(true_array, est_dict)
-    plot_multi_precision_of_t(precision_dict, "t_par")
+    plot_multi_precision_of_t(precision_dict=precision_dict,
+                              true_array=true_array,
+                              x_label=x_label,
+                              par_list=par_list,
+                              x_array=x_array)
     
     
 if __name__ == '__main__':
     compute_and_save_multi_precision_of_t([1,2,3],
                                         {'est_double_array_1': [[1,2,3], [4,5,6], [7,8,9]],
-                                         'est_double_array_2': [[4,23,5], [1,64,2], [9, 0, 1]]})
+                                         'est_double_array_2': [[4,23,5], [1,64,2], [9, 0, 1]]},
+                                         x_label="t_par",
+                                         x_array=[100,200,300])
     
