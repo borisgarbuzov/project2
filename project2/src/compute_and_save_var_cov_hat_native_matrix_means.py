@@ -27,7 +27,15 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
             row_for_each_lag_without_nan = [x for x in row_for_each_lag if not np.isnan(x)]
             means_for_noise_type[lag] = np.mean(row_for_each_lag_without_nan)
 
+        # for i in range(len(means_for_noise_type)):
+        #     means_for_noise_type[i] *=
+
         var_cov_hat_native_matrix_means.append(list(means_for_noise_type))
+
+
+    # for index, sample_size in enumerate(sample_size_array):
+    #     native_matrix_lag[index] *= sample_size
+    #     theoretical_lag[index] *= sample_size
 
     column_names = ["lag " + str(lag) for lag in range(max_lag)]
     index_names = types_of_noises
