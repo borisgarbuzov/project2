@@ -23,19 +23,19 @@ def compute_multi_precision_of_t(true_array: np.array,
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        bias_dict[str(name) + ' bias'] = precision_dict.get(name).get('bias')
+        bias_dict[str(name)] = precision_dict.get(name).get('bias')
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        mean_dict[str(name) + ' mean'] = precision_dict.get(name).get('mean')
+        mean_dict[str(name)] = precision_dict.get(name).get('mean')
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        mse_dict[str(name) + ' mse'] = precision_dict.get(name).get('mse')
+        mse_dict[str(name)] = precision_dict.get(name).get('mse')
     
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
-        variance_dict[str(name) + ' variance'] = precision_dict.get(name).get('variance')
+        variance_dict[str(name)] = precision_dict.get(name).get('variance')
     
     return {'bias': bias_dict,
             'mean': mean_dict,
@@ -56,10 +56,10 @@ def plot_precision_of_t(precision_dict: dict,
         plt.plot(x_array, value, marker='o', label=name)
         file_name, caption = plot_preparations(par_list=par_list, title='multi_'+y_label)
         
-    if name[-4:] == 'bias':
+    if y_label == 'bias':
         plt.axhline(y=0, color='black', linestyle='-', linewidth=2)
-    if name[-4:] == 'mean':
-        plt.plot(true_array, marker='o', label="true_array")
+    if y_label == 'mean':
+        plt.plot(x_array, true_array, marker='o', label="true_array")
         
     plt.title(y_label)
     plt.tight_layout()
