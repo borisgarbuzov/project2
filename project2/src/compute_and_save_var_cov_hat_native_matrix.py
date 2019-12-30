@@ -10,27 +10,51 @@ import datetime
 import os
 
 
-def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
-                                               sigma: float, noise_type: str, is_data: bool) -> np.array:
+def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array,
+                                               mean: float, sigma: float, noise_type: str,
+                                               is_data: bool, fix_number_of_lags=None) -> np.array:
     """
-
+    N: Returns and saves to CSV the matrix of variance values of covHat
+    for different lags and sample sizes. 
+    The values currently do not match theoretical ones. 
+    But I think, it is in a minor way, and the values are usable. 
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
     :param
     :return:
     """
-    max_lag_array = [int(support_bound(sample_size)) for sample_size in
-                     sample_size_array]
+ 
+    if fix_number_of_lags:
+        date = '_{}_{}_lags'.format(noise_type, fix_number_of_lags)
+    else:
+        date = '_{}'.format(noise_type)
 
-    max_lag_array = np.arange(0, 300)
+    # create directory for data if it doesn't exist
+    now = datetime.datetime.now()
+    parent_dir = dirname(dirname(__file__))
+    if is_data:
+        data_folder = os.path.join(parent_dir, "data")
+    if not is_data:
+        data_folder = os.path.join(parent_dir, "output")
+        date += '_{}'.format(now.strftime("%H;%M;%S;%f"))
+    if not os.path.exists(data_folder):
+        os.mkdir(data_folder)
+
+    # max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
+
+    max_lag_array = np.arange(0, fix_number_of_lags + 1)
 
     # result matrix
     var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1] + 1,
                                                len(sample_size_array)),
                                         fill_value=np.nan)
-    
+
+    # for DataFrame
+    column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
+    index_names = ["lag " + str(lag) for lag in range(max_lag_array[-1] + 1)]
+
     for i, sample_size in enumerate(sample_size_array):
         # max lag for current sample_size
-        max_lag = max_lag_array[i]
+        max_lag = max(max_lag_array)
         
         print('sample size:', sample_size)
         for lag in range(max_lag + 1):
@@ -46,44 +70,21 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
 
             var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
             print('lags left:', max_lag - lag)
-            
-    # convert to Pandas DataFrame
-    column_names = ["sample size " + str(sample_size) for sample_size in sample_size_array]
-    
-    index_names = ["lag " + str(lag) for lag in range(max_lag_array[-1] + 1)]
-    df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix,
-                                                index=index_names,
-                                                columns=column_names)
-    df_var_cov_hat_native_matrix.index.name = 'lag' 
-    
-    # save DataFrame to .csv
-    now = datetime.datetime.now()
-    # create directory for data if it doesn't exist
-    parent_dir = dirname(dirname(__file__))
-    if is_data:
-        data_folder = os.path.join(parent_dir, "data")
-        date = '_{}'.format(noise_type)
-    if not is_data:
-        data_folder = os.path.join(parent_dir, "output")
-        date = '_{}_{}'.format(noise_type, now.strftime("%H;%M;%S;%f"))
-    if not os.path.exists(data_folder):
-        os.mkdir(data_folder)
-    df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder,
-                                                     "var_cov_hat_native_matrix{}_300_lag.csv".format(date)))
+
+            # convert to Pandas DataFrame
+            df_var_cov_hat_native_matrix = pd.DataFrame(var_cov_hat_native_matrix,
+                                                        index=index_names,
+                                                        columns=column_names)
+            df_var_cov_hat_native_matrix.index.name = 'lag'
+
+            df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder,
+                                                             "var_cov_hat_native_matrix{}.csv".format(date)))
             
     return var_cov_hat_native_matrix
     
     
 if __name__ == '__main__':
     sample_size_array = np.arange(1000, 5001, 1000)
-    start_time = timer()
-    res1 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
-                                                      sample_size_array=sample_size_array,
-                                                      mean=0,
-                                                      sigma=2,
-                                                      noise_type='gaussian',
-                                                      is_data=True)
-    duration1 = timer() - start_time
 
     start_time = timer()
     res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
@@ -91,12 +92,10 @@ if __name__ == '__main__':
                                                       mean=0,
                                                       sigma=2,
                                                       noise_type='bernoulli',
-                                                      is_data=True)
-    duration2 = timer() - start_time
+                                                      is_data=True,
+                                                      fix_number_of_lags=300)
+    duration = timer() - start_time
     # print(np.around(res, decimals=4))
     print('=========================================')
-    print('Gaussian matrix duration:\t', duration1, 'secs')
-    print('=========================================\n')
-    print('=========================================')
-    print('Bernoulli matrix duration:\t', duration2, 'secs')
+    print('Bernoulli matrix duration:\t', duration, 'secs')
     print('=========================================\n')
