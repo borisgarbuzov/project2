@@ -2,6 +2,13 @@ import numpy as np
 
 
 def cov_hat_t_free(sample: np.array, lag: int) -> float:
+    """
+    Computes autocovariance estimate, based lag,
+    by a classic formula, not using kernel. 
+    :param sample: diagonal or horizontal sample.
+    :param lag: a value of lag between 0 and sample size, for which we need a covariance.
+    :return: a scalar number, a result of autocovariance estimate. 
+    """    
     sample_size = len(sample)
 
     if lag < 0:
