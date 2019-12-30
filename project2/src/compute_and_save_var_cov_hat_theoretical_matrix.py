@@ -10,7 +10,9 @@ def compute_and_save_var_cov_hat_theoretical_matrix(sample_size_array: np.array,
                                                     is_data=False) -> np.array:
     """
     Compute and save into csv theoretical var cov hat matrixes with corrects noise_type and lags.
-
+    N:
+    We save and return the matrix of values, computed by simple formula.
+    Later, need to pull out the computational part to a separate function. 
     :param sample_size_array: array of sample sizes
     :param lags_array: array of lags
     :param noise_type: type of noise 'gaussian' or 'bernoulli'

@@ -14,6 +14,18 @@ def compute_and_save_var_cov_hat_semi_bootstrap(sample_size_from: int,
                                                 sigma: int,
                                                 noise_type: str,
                                                 is_data: bool):
+    """
+    This function computes semi-bootstrapped values (or block estimate)
+    of var(covHat) for different lags and sample sizes. 
+    The block size choice is currently in question. 
+    Also, we need to revisit the problem of maximal lag choice. 
+    Experimentally, we found out that for some choices of block size, 
+    Our estimations match well the native simulations. 
+    After we automate reading the constants off native simulations, 
+    we can do something similar to semi-bootstrap. 
+    So we eventually need to save the constants, results of averaging
+    over different sample sizes. 
+    """
     sample_size_array = np.arange(start=sample_size_from, stop=sample_size_to,
                                   step=sample_size_by)
 

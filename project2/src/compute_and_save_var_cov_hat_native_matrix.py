@@ -13,7 +13,10 @@ import os
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array, mean: float,
                                                sigma: float, noise_type: str, is_data: bool) -> np.array:
     """
-
+    N: Returns and saves to CSV the matrix of variance values of covHat
+    for different lags and sample sizes. 
+    The values currently do not match theoretical ones. 
+    But I think, it is in a minor way, and the values are usable. 
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
     :param
     :return:
