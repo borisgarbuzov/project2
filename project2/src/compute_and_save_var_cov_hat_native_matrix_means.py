@@ -7,7 +7,10 @@ import os
 def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian', 'bernoulli')):
     """
     Read from csv and save to csv var cov hat native matrix MEANS:
-
+    Ideally, it should save to CSV file, the constants
+    of averaging the values over different sample sizes for every fixed lag. 
+    It reads CSV file, that was an output of compute_and_save_var_cov_hat_native_matrix.
+    And it saves its own CSV.
     :param types_of_noises: types of noise 'gaussian', 'bernoulli'
     :return: csv
     """

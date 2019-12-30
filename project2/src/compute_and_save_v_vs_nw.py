@@ -10,6 +10,10 @@ from src.support_bound import support_bound
 
 def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
                              noise_type):
+    """
+    This function is for visual comparison of v double summation formula with regular NW.
+    It saves a single image with two curves that must coincide. And they currently do coincide. 
+    """
     par_list = {"sample_size": sample_size,
                 "t_par_count": t_par_count,
                 "mean": mean,

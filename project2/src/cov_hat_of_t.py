@@ -3,6 +3,14 @@ from src.b_cov import b_cov
 
 
 def cov_hat_of_t(sample, t_par, lag):
+    """
+    Computes autocovariance estimate, based on t_par and lag,
+    using kernel. 
+    :param sample: diagonal sample.
+    :param t_par: a value of t parameter, for which we need a covariance.
+    :param lag: a value of lag between 0 and sample size, for which we need a covariance.
+    :return: a scalar number, a result of autocovariance estimate. 
+    """
     sample_size = len(sample)
 
     b_cov_value = b_cov(sample_size=sample_size)

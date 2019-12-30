@@ -4,12 +4,12 @@ import numpy as np
 def create_noise(noise_size: int, mean: float, sigma: float,
                  noise_type: str) -> float:
     """
-    create "gaussian" or "bernoulli" noise.
-
+    Create "gaussian" or "bernoulli" noise.
+    Here, bernoulli means +- sigma. 
     :param noise_size: size of noise
     :param mean: mean
     :param sigma: sigma
-    :param noise_type: type
+    :param noise_type: type, equal either "gaussian" or "bernoulli". 
     :return: float noise
     """
     if noise_type == "gaussian":
