@@ -12,7 +12,7 @@ import os
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array,
                                                mean: float, sigma: float, noise_type: str,
-                                               is_data: bool, fix_number_of_lags=None) -> np.array:
+                                               is_data=False, fix_number_of_lags=None) -> np.array:
     """
     N: Returns and saves to CSV the matrix of variance values of covHat
     for different lags and sample sizes. 
