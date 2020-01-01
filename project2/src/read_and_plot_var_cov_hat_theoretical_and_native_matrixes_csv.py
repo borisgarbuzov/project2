@@ -6,7 +6,7 @@ import re
 from src.plot_arrays import plot_arrays
 
 
-def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: str, what_lag: int) -> None:
+def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: str, what_lag: int, fix_number_of_lags=None) -> None:
     """
     Read from csv and plot two var cov hat matrixes:
     The first is theoretical
@@ -25,8 +25,9 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
     theoretical = pd.read_csv(
         os.path.join(data_folder, theoretical_csv),
         index_col='lag')
-      
-    native_matrix_csv = 'var_cov_hat_native_matrix_{}.csv'.format(noise_type)
+
+    native_matrix_csv = 'var_cov_hat_native_matrix_means.csv'
+    # native_matrix_csv = 'var_cov_hat_native_matrix_{}.csv'.format(noise_type)
     native_matrix = pd.read_csv(
         os.path.join(data_folder, native_matrix_csv),
         index_col='lag')
@@ -36,23 +37,19 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
 
     theoretical_lag = np.array(theoretical.loc['lag {}'.format(what_lag)])
 
+    # TODO
     native_matrix_lag = np.array(native_matrix.loc['lag {}'.format(what_lag)])
 
     for index, sample_size in enumerate(sample_size_array):
-        native_matrix_lag[index] *= sample_size
         theoretical_lag[index] *= sample_size
 
     native_matrix_lag_mean = np.full(shape=native_matrix_lag.shape, fill_value=float(np.mean(native_matrix_lag)))
 
-    # теперь для использования plot_array надо сформировать arrays_dict за
-    # примером смотри read_and_plot_var_cov_hat_csv. В arrays_dict передаешь в
-    # качестве ключа название графика а в качестве значения массив,
-    # количество ничем не ограничено можно сделать хоть 10 линий, но лучше
-    # не надо)
-    arrays_dict = {'theoretical with lag {}'.format(what_lag): theoretical_lag,
-                   'native matrix with lag {}'.format(what_lag): native_matrix_lag,
-                   'native matrix mean with lag {}'.format(what_lag): native_matrix_lag_mean
-                   }
+    arrays_dict = {
+        'theoretical with lag {}'.format(what_lag): theoretical_lag,
+        'native matrix with lag {}'.format(what_lag): native_matrix_lag,
+        'native matrix mean with lag {}'.format(what_lag): native_matrix_lag_mean
+    }
 
     plot_arrays(x_array=sample_size_array,
                 arrays_dict=arrays_dict,

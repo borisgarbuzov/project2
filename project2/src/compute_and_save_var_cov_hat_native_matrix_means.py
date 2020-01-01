@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import re
+from timeit import default_timer as timer
 
 
 def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian', 'bernoulli'), fix_number_of_lags=None):
@@ -51,8 +52,11 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
 
         var_cov_hat_native_matrix_means.append(list(means_for_noise_type))
 
-    column_names = ["lag " + str(lag) for lag in range(max_lag)]
-    index_names = types_of_noises
+    column_names = types_of_noises
+    index_names = ["lag " + str(lag) for lag in range(max_lag)]
+
+    # transpose matrix
+    var_cov_hat_native_matrix_means = np.array(var_cov_hat_native_matrix_means).T
 
     df_var_cov_hat_native_matrix_means = pd.DataFrame(var_cov_hat_native_matrix_means,
                                                       index=index_names,
@@ -68,4 +72,11 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
 
 
 if __name__ == '__main__':
+    start_time = timer()
+
     compute_and_save_var_cov_hat_native_matrix_means(fix_number_of_lags=300)
+
+    duration = timer() - start_time
+    print('=========================================')
+    print('Duration:\t', duration, 'secs')
+    print('=========================================\n')
