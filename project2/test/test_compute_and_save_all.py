@@ -16,7 +16,7 @@ import numpy as np
 
 class Test_compute_and_save_all(unittest.TestCase):
     def test_compute_and_save_cov_and_cov_hats(self,
-                                              sample_size=10,
+                                              sample_size=5,
                                               t_par_count=11,
                                               gamma_count=5,
                                               mean=0,
@@ -49,12 +49,12 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_nw_single_n(self,
-                                        sample_size=10,
+                                        sample_size=5,
                                         t_par_count=11,
                                         mean=0,
                                         sigma=2,
                                         noise_type="gaussian",
-                                        replication_count=5):
+                                        replication_count=2):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_nw_single_n"')
 
@@ -76,10 +76,10 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_nw_threshold_single_t(self,
-                                        sample_size_from=10,
-                                        sample_size_to=20,
-                                        sample_size_by=10,
-                                        replication_count=5,
+                                        sample_size_from=5,
+                                        sample_size_to=10,
+                                        sample_size_by=5,
+                                        replication_count=2,
                                         mean=0,
                                         sigma=2,
                                         noise_type="gaussian",
@@ -114,7 +114,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_nw_vs_threshold(self,
-                                            sample_size=1000,
+                                            sample_size=5,
                                             t_par_count=11,
                                             mean=0,
                                             sigma=2,
@@ -139,8 +139,8 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_threshold_nw_t_free(self,
-                                                sample_size=10,
-                                                replication_count=5,
+                                                sample_size=5,
+                                                replication_count=2,
                                                 mean=0,
                                                 sigma=2,
                                                 noise_type="gaussian",
@@ -166,7 +166,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_threshold_single_n(self,
-                                                sample_size=10,
+                                                sample_size=5,
                                                 t_par_count=11,
                                                 mean=0,
                                                 sigma=2,
@@ -193,7 +193,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_v_vs_nw(self,
-                                      sample_size=10,
+                                      sample_size=5,
                                       t_par_count=11,
                                       mean=0,
                                       sigma=2,
@@ -218,7 +218,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_var_cov_hat_native_matrix(self,
-                                                        replication_count=5,
+                                                        replication_count=2,
                                                         sample_size_array=np.arange(10, 21, 10),
                                                         mean=0,
                                                         sigma=2,
@@ -262,9 +262,9 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_var_cov_hat_semi_bootstrap(self,
-                                                        sample_size_from=10,
-                                                        sample_size_to=21,
-                                                        sample_size_by=10,
+                                                        sample_size_from=5,
+                                                        sample_size_to=11,
+                                                        sample_size_by=5,
                                                         mean=0,
                                                         sigma=2,
                                                         noise_type="gaussian",
