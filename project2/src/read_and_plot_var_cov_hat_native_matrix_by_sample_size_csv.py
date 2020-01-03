@@ -34,14 +34,14 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, 
     matrix_for_plot = np.full(shape=(len(count_lags), len(sample_size_array)), fill_value=np.NaN)
 
     # get 1 row from csv
-    for lag in count_lags:
+    for i, lag in enumerate(count_lags):
         row = native_matrix[lag:lag+1]
-        matrix_for_plot[lag] = row
+        matrix_for_plot[i] = row
 
     # create dict for plotting
     arrays_dict = dict()
-    for lag in count_lags:
-        arrays_dict['lag {}'.format(lag)] = matrix_for_plot[lag]
+    for i, lag in enumerate(count_lags):
+        arrays_dict['lag {}'.format(lag)] = matrix_for_plot[i]
 
     plot_arrays(x_array=sample_size_array,
                 arrays_dict=arrays_dict,
@@ -50,5 +50,5 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, 
 
 
 if __name__ == '__main__':
-    count_lags = np.arange(0, 11)
+    count_lags = np.arange(100, 111, 2)
     read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type='gaussian', count_lags=count_lags, fix_number_of_lags=300)
