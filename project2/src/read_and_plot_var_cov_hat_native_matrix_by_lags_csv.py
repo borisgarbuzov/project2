@@ -45,7 +45,8 @@ def read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type: str, fix_num
     plot_arrays(x_array=lags_array,
                 arrays_dict=arrays_dict,
                 title="native matrix with {} noise vs lags".format(noise_type),
-                x_label="sample size")
+                x_label="lags",
+                y_label="var(covHat)")
 
 
 if __name__ == '__main__':

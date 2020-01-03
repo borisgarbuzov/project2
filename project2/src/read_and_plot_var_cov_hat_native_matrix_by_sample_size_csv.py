@@ -46,7 +46,8 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, 
     plot_arrays(x_array=sample_size_array,
                 arrays_dict=arrays_dict,
                 title="native matrix with {} noise vs sample sizes".format(noise_type),
-                x_label="sample size")
+                x_label="sample size",
+                y_label="var(covHat)")
 
 
 if __name__ == '__main__':
