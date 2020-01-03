@@ -17,8 +17,8 @@ import numpy as np
 class Test_compute_and_save_all(unittest.TestCase):
     def test_compute_and_save_cov_and_cov_hats(self,
                                               sample_size=5,
-                                              t_par_count=11,
-                                              gamma_count=5,
+                                              t_par_count=3,
+                                              gamma_count=2,
                                               mean=0,
                                               sigma=2,
                                               lag=2,
@@ -50,7 +50,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
     def test_compute_and_save_nw_single_n(self,
                                         sample_size=5,
-                                        t_par_count=11,
+                                        t_par_count=3,
                                         mean=0,
                                         sigma=2,
                                         noise_type="gaussian",
@@ -115,7 +115,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
     def test_compute_and_save_nw_vs_threshold(self,
                                             sample_size=5,
-                                            t_par_count=11,
+                                            t_par_count=3,
                                             mean=0,
                                             sigma=2,
                                             noise_type="gaussian"):
@@ -315,8 +315,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
     def test_compute_and_save_multi_precision_of_t(self,
                                                    true_array=[1,2,3],
-                                                   est_dict={'est_double_array_1': [[1,2,3], [4,5,6], [7,8,9]],
-                                                             'est_double_array_2': [[4,23,5], [1,64,2], [9, 0, 1]]},
+                                                   est_dict={'est_double_array_1': [[1,2,3], [4,5,6], [7,8,9]]},
                                                    x_label="t_par",
                                                    x_array= [100,200,300]):
         print('\n\n===============================================================================')

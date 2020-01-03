@@ -53,7 +53,6 @@ def plot_precision_of_t(precision_dict: dict,
     for i in range(len(precision_dict)):
         name = tuple(precision_dict.items())[i][0]
         value = tuple(precision_dict.items())[i][1]
-        print("THIS THING IS VERY IMPORTANT!", len(x_array))
         plt.plot(x_array, value, marker='o', label=name)
         file_name, caption = plot_preparations(par_list=par_list, title='multi_'+y_label)
 
