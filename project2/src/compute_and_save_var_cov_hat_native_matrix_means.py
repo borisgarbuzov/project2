@@ -68,6 +68,7 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
     if not os.path.exists(data_folder):
         os.mkdir(data_folder)
 
+    df_var_cov_hat_native_matrix_means.index.name = 'lag'
     df_var_cov_hat_native_matrix_means.to_csv(os.path.join(data_folder, "var_cov_hat_native_matrix_means.csv"))
 
 
