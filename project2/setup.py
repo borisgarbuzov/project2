@@ -13,7 +13,8 @@ setup(
         'pandas',
         'scikit-learn',
         'sphinx',
-        'coverage'
+        'coverage',
+        'joypy'
     ],
     python_requires='>=3.5'
 )

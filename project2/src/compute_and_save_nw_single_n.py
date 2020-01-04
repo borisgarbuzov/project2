@@ -5,20 +5,19 @@ from src.true_lrv_of_t import true_lrv_ma1_of_t
 from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.plot_double_array import plot_double_array
 from src.support_bound import support_bound
-# import src.precision
 import numpy as np
-        
-    
-def compute_and_save_nw_single_n(sample_size: int, 
+
+
+def compute_and_save_nw_single_n(sample_size: int,
                                  t_par_count: int,
                                  mean: float,
                                  sigma: float,
                                  noise_type: str,
                                  replication_count: int) -> np.array:
     """
-    This function computes r (replication_count) arrays of t-dependent NW estimates, 
-    first generating r samples of a given fixed n. 
-    Then it saves a sinle image to output directory. 
+    This function computes r (replication_count) arrays of t-dependent NW estimates,
+    first generating r samples of a given fixed n.
+    Then it saves a sinle image to output directory.
     :param cov_double_array: covariance double array
     :return: array of newey west
     """
@@ -30,30 +29,32 @@ def compute_and_save_nw_single_n(sample_size: int,
         "noise_type": noise_type,
         "replication_count": replication_count
     }
-    
+
     t_par_array = create_t_par_array(t_par_count=t_par_count)
     true_lrv_ma1_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
-    
+
     nw_hat_double_array = np.full(shape=(t_par_count, replication_count),
                                          fill_value=np.nan)
     max_lag = int(support_bound(sample_size=sample_size)) + 1
 
     for r in range(replication_count):
         sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,
-                                   sigma=sigma, noise_type=noise_type)
-        
+                                       sigma=sigma, noise_type=noise_type)
+
         cov_double_array = cov_double_array_of_t(sample=sample,
-                                                 t_par_count=11,
+                                                 t_par_count=t_par_count,
                                                  max_lag=max_lag)
-        nw_hat_double_array[:, r] = lrv_hat_nw_of_t(cov_double_array=cov_double_array, sample_size=sample_size)
+        nw_hat_double_array[:, r] = lrv_hat_nw_of_t(
+            cov_double_array=cov_double_array,
+            sample_size=sample_size)
 
     plot_double_array(x_array=t_par_array,
                       hat_double_array=nw_hat_double_array,
                       true_array=true_lrv_ma1_array,
                       title=" Newey-West vs true lrv",
                       x_label="t par",
-                      par_list=par_list)    
-    
+                      par_list=par_list)
+
     return nw_hat_double_array
 
 

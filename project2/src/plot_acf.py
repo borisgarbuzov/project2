@@ -21,7 +21,7 @@ def plot_acf(cov_hat,
                      alpha=0.4)
 
     plt.xlabel("lags" + '\n' + caption)
-    plt.ylabel("correlation")
+    plt.ylabel("covariance")
     plt.title(title)
 
     plt.tight_layout()

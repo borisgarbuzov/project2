@@ -15,10 +15,10 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
                                      sigma: int,
                                      noise_type: str):
     """
-    Illustrated in 
+    Illustrated in
     394 LRV 3a / computing 2 / project 2 / Threshold / N: compute_and_save_nw_vs_threshold
-    It saves one image file of 2 t-dependent plots. For two estimates. 
-    No precision is computed here so far. 
+    It saves one image file of 2 t-dependent plots. For two estimates.
+    No precision is computed here so far.
     """
     par_list = {"sample_size": sample_size,
                 "t_par_count": t_par_count,
@@ -37,7 +37,7 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
     max_lag = max(support_bound_value, threshold_max_lag_value)
 
     cov_double_array = cov_double_array_of_t(sample=sample,
-                                             t_par_count=11,
+                                             t_par_count=t_par_count,
                                              max_lag=max_lag)
 
     nw_lrv_array = lrv_hat_nw_of_t(
