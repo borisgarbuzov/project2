@@ -1,9 +1,7 @@
-from os.path import dirname
 import numpy as np
-import pandas as pd
-import os
 import re
 from src.plot_arrays import plot_arrays
+from src.read_matrix import read_matrix
 
 
 def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: str, what_lag: int, fix_number_of_lags=None) -> None:
@@ -11,37 +9,27 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
     Read from csv and plot two var cov hat matrixes:
     The first is theoretical
     the second if native
+    the third is native  means
 
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
-    :param what_lag: 0,1,2
-    :return: plot 2 lines.  The first is theoretical var cov hat,
+    :param what_lag: for example, 0,1,2
+    :return: plot 3 lines.  The first is theoretical var cov hat,
                             the second is native var cov hat
+                            the third is native var cov hat means
     """
-    print('Plot for lag =', what_lag, 'with noise_type =', noise_type, end=' ')
-    parent_dir = dirname(dirname(__file__))
-    data_folder = os.path.join(parent_dir, "data")
-
-    theoretical_csv = 'var_cov_hat_theoretical_matrix_{}.csv'.format(noise_type)
-    theoretical = pd.read_csv(
-        os.path.join(data_folder, theoretical_csv),
-        index_col='lag')
-
-    native_matrix_csv = 'var_cov_hat_native_matrix_means.csv'
-    # native_matrix_csv = 'var_cov_hat_native_matrix_{}.csv'.format(noise_type)
-    native_matrix = pd.read_csv(
-        os.path.join(data_folder, native_matrix_csv),
-        index_col='lag')
+    theoretical = read_matrix(name='var_cov_hat_theoretical_matrix_{}.csv'.format(noise_type), index_col='lag')
+    native_matrix = read_matrix(name='var_cov_hat_native_matrix_{}.csv'.format(noise_type), index_col='lag')
 
     sample_size_array = [int(re.sub("[^0-9]", "", sample_size)) for
                          sample_size in theoretical.columns]
 
     theoretical_lag = np.array(theoretical.loc['lag {}'.format(what_lag)])
 
-    # TODO
     native_matrix_lag = np.array(native_matrix.loc['lag {}'.format(what_lag)])
 
     for index, sample_size in enumerate(sample_size_array):
         theoretical_lag[index] *= sample_size
+        native_matrix_lag[index] *= sample_size
 
     native_matrix_lag_mean = np.full(shape=native_matrix_lag.shape, fill_value=float(np.mean(native_matrix_lag)))
 
@@ -55,7 +43,8 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
                 arrays_dict=arrays_dict,
                 title="theoretical vs native matrixes with lag={} and {} noise".format(what_lag, noise_type),
                 x_label="sample size")
-    print('DONE')
+
+    print('Made picture "theoretical vs native matrixes with lag={} and {} noise"'.format(what_lag, noise_type))
 
 
 if __name__ == '__main__':

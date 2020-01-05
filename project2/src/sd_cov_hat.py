@@ -1,10 +1,10 @@
 import numpy as np
 import re
 from timeit import default_timer as timer
-from src.read_var_cov_hat_native_matrix import read_var_cov_hat_native_matrix
+from src.read_matrix import read_matrix
 
 
-def sd_cov_hat(sample_size: int, lag: int = 0, csv_name: str = 'var_cov_hat_native_matrix_means.csv') -> float:
+def sd_cov_hat(sample_size: int, noise_type: str, lag: int = 0, csv_name: str = 'var_cov_hat_native_matrix_means.csv') -> float:
     """
     Duration with csv:      0.04283821600000004 secs
     Duration with fast csv: 0.010607333999999913 secs
@@ -15,7 +15,7 @@ def sd_cov_hat(sample_size: int, lag: int = 0, csv_name: str = 'var_cov_hat_nati
     :param csv_name:
     :return:
     """
-    nativ_matrix_means = read_var_cov_hat_native_matrix(name=csv_name)
+    nativ_matrix_means = read_matrix(name=csv_name, index_col='lag')
 
     # gaussian_array = nativ_matrix_means['gaussian']
     # bernoulli_array = nativ_matrix_means['bernoulli']

@@ -1,22 +1,17 @@
-from plot_arrays import plot_arrays
-from os.path import dirname
-import pandas as pd
 import numpy as np
-import os
 import re
+from src.plot_arrays import plot_arrays
+from src.read_matrix import read_matrix
 
 
-def read_and_plot_var_cov_hat_csv():
-    parent_dir = dirname(dirname(__file__))
-    data_folder = os.path.join(parent_dir, "data")
+def read_and_plot_var_cov_hat_csv(noise_type: str):
+    """
 
-    bootstrap = pd.read_csv(
-        os.path.join(data_folder,
-                     "var_cov_hat_bootstrap_matrix_batch_size_formula.csv"),
-        index_col='lag')
-    native_matrix = pd.read_csv(
-        os.path.join(data_folder, 'var_cov_hat_native_matrix_gaussian.csv'),
-        index_col='lag')
+    :param noise_type: type of noise 'gaussian' or 'bernoulli'
+    :return:
+    """
+    bootstrap = read_matrix(name="var_cov_hat_bootstrap_matrix_batch_size_formula.csv", index_col='lag')
+    native_matrix = read_matrix(name='var_cov_hat_native_matrix_{}.csv'.format(noise_type), index_col='lag')
 
     sample_size_array = [int(re.sub("[^0-9]", "", sample_size)) for
                          sample_size in bootstrap.columns]
@@ -32,9 +27,11 @@ def read_and_plot_var_cov_hat_csv():
 
     plot_arrays(x_array=sample_size_array,
                 arrays_dict=arrays_dict,
-                title="bootstrap vs native matrix with gaussian noise batch size by power",
+                title="bootstrap vs native matrix with {} noise batch size by power".format(noise_type),
                 x_label="sample size")
+
+    print('Made picture "bootstrap vs native matrix with {} noise batch size by power"'.format(noise_type))
 
 
 if __name__ == '__main__':
-    read_and_plot_var_cov_hat_csv()
+    read_and_plot_var_cov_hat_csv(noise_type='gaussian')

@@ -1,12 +1,11 @@
-from os.path import dirname
 import numpy as np
-import pandas as pd
-import os
 import re
 from src.plot_arrays import plot_arrays
+from src.read_matrix import read_matrix
 
 
-def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, count_lags: np.array, fix_number_of_lags=None) -> None:
+def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, count_lags: np.array,
+                                                               fix_number_of_lags=None) -> None:
     """
     Plot var cov hat vs sample size
     Read from csv and plot len(count_lags) var cov hat lines:
@@ -16,17 +15,11 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, 
     :param fix_number_of_lags: for take cur csv
     :return: plot len(count_lags) lines
     """
-    parent_dir = dirname(dirname(__file__))
-    data_folder = os.path.join(parent_dir, "data")
-
     # read csv
     name = ''
     if fix_number_of_lags:
         name = '_{}_lags'.format(fix_number_of_lags)
-    native_matrix_csv = 'var_cov_hat_native_matrix_{}{}.csv'.format(noise_type, name)
-    native_matrix = pd.read_csv(
-        os.path.join(data_folder, native_matrix_csv),
-        index_col='lag')
+    native_matrix = read_matrix(name='var_cov_hat_native_matrix_{}{}.csv'.format(noise_type, name), index_col='lag')
 
     sample_size_array = [int(re.sub("[^0-9]", "", sample_size)) for
                          sample_size in native_matrix.columns]
@@ -48,6 +41,8 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, 
                 title="native matrix with {} noise vs sample sizes".format(noise_type),
                 x_label="sample size",
                 y_label="var(covHat)")
+
+    print('Made picture "native matrix with {} noise vs sample sizes"'.format(noise_type))
 
 
 if __name__ == '__main__':
