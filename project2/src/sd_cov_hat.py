@@ -6,9 +6,6 @@ from src.read_matrix import read_matrix
 
 def sd_cov_hat(sample_size: int, noise_type: str, lag: int = 0, csv_name: str = 'var_cov_hat_native_matrix_means.csv') -> float:
     """
-    Duration with csv:      0.04283821600000004 secs
-    Duration with fast csv: 0.010607333999999913 secs
-    Duration without csv:   0.00002029100000001 secs
 
     :param sample_size:
     :param lag:
@@ -17,30 +14,22 @@ def sd_cov_hat(sample_size: int, noise_type: str, lag: int = 0, csv_name: str = 
     """
     nativ_matrix_means = read_matrix(name=csv_name, index_col='lag')
 
-    # gaussian_array = nativ_matrix_means['gaussian']
-    # bernoulli_array = nativ_matrix_means['bernoulli']
-
     lags_array = [int(re.sub("[^0-9]", "", lag)) for
                   lag in nativ_matrix_means.index]
 
-    # make 2 arrays for gaussian and bernoulli from csv
-    gaussian_array = np.full(shape=len(lags_array), fill_value=np.NaN)
-    bernoulli_array = np.full(shape=len(lags_array), fill_value=np.NaN)
+    # make array for current noise type from csv
+    noise_type_array = np.full(shape=len(lags_array), fill_value=np.NaN)
 
-    for lag in lags_array:
-        if lag == 0 or lag == 1:
-            # gaussian_array[0] = nativ_matrix_means['gaussian'].values[0] or:
-            gaussian_array[lag] = nativ_matrix_means.at['lag {}'.format(lag), 'gaussian']
-            bernoulli_array[lag] = nativ_matrix_means.at['lag {}'.format(lag), 'bernoulli']
+    for index_lag in lags_array:
+        if index_lag == 0 or index_lag == 1:
+            # noise_type_array[index_lag] = nativ_matrix_means[noise_type].values[0] or:
+            noise_type_array[index_lag] = nativ_matrix_means.at['lag {}'.format(index_lag), noise_type]
         else:
-            row = np.mean(np.array(nativ_matrix_means[lag:lag+1]))
-            gaussian_array[lag] = row
-            bernoulli_array[lag] = row
+            mean_elem = nativ_matrix_means.at['lag {}'.format(index_lag), 'average']
+            noise_type_array[index_lag] = mean_elem
 
-    # sd = 1 / np.sqrt(sample_size)
-    sd = np.sqrt(482) / np.sqrt(sample_size)
-    # later, we need to read the numerator constant to be read from CSV
-    # The cell of that CSV is based on lag
+    cell = noise_type_array[lag]
+    sd = np.sqrt(cell) / np.sqrt(sample_size)
 
     return sd
 
@@ -48,7 +37,7 @@ def sd_cov_hat(sample_size: int, noise_type: str, lag: int = 0, csv_name: str = 
 if __name__ == '__main__':
     start_time = timer()
 
-    sd_cov_hat(sample_size=1)
+    sd_cov_hat(sample_size=1000, lag=0, noise_type='gaussian')
 
     duration = timer() - start_time
     print('=========================================')
