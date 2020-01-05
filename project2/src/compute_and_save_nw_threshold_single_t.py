@@ -9,7 +9,9 @@ from src.support_bound import support_bound
 from src.true_lrv_t_free import true_lrv_t_free
 from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t
 from src.compute_and_save_multi_precision_of_t import compute_and_save_multi_precision_of_t
+from src.plot_ridgline import plot_ridgline
 import numpy as np
+import pandas as pd
 import numbers
 
 
@@ -96,6 +98,21 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                 cov_column=cov_hat_column[:nw_max_lag_value],
                 sample_size=sample_size)
 
+    col_names = ["sample size " + str(sample_size) for sample_size 
+                 in sample_size_array]
+    threshold_double_array_df = pd.DataFrame(threshold_double_array, columns=col_names)
+    nw_double_array_df = pd.DataFrame(nw_double_array, columns=col_names)
+
+    plot_ridgline(hat_double_array=threshold_double_array_df,
+                  title="Threshold ridgline",
+                  x_label="value",
+                  par_list=par_list)
+
+    plot_ridgline(hat_double_array=nw_double_array_df,
+                  title="Newey-West ridgline",
+                  x_label="value",
+                  par_list=par_list)
+
     plot_double_array(x_array=sample_size_array,
                       hat_double_array=threshold_double_array,
                       true_array=true_LRV_array,
@@ -117,7 +134,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                       y_label='LRV')
 
     arrays_dict = {"Threshold": threshold_double_array,
-                   "Newey-West": nw_double_array}
+                  "Newey-West": nw_double_array}
 
     compute_and_save_multi_precision_of_t(true_array=true_LRV_array,
                                           est_dict=arrays_dict,
@@ -128,7 +145,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
 
 if __name__ == '__main__':
     compute_and_save_nw_threshold_single_t(sample_size_from=1000,
-                                           sample_size_to=40001,
+                                           sample_size_to=10001,
                                            sample_size_by=1000,
                                            replication_count=5,
                                            mean=0,
