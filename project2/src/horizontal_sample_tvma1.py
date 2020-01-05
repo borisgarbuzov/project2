@@ -6,6 +6,11 @@ import numpy as np
 
 def horizontal_sample_tvma1(sample_size, t_par_count, mean, sigma,
                             noise_type):
+    """
+    :sample_size:
+    :return: a double array t_par_count by sample_size
+    of stationary MA1 samples. Each line, corresponding to tPar value. 
+    """
     noise = create_noise(noise_size=sample_size + 1, mean=mean, sigma=sigma,
                          noise_type=noise_type)
     t_par_array = create_t_par_array(t_par_count=t_par_count)
