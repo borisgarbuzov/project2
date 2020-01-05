@@ -13,5 +13,7 @@ __pycache__/
 *.log
 *.xml
 *.svg
+*.DS_Store
+.ipynb_checkpoints/
 !requirements.txt
 !/project2/data/*.csv
