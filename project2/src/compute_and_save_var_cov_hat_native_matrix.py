@@ -39,9 +39,10 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
     if not os.path.exists(data_folder):
         os.mkdir(data_folder)
 
-    # max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
-
-    max_lag_array = np.arange(0, fix_number_of_lags + 1)
+    if fix_number_of_lags:
+        max_lag_array = np.arange(0, fix_number_of_lags + 1)
+    else:
+        max_lag_array = [int(support_bound(sample_size)) for sample_size in sample_size_array]
 
     # result matrix
     var_cov_hat_native_matrix = np.full(shape=(max_lag_array[-1] + 1,

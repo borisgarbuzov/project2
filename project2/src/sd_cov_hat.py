@@ -4,10 +4,11 @@ from timeit import default_timer as timer
 from src.read_matrix import read_matrix
 
 
-def sd_cov_hat(sample_size: int, noise_type: str, lag: int = 0, csv_name: str = 'var_cov_hat_native_matrix_means.csv') -> float:
+def sd_cov_hat(sample_size: int, noise_type: str = 'gaussian', lag: int = 0, csv_name: str = 'var_cov_hat_native_matrix_means.csv') -> float:
     """
 
     :param sample_size:
+    :param noise_type:
     :param lag:
     :param csv_name:
     :return:

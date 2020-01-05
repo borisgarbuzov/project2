@@ -7,11 +7,12 @@ import unittest
 class Test_run_compute_and_save_var_cov_hat_native_matrix(unittest.TestCase):
     def test_run_compute_and_save_var_cov_hat_native_matrix(self,
                                                             replication_count=3,
-                                                            sample_size_array=[100, 200],
+                                                            sample_size_array=[1000],
                                                             mean=0,
                                                             sigma=2,
                                                             noise_type='gaussian',
-                                                            is_data=False):
+                                                            is_data=False,
+                                                            fix_number_of_lags=None):
 
         print('\n\n===============================================================================')
         print('RUN testing "compute_and_save_var_cov_hat_native_matrix"')
@@ -22,7 +23,8 @@ class Test_run_compute_and_save_var_cov_hat_native_matrix(unittest.TestCase):
                                                               mean=mean,
                                                               sigma=sigma,
                                                               noise_type=noise_type, 
-                                                              is_data=is_data)
+                                                              is_data=is_data,
+                                                              fix_number_of_lags=fix_number_of_lags)
         duration = timer() - start_time
         
         print('Test parameters:')
@@ -32,6 +34,7 @@ class Test_run_compute_and_save_var_cov_hat_native_matrix(unittest.TestCase):
         print('sigma = ', sigma)
         print('noise_type = ', noise_type)
         print('is_data = ', is_data)
+        print('fix_number_of_lags = ', fix_number_of_lags)
 
         print('\nreturned = ', type(returned))
         if isinstance(returned, list):
