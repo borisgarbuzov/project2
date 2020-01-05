@@ -1,5 +1,6 @@
 output/
 __pycache__/
+_trial_temp/
 .idea/
 *.egg-info/
 *pyc
