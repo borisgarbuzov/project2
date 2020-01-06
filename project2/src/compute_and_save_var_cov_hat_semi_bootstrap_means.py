@@ -64,7 +64,7 @@ def compute_and_save_var_cov_hat_semi_bootstrap_means(sample_size_from: int,
 
 if __name__ == '__main__':
     compute_and_save_var_cov_hat_semi_bootstrap_means(sample_size_from=1000,
-                                                      sample_size_to=20001,
+                                                      sample_size_to=40001,
                                                       sample_size_by=1000,
                                                       mean=0,
                                                       sigma=2,
