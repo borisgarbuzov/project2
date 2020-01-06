@@ -28,7 +28,7 @@ def compute_and_save_var_cov_hat_semi_bootstrap_means(sample_size_from: int,
             for sample_size in sample_size_array:
                 temp.append(semi_bootstrap(
                     sample_size=sample_size,
-                    lag=0,
+                    lag=lag,
                     mean=mean,
                     sigma=sigma,
                     noise_type=noise_type))
