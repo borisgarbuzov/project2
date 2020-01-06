@@ -9,7 +9,7 @@ import numpy as np
     
 def lrv_hat_nw_of_t(cov_double_array: np.array, sample_size: int) -> np.array:
     """
-    estimate newey west.
+    LRV estimate newey west.
 
     :param cov_matrix: covariance double array
     :return: array of newey west

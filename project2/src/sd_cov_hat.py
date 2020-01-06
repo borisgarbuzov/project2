@@ -6,6 +6,8 @@ from src.read_matrix import read_matrix
 
 def sd_cov_hat(sample_size: int, noise_type: str = 'gaussian', lag: int = 0, csv_name: str = 'var_cov_hat_native_matrix_means.csv') -> float:
     """
+    Upgrade considerations are described in 
+    LRV3a / computing 2 / project 2 / Threshold / sd_cov_hat(n, k, nType, estType) 
 
     :param sample_size:
     :param noise_type:
