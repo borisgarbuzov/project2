@@ -157,14 +157,16 @@ def sd_cov_hat(sample_size: int,
                noise_type: str,
                sd_type: str) -> float:
     """
+    Computes an estimate of standard deviation for sample autocovariance, 
+    for a given lag, sample size and sd type. 
     Upgrade considerations are described in
     LRV3a / computing 2 / project 2 / Threshold / sd_cov_hat(n, k, nType, estType)
 
-    :param sample_size:
-    :param lag:
-    :param noise_type:
-    :param sd_type:
-    :return:
+    :param sample_size: Sample size for the sample autocovariance, whose variance we need. 
+    :param lag: Lag for the sample autocovariance, whose variance we need. 
+    :param noise_type: Noise type for the sample autocovariance, whose variance we need. 
+    :param sd_type: block_est or native. Depends, which threshold - estimated or exact we want to use. 
+    :return: A scalar value of estimated standard deviation. 
     """
 
     if sd_type == 'block_est':
