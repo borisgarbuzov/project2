@@ -149,7 +149,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
 
 if __name__ == '__main__':
     compute_and_save_nw_threshold_single_t(sample_size_from=1000,
-                                           sample_size_to=10001,
+                                           sample_size_to=40001,
                                            sample_size_by=1000,
                                            replication_count=5,
                                            mean=0,
