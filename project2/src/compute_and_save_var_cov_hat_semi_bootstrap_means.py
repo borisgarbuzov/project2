@@ -13,6 +13,23 @@ def compute_and_save_var_cov_hat_semi_bootstrap_means(sample_size_from: int,
                                                      sigma: int,
                                                      max_lag: int,
                                                      is_data: bool):
+    """
+    This function computes and saves to CSV file
+    estimates of constants, corresponding to variance of sample covariance, 
+    for specified lags and noise type. 
+    It computes those constants on the assumption 
+    that variance is approximately equal to const / sample_size. 
+    The constant is computed by averaging of block estimate values
+    over different sample sizes. 
+    :sample_size_from: the minimal sample size to be used,
+    :sample_size_to: the maximal sample size to be used,
+    :sample_size_by: the step in sample sizes to be used,
+    :mean: mean of noise to be used for sample generation,
+    :sigma: standard deviation of noise to be used for sample generation,
+    :max_lag: maximal lag to be used for covariance, (the minimal lag being 0)
+    :is_data:  if true, the CSV file is saved to data folder, and output folder otherwise. 
+    :return: nothing. Just saves CSV. 
+    """
     sample_size_array = np.arange(start=sample_size_from, stop=sample_size_to,
                                   step=sample_size_by)
 

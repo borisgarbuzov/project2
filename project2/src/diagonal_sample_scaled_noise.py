@@ -10,6 +10,10 @@ def diagonal_sample_scaled_noise(sample_size, mean, sigma,
     Copied from the first project with translation from R to Python. 
     Forms a diagonal sample of noise, stretched by coef(t) values 
     at each index point. 
+    :sample_size: size of a sample to be generated. 
+    :mean: mean of a notise to be genrated. 
+    :noise_type: "gaussian" or "bernoulli".
+    :return: one-dimensional array of noise values. 
     """
     noise = create_noise(noise_size=sample_size + 1, mean=mean, sigma=sigma,
                          noise_type=noise_type)

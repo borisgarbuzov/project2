@@ -111,4 +111,4 @@ if __name__ == '__main__':
                                       lag=2,
                                       type_process='MA1',
                                       noise_type='bernoulli',
-                                      diag_or_horiz='diag')
+                                      diag_or_horiz='horiz')
