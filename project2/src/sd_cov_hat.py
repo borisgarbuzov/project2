@@ -178,6 +178,8 @@ def sd_cov_hat(sample_size: int,
                 value = 289.1486113
             elif noise_type == "bernoulli":
                 value = 213.1219444
+        elif lag > len(bootstrap) - 1:
+            value = bootstrap[-1]
         else:
             value = bootstrap[lag]
     elif sd_type == 'native_sim':
@@ -191,6 +193,8 @@ def sd_cov_hat(sample_size: int,
                 value = 271.12191
             elif noise_type == "bernoulli":
                 value = 202.8997932
+        elif lag > len(native) - 1:
+            value = native[-1]
         else:
             value = native[lag]
     else:
