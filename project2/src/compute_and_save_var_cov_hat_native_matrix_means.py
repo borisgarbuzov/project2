@@ -7,12 +7,14 @@ from timeit import default_timer as timer
 from src.read_matrix import read_matrix
 
 
-def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian', 'bernoulli'), fix_number_of_lags=None,
-                                                     out_name="var_cov_hat_native_matrix_means.csv"):
+def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian', 'bernoulli'),
+                                                     fix_number_of_lags=None,
+                                                     out_name="var_cov_hat_native_matrix_means.csv",
+                                                     is_data=True):
     """
     Read from csv and save to csv var cov hat native matrix MEANS:
     Ideally, it should save to CSV file, the constants
-    of averaging the values over different sample sizes for every fixed lag. 
+    of averaging the values over different sample sizes for every fixed lag.
     It reads CSV file, that was an output of compute_and_save_var_cov_hat_native_matrix.
     And it saves its own CSV.
 
@@ -70,13 +72,17 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
                                                       columns=column_names)
 
     parent_dir = dirname(dirname(__file__))
-    data_folder = os.path.join(parent_dir, "data")
 
+    if is_data:
+        data_folder = os.path.join(parent_dir, "data")
+    if not is_data:
+        data_folder = os.path.join(parent_dir, "output")
     if not os.path.exists(data_folder):
         os.mkdir(data_folder)
 
     df_var_cov_hat_native_matrix_means.index.name = 'lag'
-    df_var_cov_hat_native_matrix_means.to_csv(os.path.join(data_folder, out_name))
+    df_var_cov_hat_native_matrix_means.to_csv(os.path.join(data_folder,
+                                                           out_name))
 
 
 if __name__ == '__main__':

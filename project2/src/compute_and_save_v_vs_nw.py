@@ -12,7 +12,7 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
                              noise_type):
     """
     This function is for visual comparison of v double summation formula with regular NW.
-    It saves a single image with two curves that must coincide. And they currently do coincide. 
+    It saves a single image with two curves that must coincide. And they currently do coincide.
     """
     par_list = {"sample_size": sample_size,
                 "t_par_count": t_par_count,
@@ -28,7 +28,7 @@ def compute_and_save_v_vs_nw(sample_size, t_par_count, mean, sigma,
     max_lag = int(support_bound(sample_size=sample_size)) + 1
 
     cov_double_array = cov_double_array_of_t(sample=sample,
-                                             t_par_count=11,
+                                             t_par_count=t_par_count,
                                              max_lag=max_lag)
     original_nw_array = lrv_hat_nw_of_t(cov_double_array=cov_double_array,
                                         sample_size=sample_size)

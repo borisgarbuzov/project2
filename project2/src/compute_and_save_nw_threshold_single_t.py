@@ -22,6 +22,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                                            mean: int,
                                            sigma: int,
                                            noise_type: str,
+                                           sd_type: str,
                                            t_par="free"):
     """
     For a series of sample sizes,
@@ -41,6 +42,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
         "mean": mean,
         "sigma": sigma,
         "noise_type": noise_type,
+        "sd_type": sd_type,
         "t_par": t_par
     }
 
@@ -93,12 +95,14 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
             threshold_double_array[replication, col_index] = \
                 lrv_hat_threshold_t_free(
                     cov_hat_column=cov_hat_column[:threshold_max_lag_value],
-                    sample_size=sample_size)
+                    sample_size=sample_size,
+                    noise_type=noise_type,
+                    sd_type=sd_type)
             nw_double_array[replication, col_index] = lrv_hat_nw_t_free(
                 cov_column=cov_hat_column[:nw_max_lag_value],
                 sample_size=sample_size)
 
-    col_names = ["sample size " + str(sample_size) for sample_size 
+    col_names = ["sample size " + str(sample_size) for sample_size
                  in sample_size_array]
     threshold_double_array_df = pd.DataFrame(threshold_double_array, columns=col_names)
     nw_double_array_df = pd.DataFrame(nw_double_array, columns=col_names)
@@ -151,4 +155,5 @@ if __name__ == '__main__':
                                            mean=0,
                                            sigma=2,
                                            noise_type="gaussian",
+                                           sd_type="block_est",
                                            t_par="free")

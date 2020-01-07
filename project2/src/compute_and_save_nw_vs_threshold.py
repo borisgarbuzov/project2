@@ -13,7 +13,8 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
                                      t_par_count: int,
                                      mean: int,
                                      sigma: int,
-                                     noise_type: str):
+                                     noise_type: str,
+                                     sd_type: str):
     """
     Illustrated in
     394 LRV 3a / computing 2 / project 2 / Threshold / N: compute_and_save_nw_vs_threshold
@@ -24,7 +25,8 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
                 "t_par_count": t_par_count,
                 "mean": mean,
                 "sigma": sigma,
-                "noise_type": noise_type}
+                "noise_type": noise_type,
+                "sd_type": sd_type}
 
     sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,
                                    sigma=sigma, noise_type=noise_type)
@@ -45,7 +47,9 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
         sample_size=sample_size)
     threshold_lrv_array = lrv_hat_threshold_of_t(
         cov_double_array=cov_double_array[:threshold_max_lag_value, :],
-        sample_size=sample_size)
+        sample_size=sample_size,
+        noise_type=noise_type,
+        sd_type=sd_type)
     true_lrv_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
 
     arrays_dict = {"Newey-West LRV": nw_lrv_array,
@@ -65,4 +69,5 @@ if __name__ == '__main__':
                                      t_par_count=11,
                                      mean=0,
                                      sigma=2,
-                                     noise_type="gaussian")
+                                     noise_type="gaussian",
+                                     sd_type="block_est")

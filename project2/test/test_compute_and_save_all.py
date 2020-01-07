@@ -83,19 +83,21 @@ class Test_compute_and_save_all(unittest.TestCase):
                                         mean=0,
                                         sigma=2,
                                         noise_type="gaussian",
+                                        sd_type="block_est",
                                         t_par="free"):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_nw_threshold_single_t"')
 
         start_time = timer()
-        compute_and_save_nw_threshold_single_t(sample_size_from,
-                                               sample_size_to,
-                                               sample_size_by,
-                                               replication_count,
-                                               mean,
-                                               sigma,
-                                               noise_type,
-                                               t_par)
+        compute_and_save_nw_threshold_single_t(sample_size_from=sample_size_from,
+                                               sample_size_to=sample_size_to,
+                                               sample_size_by=sample_size_by,
+                                               replication_count=replication_count,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type,
+                                               sd_type=sd_type,
+                                               t_par=t_par)
         end_time = timer() - start_time
 
         print('Test parameters:')
@@ -106,6 +108,7 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('mean =', mean)
         print('sigma =', sigma)
         print('noise_type =', noise_type)
+        print('sd_type =', sd_type)
         print('t_par =', t_par)
 
         print("\nDuration: {:g} secs".format(end_time))
@@ -118,12 +121,18 @@ class Test_compute_and_save_all(unittest.TestCase):
                                             t_par_count=3,
                                             mean=0,
                                             sigma=2,
-                                            noise_type="gaussian"):
+                                            noise_type="gaussian",
+                                            sd_type="block_est"):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_nw_vs_threshold"')
 
         start_time = timer()
-        compute_and_save_nw_vs_threshold(sample_size, t_par_count, mean, sigma, noise_type)
+        compute_and_save_nw_vs_threshold(sample_size=sample_size,
+                                         t_par_count=t_par_count,
+                                         mean=mean,
+                                         sigma=sigma,
+                                         noise_type=noise_type,
+                                         sd_type=sd_type)
         end_time = timer() - start_time
 
         print('Test parameters:')
@@ -132,6 +141,7 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('mean =', mean)
         print('sigma =', sigma)
         print('noise_type =', noise_type)
+        print('sd_type =', sd_type)
 
         print("\nDuration: {:g} secs".format(end_time))
         print('End of test {}'.format('compute_and_save_nw_vs_threshold'))
@@ -144,12 +154,19 @@ class Test_compute_and_save_all(unittest.TestCase):
                                                 mean=0,
                                                 sigma=2,
                                                 noise_type="gaussian",
+                                                sd_type="block_est",
                                                 lrv_est="both"):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_threshold_nw_t_free"')
 
         start_time = timer()
-        compute_and_save_threshold_nw_t_free(sample_size, replication_count, mean, sigma, noise_type, lrv_est)
+        compute_and_save_threshold_nw_t_free(sample_size=sample_size,
+                                             replication_count=replication_count,
+                                             mean=mean,
+                                             sigma=sigma,
+                                             noise_type=noise_type,
+                                             sd_type=sd_type,
+                                             lrv_est=lrv_est)
         end_time = timer() - start_time
 
         print('Test parameters:')
@@ -158,6 +175,7 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('mean =', mean)
         print('sigma =', sigma)
         print('noise_type =', noise_type)
+        print('sd_type =', sd_type)
         print('lrv_est =', lrv_est)
 
         print("\nDuration: {:g} secs".format(end_time))
@@ -167,16 +185,23 @@ class Test_compute_and_save_all(unittest.TestCase):
 
     def test_compute_and_save_threshold_single_n(self,
                                                 sample_size=5,
-                                                t_par_count=11,
+                                                t_par_count=3,
                                                 mean=0,
                                                 sigma=2,
                                                 noise_type="gaussian",
-                                                replication_count=5):
+                                                sd_type="block_est",
+                                                replication_count=1):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_threshold_single_n"')
 
         start_time = timer()
-        compute_and_save_threshold_single_n(sample_size, t_par_count, mean, sigma, noise_type, replication_count)
+        compute_and_save_threshold_single_n(sample_size=sample_size,
+                                            t_par_count=t_par_count,
+                                            mean=mean,
+                                            sigma=sigma,
+                                            noise_type=noise_type,
+                                            sd_type=sd_type,
+                                            replication_count=replication_count)
         end_time = timer() - start_time
 
         print('Test parameters:')
@@ -185,6 +210,7 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('mean =', mean)
         print('sigma =', sigma)
         print('noise_type =', noise_type)
+        print('sd_type =', sd_type)
         print('replication_count =', replication_count)
 
         print("\nDuration: {:g} secs".format(end_time))
@@ -194,7 +220,7 @@ class Test_compute_and_save_all(unittest.TestCase):
 
     def test_compute_and_save_v_vs_nw(self,
                                       sample_size=5,
-                                      t_par_count=11,
+                                      t_par_count=3,
                                       mean=0,
                                       sigma=2,
                                       noise_type='gaussian'):
@@ -245,16 +271,19 @@ class Test_compute_and_save_all(unittest.TestCase):
 
 
     def test_compute_and_save_var_cov_hat_native_matrix_means(self,
-                                                            types_of_noises=('gaussian', 'bernoulli')):
+                                                              types_of_noises=('gaussian', 'bernoulli'),
+                                                              is_data=False):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_var_cov_hat_native_matrix_means"')
 
         start_time = timer()
-        compute_and_save_var_cov_hat_native_matrix_means(types_of_noises)
+        compute_and_save_var_cov_hat_native_matrix_means(types_of_noises,
+                                                         is_data=is_data)
         end_time = timer() - start_time
 
         print('Test parameters:')
         print('types_of_noises =', types_of_noises)
+        print('is_data =', is_data)
 
         print("\nDuration: {:g} secs".format(end_time))
         print('End of test {}'.format('compute_and_save_var_cov_hat_native_matrix_means'))

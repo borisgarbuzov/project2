@@ -14,18 +14,20 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                          mean: int,
                                          sigma: int,
                                          noise_type: str,
+                                         sd_type: str,
                                          lrv_est: str):
     """
-    Illustrated in 
+    Illustrated in
     402 LRV 3a / computing 2 / project 2 / Threshold / M: threshold t free
     Saves a single image file with
     histogram of replicated NW estimate threshold or both.
-    True value is marked on all histograms. 
+    True value is marked on all histograms.
     """
     par_list = {"sample_size": sample_size,
                 "replication_count": replication_count,
                 "mean": mean,
                 "sigma": sigma,
+                "sd_type": sd_type,
                 "noise_type": noise_type}
 
     threshold_t_free_array = np.full(shape=replication_count, fill_value=np.nan)
@@ -48,7 +50,9 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
         if lrv_est == "threshold" or lrv_est == "both":
             threshold_t_free_array[replication] = lrv_hat_threshold_t_free(
                 cov_hat_column=cov_column[:threshold_max_lag_value],
-                sample_size=sample_size)
+                sample_size=sample_size,
+                noise_type=noise_type,
+                sd_type=sd_type)
         if lrv_est == "nw" or lrv_est == "both":
             nw_t_free_array[replication] = lrv_hat_nw_t_free(
                 cov_column=cov_column[:support_bound_value],
@@ -71,4 +75,5 @@ if __name__ == '__main__':
                                          mean=0,
                                          sigma=2,
                                          noise_type="gaussian",
+                                         sd_type="block_est",
                                          lrv_est="both")
