@@ -46,5 +46,5 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str, 
 
 
 if __name__ == '__main__':
-    count_lags = np.arange(100, 111, 2)
+    count_lags = np.arange(0, 5)
     read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type='gaussian', count_lags=count_lags, fix_number_of_lags=300)

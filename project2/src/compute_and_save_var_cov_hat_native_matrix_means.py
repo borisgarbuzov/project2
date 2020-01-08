@@ -10,7 +10,7 @@ from src.read_matrix import read_matrix
 def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian', 'bernoulli'),
                                                      fix_number_of_lags=None,
                                                      out_name="var_cov_hat_native_matrix_means.csv",
-                                                     is_data=True):
+                                                     is_data=False):
     """
     Read from csv and save to csv var cov hat native matrix MEANS:
     Ideally, it should save to CSV file, the constants
