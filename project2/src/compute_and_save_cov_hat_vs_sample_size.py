@@ -1,7 +1,7 @@
 from src.cov_hat_t_free import cov_hat_t_free
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.plot_double_array import plot_double_array
-from src.true_cov_t_free import true_cov_t_free
+from src.true_cov_t_free import true_cov_ma1_t_free
 import numpy as np
 
 def compute_and_save_cov_hat_vs_sample_size(sample_size_from: int,
@@ -27,7 +27,7 @@ def compute_and_save_cov_hat_vs_sample_size(sample_size_from: int,
                                           len(sample_size_array)),
                                    fill_value=np.nan)
 
-    true_cov_array = np.repeat(true_cov_t_free(lag=lag, sigma=sigma),
+    true_cov_array = np.repeat(true_cov_ma1_t_free(lag=lag, sigma=sigma),
                                len(sample_size_array))
 
     for index_col, sample_size in enumerate(sample_size_array):

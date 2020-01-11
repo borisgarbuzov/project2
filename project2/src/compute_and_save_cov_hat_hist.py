@@ -1,7 +1,7 @@
 from src.cov_hat_t_free import cov_hat_t_free
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.plot_histogram import plot_histograms
-from src.true_cov_t_free import true_cov_t_free
+from src.true_cov_t_free import true_cov_ma3_t_free
 import numpy as np
 
 
@@ -20,7 +20,7 @@ def compute_and_save_cov_hat_hist(sample_size: int,
 
     cov_hat_t_free_array = np.full(shape=replication_count, fill_value=np.nan)
 
-    true_cov = true_cov_t_free(lag=lag, sigma=sigma)
+    true_cov = true_cov_ma3_t_free(lag=lag, sigma=sigma)
 
     for replication in range(replication_count):
         sample = diagonal_sample_tvma1(sample_size=sample_size,

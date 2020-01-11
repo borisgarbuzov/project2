@@ -2,7 +2,7 @@ from src.cov_column_t_free import cov_column_t_free
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.lrv_hat_threshold_t_free import lrv_hat_threshold_t_free
 from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
-from src.true_lrv_t_free import true_lrv_t_free
+from src.true_lrv_t_free import true_lrv_ma1_t_free
 from src.support_bound import support_bound
 from src.threshold_max_lag import threshold_max_lag
 from src.plot_histogram import plot_histograms
@@ -33,7 +33,7 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
     threshold_t_free_array = np.full(shape=replication_count, fill_value=np.nan)
     nw_t_free_array = np.full(shape=replication_count, fill_value=np.nan)
 
-    true_lrv = true_lrv_t_free(sigma=sigma)
+    true_lrv = true_lrv_ma1_t_free(sigma=sigma)
 
     support_bound_value = int(support_bound(sample_size=sample_size)) + 1
     threshold_max_lag_value = threshold_max_lag(sample_size=sample_size)

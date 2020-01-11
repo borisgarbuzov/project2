@@ -6,7 +6,7 @@ from src.cov_column_t_free import cov_column_t_free
 from src.cov_column_of_t import cov_column_of_t
 from src.threshold_max_lag import threshold_max_lag
 from src.support_bound import support_bound
-from src.true_lrv_t_free import true_lrv_t_free
+from src.true_lrv_t_free import true_lrv_ma1_t_free
 from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t
 from src.compute_and_save_multi_precision_of_t import compute_and_save_multi_precision_of_t
 from src.plot_ridgline import plot_ridgline
@@ -70,7 +70,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                                                             t_par=t_par),
                                    len(sample_size_array))
     elif t_par == 'free':
-        true_LRV_array = np.repeat(true_lrv_t_free(sigma=sigma),
+        true_LRV_array = np.repeat(true_lrv_ma1_t_free(sigma=sigma),
                                    len(sample_size_array))
     else:
         raise ValueError(
