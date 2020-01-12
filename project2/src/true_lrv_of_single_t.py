@@ -9,3 +9,7 @@ def true_lrv_ma1_of_single_t(sigma, t_par):
 
 def true_lrv_scaled_noise_of_single_t(sigma, t_par):
     return true_cov_scaled_noise_of_t(t_par, sigma, lag=0)
+
+
+def true_lrv_ma3_of_single_t():
+    return 0
