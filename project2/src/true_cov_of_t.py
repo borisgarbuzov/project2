@@ -19,8 +19,8 @@ def true_cov_scaled_noise_of_t(t_par, sigma, lag):
 
 def true_cov_ma3_of_t(t_par, lag):
     if lag == 0:
-        return (1 ** 2) + (coef(t_par=t_par) ** 2) + (coef_2(t_par=t_par)) + \
-               (coef_3(t_par=t_par))
+        return (1 ** 2) + (coef(t_par=t_par) ** 2) + (coef_2(t_par=t_par) ** 2)\
+               + (coef_3(t_par=t_par) ** 2)
     elif lag == 1:
         return 1 * coef(t_par=t_par) + coef(t_par=t_par) * \
                coef_2(t_par=t_par) + coef_2(t_par=t_par) * coef_3(t_par=t_par)
