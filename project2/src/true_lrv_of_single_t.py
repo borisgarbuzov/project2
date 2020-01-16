@@ -13,4 +13,4 @@ def true_lrv_ma1_of_single_t(sigma, t_par):
 
 def true_lrv_ma3_of_single_t(sigma, t_par):
     lrv = sigma ** 2 * (1 + coef(t_par) + coef_2(t_par) + coef_3(t_par)) ** 2
-    return 0
+    return lrv

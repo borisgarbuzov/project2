@@ -13,8 +13,8 @@ def true_lrv_scaled_noise_of_t(sigma: int, t_par_array: np.array) -> np.array:
               len(t_par_array) - (t_index + 1))
 
     return true_lrv_scaled_noise_array
-    
-    
+
+
 def true_lrv_ma1_of_t(sigma: int, t_par_array: np.array) -> np.array:
     true_lrv_ma1_array = np.full(shape=len(t_par_array), fill_value=np.nan)
     for t_index, t_par in enumerate(t_par_array):
@@ -25,11 +25,12 @@ def true_lrv_ma1_of_t(sigma: int, t_par_array: np.array) -> np.array:
     return true_lrv_ma1_array
 
 
-def true_lrv_ma3_of_t(t_par_array: np.array) -> np.array:
+def true_lrv_ma3_of_t(t_par_array: np.array, sigma: float) -> np.array:
     true_lrv_ma3_array = np.full(shape=len(t_par_array),
                                  fill_value=np.nan)
     for t_index, t_par in enumerate(t_par_array):
-        true_lrv_ma3_array[t_index] = true_lrv_ma3_of_single_t()
+        true_lrv_ma3_array[t_index] = true_lrv_ma3_of_single_t(t_par=t_par,
+                                                               sigma=sigma)
         print("true_lrv_ma3_of_t t_par left", len(t_par_array) - (t_index + 1))
 
     return true_lrv_ma3_array

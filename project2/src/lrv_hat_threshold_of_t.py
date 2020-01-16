@@ -5,7 +5,8 @@ import numpy as np
 def lrv_hat_threshold_of_t(cov_double_array: np.array,
                            sample_size: int,
                            noise_type: str,
-                           sd_type: str) -> np.array:
+                           sd_type: str,
+                           sample_type: str = "ma1") -> np.array:
     """
     LRV estimate by threshold method.
     :cov_double_array: double array of autocovariance. Columns - tPar values, rows - lags.
@@ -20,7 +21,8 @@ def lrv_hat_threshold_of_t(cov_double_array: np.array,
             cov_hat_column=cov_double_array[:, index],
             sample_size=sample_size,
             noise_type=noise_type,
-            sd_type=sd_type)
+            sd_type=sd_type,
+            sample_type=sample_type)
         print("lrv_hat_threshold_of_t t_par left", column_count - (index + 1))
 
     return lrv_hat_threshold_array

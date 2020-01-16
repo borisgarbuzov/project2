@@ -13,7 +13,8 @@ def compute_and_save_var_cov_hat_semi_bootstrap(sample_size_from: int,
                                                 mean: int,
                                                 sigma: int,
                                                 noise_type: str,
-                                                is_data: bool):
+                                                is_data: bool,
+                                                sample_type: str = "ma1"):
     """
     This function computes semi-bootstrapped values (or block estimate)
     of var(covHat) for different lags and sample sizes.
@@ -42,7 +43,8 @@ def compute_and_save_var_cov_hat_semi_bootstrap(sample_size_from: int,
                 lag=lag,
                 mean=mean,
                 sigma=sigma,
-                noise_type=noise_type)
+                noise_type=noise_type,
+                sample_type=sample_type)
             print("lags left:", max_lag_by_sample_size - (lag + 1))
         print("sample sizes left:", len(sample_size_array) - (col_index + 1))
 
@@ -68,8 +70,8 @@ def compute_and_save_var_cov_hat_semi_bootstrap(sample_size_from: int,
     if not os.path.exists(data_folder):
         os.mkdir(data_folder)
     df_variance_matrix.to_csv(os.path.join(data_folder,
-                                           "var_cov_hat_bootstrap_matrix{}"
-                                           ".csv".format(date)))
+                                           "var_cov_hat_bootstrap_matrix{0}_{1}"
+                                           ".csv".format(date, sample_type)))
 
 
 if __name__ == '__main__':
@@ -79,4 +81,5 @@ if __name__ == '__main__':
                                                 mean=0,
                                                 sigma=2,
                                                 noise_type="gaussian",
-                                                is_data=True)
+                                                is_data=True,
+                                                sample_type="ma1")

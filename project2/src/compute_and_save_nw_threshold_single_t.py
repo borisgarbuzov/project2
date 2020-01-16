@@ -1,4 +1,5 @@
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
 from src.lrv_hat_threshold_t_free import lrv_hat_threshold_t_free
 from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
 from src.plot_double_array import plot_double_array
@@ -6,8 +7,8 @@ from src.cov_column_t_free import cov_column_t_free
 from src.cov_column_of_t import cov_column_of_t
 from src.threshold_max_lag import threshold_max_lag
 from src.support_bound import support_bound
-from src.true_lrv_t_free import true_lrv_ma1_t_free
-from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t
+from src.true_lrv_t_free import true_lrv_ma1_t_free, true_lrv_ma3_t_free
+from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t, true_lrv_ma3_of_single_t
 from src.compute_and_save_multi_precision_of_t import compute_and_save_multi_precision_of_t
 from src.plot_ridgline import plot_ridgline
 import numpy as np
@@ -23,7 +24,8 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                                            sigma: int,
                                            noise_type: str,
                                            sd_type: str,
-                                           t_par="free"):
+                                           t_par="free",
+                                           sample_type="ma1"):
     """
     For a series of sample sizes,
     this function generates r samples for each sample size,
@@ -43,7 +45,8 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
         "sigma": sigma,
         "noise_type": noise_type,
         "sd_type": sd_type,
-        "t_par": t_par
+        "t_par": t_par,
+        "sample_type": sample_type
     }
 
     sample_size_array = np.arange(start=sample_size_from, stop=sample_size_to,
@@ -66,12 +69,21 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
 
     # compute one of two true values
     if isinstance(t_par, numbers.Number):
-        true_LRV_array = np.repeat(true_lrv_ma1_of_single_t(sigma=sigma,
-                                                            t_par=t_par),
-                                   len(sample_size_array))
+        if sample_type == "ma1":
+            true_LRV_array = np.repeat(true_lrv_ma1_of_single_t(sigma=sigma,
+                                                                t_par=t_par),
+                                       len(sample_size_array))
+        elif sample_type == "ma3":
+            true_LRV_array = np.repeat(true_lrv_ma3_of_single_t(sigma=sigma,
+                                                                t_par=t_par),
+                                       len(sample_size_array))
     elif t_par == 'free':
-        true_LRV_array = np.repeat(true_lrv_ma1_t_free(sigma=sigma),
-                                   len(sample_size_array))
+        if sample_type == "ma1":
+            true_LRV_array = np.repeat(true_lrv_ma1_t_free(sigma=sigma),
+                                       len(sample_size_array))
+        elif sample_type == "ma3":
+            true_LRV_array = np.repeat(true_lrv_ma3_t_free(),
+                                       len(sample_size_array))
     else:
         raise ValueError(
             't_par parameter should be "free" or float number not' + t_par)
@@ -81,10 +93,16 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
         threshold_max_lag_value = threshold_max_lag_array[col_index]
         nw_max_lag_value = support_bound_array[col_index]
         for replication in range(replication_count):
-            sample = diagonal_sample_tvma1(sample_size=sample_size,
-                                           mean=mean,
-                                           sigma=sigma,
-                                           noise_type=noise_type)
+            if sample_type == "ma1":
+                sample = diagonal_sample_tvma1(sample_size=sample_size,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type)
+            elif sample_type == "ma3":
+                sample = diagonal_sample_tvma3(sample_size=sample_size,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type)
             if isinstance(t_par, numbers.Number):
                 cov_hat_column = cov_column_of_t(sample=sample,
                                                  t_par=t_par,
@@ -97,7 +115,8 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                     cov_hat_column=cov_hat_column[:threshold_max_lag_value],
                     sample_size=sample_size,
                     noise_type=noise_type,
-                    sd_type=sd_type)
+                    sd_type=sd_type,
+                    sample_type=sample_type)
             nw_double_array[replication, col_index] = lrv_hat_nw_t_free(
                 cov_column=cov_hat_column[:nw_max_lag_value],
                 sample_size=sample_size)
@@ -149,11 +168,12 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
 
 if __name__ == '__main__':
     compute_and_save_nw_threshold_single_t(sample_size_from=1000,
-                                           sample_size_to=40001,
+                                           sample_size_to=10001,
                                            sample_size_by=1000,
                                            replication_count=5,
                                            mean=0,
                                            sigma=2,
                                            noise_type="gaussian",
                                            sd_type="block_est",
-                                           t_par="free")
+                                           t_par="free",
+                                           sample_type="ma3")

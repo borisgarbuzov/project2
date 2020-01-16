@@ -1,7 +1,8 @@
 from src.cov_hat_t_free import cov_hat_t_free
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
 from src.plot_double_array import plot_double_array
-from src.true_cov_t_free import true_cov_ma1_t_free
+from src.true_cov_t_free import true_cov_ma1_t_free, true_cov_ma3_t_free
 import numpy as np
 
 def compute_and_save_cov_hat_vs_sample_size(sample_size_from: int,
@@ -11,7 +12,8 @@ def compute_and_save_cov_hat_vs_sample_size(sample_size_from: int,
                                             mean: int,
                                             sigma: int,
                                             noise_type: str,
-                                            lag: int):
+                                            lag: int,
+                                            sample_type: str = "ma1"):
     par_list = {"sample_size_from": sample_size_from,
                 "sample_size_to": sample_size_to,
                 "sample_size_by": sample_size_by,
@@ -19,7 +21,8 @@ def compute_and_save_cov_hat_vs_sample_size(sample_size_from: int,
                 "mean": mean,
                 "sigma": sigma,
                 "noise_type": noise_type,
-                "lag": lag}
+                "lag": lag,
+                "sample_type": sample_type}
 
     sample_size_array = np.arange(start=sample_size_from, stop=sample_size_to,
                                   step=sample_size_by)
@@ -27,15 +30,25 @@ def compute_and_save_cov_hat_vs_sample_size(sample_size_from: int,
                                           len(sample_size_array)),
                                    fill_value=np.nan)
 
-    true_cov_array = np.repeat(true_cov_ma1_t_free(lag=lag, sigma=sigma),
-                               len(sample_size_array))
+    if sample_type == "ma1":
+        true_cov_array = np.repeat(true_cov_ma1_t_free(lag=lag, sigma=sigma),
+                                   len(sample_size_array))
+    elif sample_type == "ma3":
+        true_cov_array = np.repeat(true_cov_ma3_t_free(lag=lag, sigma=sigma),
+                                   len(sample_size_array))
 
     for index_col, sample_size in enumerate(sample_size_array):
         for replication in range(replication_count):
-            sample = diagonal_sample_tvma1(sample_size=sample_size,
-                                           mean=mean,
-                                           sigma=sigma,
-                                           noise_type=noise_type)
+            if sample_type == "ma1":
+                sample = diagonal_sample_tvma1(sample_size=sample_size,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type)
+            elif sample_type == "ma3":
+                sample = diagonal_sample_tvma3(sample_size=sample_size,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type)
             cov_hat_t_free_array[replication, index_col] = cov_hat_t_free(
                 sample=sample,
                 lag=lag)
@@ -59,4 +72,5 @@ if __name__ == '__main__':
                                             mean=0,
                                             sigma=2,
                                             noise_type="gaussian",
-                                            lag=0)
+                                            lag=4,
+                                            sample_type="ma3")

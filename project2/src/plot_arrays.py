@@ -19,7 +19,7 @@ def plot_arrays(x_array,
     for label, array in arrays_dict.items():
         plt.plot(x_array, array, label=label)
 
-    if true_array.any():
+    if len(true_array) > 0:
         plt.plot(x_array, true_array, color="black", linewidth=2,
                  label=true_label)
 
