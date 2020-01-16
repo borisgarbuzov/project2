@@ -1,4 +1,4 @@
-from src.custom_kernel import gaussian_kernel
+from src.custom_kernel import gaussian_kernel, triangular_kernel
 from src.b_cov import b_cov
 
 

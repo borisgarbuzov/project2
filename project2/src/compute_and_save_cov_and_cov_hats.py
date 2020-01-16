@@ -130,7 +130,7 @@ if __name__ == '__main__':
                                       gamma_count=5,
                                       mean=0,
                                       sigma=2,
-                                      lag=4,
+                                      lag=1,
                                       sample_type='ma3',
                                       noise_type='gaussian',
-                                      diag_or_horiz='horiz')
+                                      diag_or_horiz='diag')
