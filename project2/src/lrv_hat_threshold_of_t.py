@@ -9,8 +9,13 @@ def lrv_hat_threshold_of_t(cov_double_array: np.array,
                            sample_type: str = "ma1") -> np.array:
     """
     LRV estimate by threshold method.
+    The naming convention is a bit confusing. 
+    Of_t means for all t here. 
+    The formula does not differ in cases for a single t and t-fre, 
+    so we call it t-free in both cases. 
+    All info is in the cov_double_array that is submitted as an argument. 
     :cov_double_array: double array of autocovariance. Columns - tPar values, rows - lags.
-    :sample_size: size of a sample that was used to compute these covariances.
+    :sample_size: size of a sample that was used to compute these covariances. Used for max lag computation. 
     :return: a one-dimensional array of LRV estimates. Elements correspond to tPar values.
     """
     column_count = cov_double_array.shape[1]

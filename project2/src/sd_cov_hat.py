@@ -44,6 +44,7 @@ def sd_cov_hat(sample_size: int,
         else:
             raise ValueError("'sample_type' should be equal 'ma1' or 'ma3'")
 
+    # Temporarily read the same file in lieu of native
     elif sd_type == 'native_sim':
         if sample_type == "ma1":
             matrix_means_array = read_matrix(
@@ -52,6 +53,7 @@ def sd_cov_hat(sample_size: int,
                 value = matrix_means_array[noise_type][lag]
             elif lag > matrix_means_array.shape[0]:
                 value = matrix_means_array["average"][-1]
+                # For large lags, take the last known value
             else:
                 value = matrix_means_array["average"][lag]
         elif sample_type == "ma3":
@@ -70,6 +72,6 @@ def sd_cov_hat(sample_size: int,
         raise ValueError("'sd_type' should be equal 'block_est' or "
                          "'native_sim'")
 
-    sd = np.sqrt(value) / np.sqrt(sample_size)
+    sd = np.sqrt(value / sample_size)
 
     return sd

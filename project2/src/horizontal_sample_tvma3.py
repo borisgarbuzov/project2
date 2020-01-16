@@ -10,6 +10,14 @@ def horizontal_sample_tvma3(sample_size: int,
                             sigma: int,
                             noise_type: str,
                             noise=None):
+    """
+    Generates MA(3) sample for the given noise or its parameters. 
+    :sample_size: number of observations or number of columns in the returned matrix.
+    :t_par_count: number of t values or number of rows in the returned matrix.
+    :mean: mean of the noise.
+    :return: a double array t_par_count by sample_size
+    of stationary MA1 samples. Each line, corresponding to tPar value.
+    """
     if noise is None:
         noise = create_noise(noise_size=sample_size + 3, mean=mean, sigma=sigma,
                              noise_type=noise_type)
