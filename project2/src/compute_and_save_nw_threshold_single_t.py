@@ -37,9 +37,6 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
     It may be either for a given t or for t-free.
     """
     par_list = {
-        "sample_size_from": sample_size_from,
-        "sample_size_to": sample_size_to,
-        "sample_size_by": sample_size_by,
         "replication_count": replication_count,
         "mean": mean,
         "sigma": sigma,

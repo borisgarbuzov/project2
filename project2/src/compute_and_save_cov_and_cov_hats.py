@@ -53,6 +53,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
     elif sample_type == "ma3":
         for t_index in range(t_par_count):
             true_gamma_array[t_index] = true_cov_ma3_of_t(t_par=t_par_array[t_index],
+                                                          sigma=sigma,
                                                           lag=lag)
     """
     For each index, generate a sample (later called replication)
@@ -130,7 +131,7 @@ if __name__ == '__main__':
                                       gamma_count=5,
                                       mean=0,
                                       sigma=2,
-                                      lag=1,
+                                      lag=4,
                                       sample_type='ma3',
                                       noise_type='gaussian',
-                                      diag_or_horiz='diag')
+                                      diag_or_horiz='horiz')
