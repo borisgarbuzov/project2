@@ -6,7 +6,16 @@ def lrv_hat_threshold_t_free(cov_hat_column: np.array,
                              sample_size: int,
                              noise_type: str,
                              sd_type: str,
-                             sample_type: str = "ma1") -> int:
+                             sample_type: str = "ma1") -> float:
+    """
+    Computes a t-free threshold estimate of LRV, given the covariances and other parameters. 
+    :param cov_hat_column: A vertical vector of covariances for lags from 0 to length of cov_hat_column. 
+    :param sample_size: a size of a sample that was used to compute cov_hat_column. 
+    :param noise_type:  a type of a sample that was used to compute cov_hat_column. Could be 'gaussian' or 'bernoulli'. It will be used for sd computation. 
+    :param sd_type: block_est or native. Depends, which threshold - estimated or exact we want to use. Is piped 2 levels down. 
+    :param sample_type: 'ma1' or 'ma3'. Potentially may have more, but these two are only working now. 
+    :return: LRV estimated value. 
+    """
     max_lag = len(cov_hat_column)
     indicator_array = []
     print('--------------------------------------------------')
