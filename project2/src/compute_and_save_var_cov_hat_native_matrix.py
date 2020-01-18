@@ -1,3 +1,17 @@
+"""
+compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
+                                                      sample_size_array=sample_size_array,
+                                                      mean=0,
+                                                      sigma=2,
+                                                      noise_type='bernoulli',
+                                                      is_data=True,
+                                                      fix_number_of_lags=300)
+=========================================
+Bernoulli matrix duration:       19972.924524050002 secs
+=========================================
+"""
+
+
 from timeit import default_timer as timer
 from os.path import dirname
 import numpy as np
