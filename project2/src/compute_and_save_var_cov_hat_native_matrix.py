@@ -1,17 +1,18 @@
-from src.support_bound import support_bound
-# from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
-from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
-from src.cov_hat_t_free import cov_hat_t_free
 from timeit import default_timer as timer
 from os.path import dirname
 import numpy as np
 import pandas as pd
 import datetime
 import os
+from src.support_bound import support_bound
+from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
+from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
+from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
+from src.cov_hat_t_free import cov_hat_t_free
 
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array,
-                                               mean: float, sigma: float, noise_type: str,
+                                               mean: int, sigma: int, noise_type: str,
                                                is_data=False, fix_number_of_lags=None) -> np.array:
     """
     N: Returns and saves to CSV the matrix of variance values of covHat
@@ -62,11 +63,16 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
             cov_array = np.full(shape=replication_count, fill_value=np.nan)
 
             for r in range(replication_count):
-                sample = horizontal_sample_tvma1(sample_size=sample_size,
-                                                 t_par_count=11, 
-                                                 mean=mean,
-                                                 sigma=sigma,
-                                                 noise_type=noise_type)[5, :]
+                # sample = horizontal_sample_tvma1(sample_size=sample_size,
+                #                                  t_par_count=11,
+                #                                  mean=mean,
+                #                                  sigma=sigma,
+                #                                  noise_type=noise_type)[5, :]
+                sample = diagonal_sample_tvma3(sample_size=sample_size,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type,
+                                               noise=None)
                 cov_array[r] = cov_hat_t_free(sample, lag)
 
             var_cov_hat_native_matrix[lag, i] = np.var(cov_array)
@@ -79,7 +85,7 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
             df_var_cov_hat_native_matrix.index.name = 'lag'
 
             df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder,
-                                                             "var_cov_hat_native_matrix{}.csv".format(date)))
+                                                             "var_cov_hat_native_matrix{}_{}.csv".format(date, 'ma3')))
             
     return var_cov_hat_native_matrix
     
@@ -92,11 +98,11 @@ if __name__ == '__main__':
                                                       sample_size_array=sample_size_array,
                                                       mean=0,
                                                       sigma=2,
-                                                      noise_type='bernoulli',
+                                                      noise_type='gaussian',
                                                       is_data=True,
                                                       fix_number_of_lags=300)
     duration = timer() - start_time
     # print(np.around(res, decimals=4))
     print('=========================================')
-    print('Bernoulli matrix duration:\t', duration, 'secs')
+    print('Gaussian matrix duration:\t', duration, 'secs')
     print('=========================================\n')
