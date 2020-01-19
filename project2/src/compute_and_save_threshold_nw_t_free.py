@@ -39,7 +39,7 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
     if sample_type == "ma1":
         true_lrv = true_lrv_ma1_t_free(sigma=sigma)
     elif sample_type == "ma3":
-        true_lrv = true_lrv_ma3_t_free()
+        true_lrv = true_lrv_ma3_t_free(sigma=sigma)
 
     support_bound_value = int(support_bound(sample_size=sample_size)) + 1
     threshold_max_lag_value = threshold_max_lag(sample_size=sample_size)

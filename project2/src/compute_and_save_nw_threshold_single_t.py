@@ -79,7 +79,7 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
             true_LRV_array = np.repeat(true_lrv_ma1_t_free(sigma=sigma),
                                        len(sample_size_array))
         elif sample_type == "ma3":
-            true_LRV_array = np.repeat(true_lrv_ma3_t_free(),
+            true_LRV_array = np.repeat(true_lrv_ma3_t_free(sigma=sigma),
                                        len(sample_size_array))
     else:
         raise ValueError(

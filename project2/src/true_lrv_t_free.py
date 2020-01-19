@@ -9,5 +9,5 @@ def true_lrv_ma1_t_free(sigma: float):
     return (19 / 3) * (sigma ** 2)
 
 
-def true_lrv_ma3_t_free():
-    return 0
+def true_lrv_ma3_t_free(sigma: float):
+    return (sigma ** 2) * (148 / 3)
