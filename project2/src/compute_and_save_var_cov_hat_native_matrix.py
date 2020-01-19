@@ -25,16 +25,28 @@ from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
 from src.cov_hat_t_free import cov_hat_t_free
 
 
-def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_size_array: np.array,
-                                               mean: int, sigma: int, noise_type: str,
-                                               is_data=False, fix_number_of_lags=None) -> np.array:
+def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
+                                               sample_size_array: np.array,
+                                               mean: int,
+                                               sigma: int,
+                                               noise_type: str,
+                                               is_data: bool = False,
+                                               fix_number_of_lags: int = None,
+                                               sample_type: str = "ma1") -> np.array:
     """
     N: Returns and saves to CSV the matrix of variance values of covHat
-    for different lags and sample sizes. 
-    The values currently do not match theoretical ones. 
-    But I think, it is in a minor way, and the values are usable. 
+    for different lags and sample sizes.
+    The values currently do not match theoretical ones.
+    But I think, it is in a minor way, and the values are usable.
+
+    :param replication_count:
+    :param sample_size_array:
+    :param mean:
+    :param sigma:
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
-    :param
+    :param is_data: save to "data" folder or not
+    :param fix_number_of_lags: how many lags should use
+    :param sample_type: 'ma1' or 'ma3'
     :return:
     """
  
@@ -99,7 +111,8 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int, sample_si
             df_var_cov_hat_native_matrix.index.name = 'lag'
 
             df_var_cov_hat_native_matrix.to_csv(os.path.join(data_folder,
-                                                             "var_cov_hat_native_matrix{}_{}.csv".format(date, 'ma3')))
+                                                             "var_cov_hat_native_matrix{}_{}.csv".format(date,
+                                                                                                         sample_type)))
             
     return var_cov_hat_native_matrix
     
@@ -109,12 +122,13 @@ if __name__ == '__main__':
 
     start_time = timer()
     res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
-                                                      sample_size_array=sample_size_array,
-                                                      mean=0,
-                                                      sigma=2,
-                                                      noise_type='gaussian',
-                                                      is_data=True,
-                                                      fix_number_of_lags=300)
+                                                     sample_size_array=sample_size_array,
+                                                     mean=0,
+                                                     sigma=2,
+                                                     noise_type='gaussian',
+                                                     is_data=True,
+                                                     fix_number_of_lags=300,
+                                                     sample_type='ma3')
     duration = timer() - start_time
     # print(np.around(res, decimals=4))
     print('=========================================')
@@ -128,7 +142,8 @@ if __name__ == '__main__':
                                                       sigma=2,
                                                       noise_type='bernoulli',
                                                       is_data=True,
-                                                      fix_number_of_lags=300)
+                                                      fix_number_of_lags=300,
+                                                      sample_type='ma3')
     duration = timer() - start_time
     # print(np.around(res, decimals=4))
     print('=========================================')
