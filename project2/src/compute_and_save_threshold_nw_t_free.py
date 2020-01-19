@@ -84,10 +84,10 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
 
 if __name__ == '__main__':
     compute_and_save_threshold_nw_t_free(sample_size=10000,
-                                         replication_count=1000,
+                                         replication_count=1,
                                          mean=0,
                                          sigma=2,
                                          noise_type="gaussian",
                                          sd_type="block_est",
-                                         lrv_est="both",
+                                         lrv_est="threshold",
                                          sample_type="ma3")
