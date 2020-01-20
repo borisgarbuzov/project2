@@ -6,8 +6,13 @@ compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
                                                       noise_type='bernoulli',
                                                       is_data=True,
                                                       fix_number_of_lags=300)
+                                                      
 =========================================
-Bernoulli matrix duration:       19972.924524050002 secs
+Gaussian matrix duration:        12536.306257610999 secs
+=========================================
+
+=========================================
+Bernoulli matrix duration:       21139.880215758 secs
 =========================================
 """
 
@@ -130,10 +135,7 @@ if __name__ == '__main__':
                                                      fix_number_of_lags=300,
                                                      sample_type='ma3')
     duration = timer() - start_time
-    # print(np.around(res, decimals=4))
-    print('=========================================')
-    print('Gaussian matrix duration:\t', duration, 'secs')
-    print('=========================================\n')
+    
     
     start_time = timer()
     res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
@@ -144,8 +146,14 @@ if __name__ == '__main__':
                                                       is_data=True,
                                                       fix_number_of_lags=300,
                                                       sample_type='ma3')
-    duration = timer() - start_time
+    duration2 = timer() - start_time
+    # print(np.around(res, decimals=4))
+    
     # print(np.around(res, decimals=4))
     print('=========================================')
-    print('Bernoulli matrix duration:\t', duration, 'secs')
+    print('Gaussian matrix duration:\t', duration, 'secs')
+    print('=========================================\n')
+    
+    print('=========================================')
+    print('Bernoulli matrix duration:\t', duration2, 'secs')
     print('=========================================\n')
