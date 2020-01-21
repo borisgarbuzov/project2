@@ -30,7 +30,7 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(sample_type: str = "ma1") 
     plot_arrays(x_array=lags_array,
                 arrays_dict=arrays_dict,
                 title="native matrix means with {} sample".format(sample_type),
-                x_label="sample size",
+                x_label="lags",
                 y_label="var(covHat)")
     print('Made picture "native matrix means with {} sample"'.format(sample_type))
 
