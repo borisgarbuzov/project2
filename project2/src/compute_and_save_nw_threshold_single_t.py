@@ -153,8 +153,8 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                       true_label='True lrv',
                       y_label='LRV')
 
-    arrays_dict = {"Threshold": threshold_double_array,
-                  "Newey-West": nw_double_array}
+    arrays_dict = {"Newey-West": nw_double_array,
+                   "Threshold": threshold_double_array}
 
     compute_and_save_multi_precision_of_t(true_array=true_LRV_array,
                                           est_dict=arrays_dict,

@@ -33,7 +33,7 @@ def sd_cov_hat(sample_size: int,
                 value = matrix_means_array["average"][lag]
         elif sample_type == "ma3":
             matrix_means_array = read_matrix(
-                name="var_cov_hat_bootstrap_matrix_means_ma3.csv",
+                name="var_cov_hat_bootstrap_matrix_means_ma3_non_deg.csv",
                 index_col="lag")
             if lag < 4:
                 value = matrix_means_array[noise_type][lag]
@@ -58,7 +58,8 @@ def sd_cov_hat(sample_size: int,
                 value = matrix_means_array["average"][lag]
         elif sample_type == "ma3":
             matrix_means_array = read_matrix(
-                name="var_cov_hat_native_matrix_means_ma1.csv", index_col="lag")
+                name="var_cov_hat_native_matrix_means_ma3_non_deg.csv",
+                index_col="lag")
             if lag < 4:
                 value = matrix_means_array[noise_type][lag]
             elif lag > matrix_means_array.shape[0]:

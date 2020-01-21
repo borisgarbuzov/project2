@@ -78,7 +78,7 @@ def plot_multi_precision_of_t(precision_dict: dict,
         name = tuple(precision_dict.items())[i][0]
         plot_precision_of_t(precision_dict.get(name),
                             true_array=true_array,
-                            x_label="t_par",
+                            x_label=x_label,
                             y_label=name,
                             par_list=par_list,
                             x_array=x_array)
