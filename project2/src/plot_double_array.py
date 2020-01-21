@@ -11,6 +11,18 @@ def plot_double_array(x_array,
                       axis='column',
                       true_label='True value',
                       y_label='value'):
+    """
+    Plots rows or columns of two-dimensional arrays in the same axes and saves image in the standard place. 
+    :param x_array: values for x axis.
+    :param hat_double_array: a double array containing the values to be plotted. 
+    :param true_array: one more array to be plotted, with a special status. Not plotted if empty. 
+    :param title: a title of a plot to be saved. 
+    :param x_label: label of x axis. 
+    :param par_list: a list of parameters to be listed in caption and used for file name composition.  
+    :param true_label: a label of true array, to be used in legend. Not used if true array is empty. 
+    :param y_label: a label for y axis. 
+    """
+                          
     file_name, caption = plot_preparations(title=title, par_list=par_list)
 
     if axis == 'row':

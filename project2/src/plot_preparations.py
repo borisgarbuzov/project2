@@ -4,6 +4,12 @@ import datetime
 
 
 def plot_preparations(title, par_list):
+    """
+    Prepares directory, file name and caption for a plot. 
+    :param title: a title of a plot to be incorporated into a file name. 
+    :param par_list: a dictionary of parameters that go to caption. 
+    :return: file_name, caption, to be used later for plotting. 
+    """
     # create directory for output if it doesn't exist
     parent_dir = dirname(dirname(__file__))
     output_folder = os.path.join(parent_dir, "output")

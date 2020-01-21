@@ -8,6 +8,15 @@ def plot_ridgline(hat_double_array,
                   x_label,
                   par_list,
                   bins=10):
+    """
+    Plots several histograms in progression one under another, agreed by hirizontal axis. 
+    Is based on joypy library. 
+    :param hat_double_array: a double array, containg the plotted values. Columns correspond to histograms. 
+    :param title: a title for the image to be saved. 
+    :param x_label: a label for the common x axis. 
+    :param par_list: a dictionary of parameteres and their values that go to the caption. 
+    :param bins: a number of bins to be used for histograms. 
+    """
     file_name, caption = plot_preparations(title=title, par_list=par_list)
 
     plt.style.use('seaborn')

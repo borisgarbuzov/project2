@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 
 def mse_value_by_value_and_array(true_value: float, est_array: np.array) -> float:
     """
-    Mean squared error by value and array
+    Computes mean squared distance bettweena value and an array. 
 
-    :param true_value: true value
-    :param est_array: array
+    :param true_value: true value or any other single value subjedct to error computation. 
+    :param est_array: array of estimated or other values subject to error computation. 
     :return: mse value
     """
     true_array = np.full(shape=len(est_array), fill_value=true_value)
@@ -19,7 +19,6 @@ def mse_value_by_value_and_array(true_value: float, est_array: np.array) -> floa
 def mse_value_by_array_and_array(true_array: np.array, est_array: np.array) -> float:
     """
     Mean squared error by array and array
-
     :param true_array: true value
     :param est_array: array of est values
     :return: mse value
@@ -29,11 +28,10 @@ def mse_value_by_array_and_array(true_array: np.array, est_array: np.array) -> f
 
 def mse_array_by_array_and_double_array(true_array: np.array, est_double_array: np.array) -> np.array:
     """
-    Find mean squared error (MSE) for every t
-
+    Computes mean squared error (MSE) for every t or for every pair of value in true array and row or column in est_double_array. 
     :param true_array: array of true values for every t_par value
     :param est_double_array: columns correspond to t_par values, and each row is a replication
-    :return: array of mse's corresponding to each t_par value
+    :return: array of mse's corresponding to each t_par value. 
     """
     length = len(est_double_array[0])
     mse_array = np.full(shape=length, fill_value=np.nan)
