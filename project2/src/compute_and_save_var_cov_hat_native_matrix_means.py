@@ -48,7 +48,6 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
             files_list = os.listdir('../data/')
             files = '; '.join(files_list)
             name = re.search(r'(var_cov_hat_native_matrix_{}\w*.csv)'.format(noise_type), files).group(0)
-            print('name =', name)
             native_matrix = read_matrix(name=name, index_col='lag')
 
         sample_size_array = [int(re.sub("[^0-9]", "", sample_size)) for sample_size in native_matrix.columns]
