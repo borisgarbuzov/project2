@@ -14,6 +14,7 @@ from timeit import default_timer as timer
 import unittest
 import numpy as np
 
+
 class Test_compute_and_save_all(unittest.TestCase):
     def test_compute_and_save_cov_and_cov_hats(self,
                                               sample_size=5,
@@ -47,7 +48,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_cov_and_cov_hats'))
         print('===============================================================================\n')
 
-
     def test_compute_and_save_nw_single_n(self,
                                         sample_size=5,
                                         t_par_count=3,
@@ -73,7 +73,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print("\nDuration: {:g} secs".format(end_time))
         print('End of test {}'.format('compute_and_save_nw_single_n'))
         print('===============================================================================\n')
-
 
     def test_compute_and_save_nw_threshold_single_t(self,
                                         sample_size_from=5,
@@ -115,7 +114,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_nw_threshold_single_t'))
         print('===============================================================================\n')
 
-
     def test_compute_and_save_nw_vs_threshold(self,
                                             sample_size=5,
                                             t_par_count=3,
@@ -146,7 +144,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print("\nDuration: {:g} secs".format(end_time))
         print('End of test {}'.format('compute_and_save_nw_vs_threshold'))
         print('===============================================================================\n')
-
 
     def test_compute_and_save_threshold_nw_t_free(self,
                                                 sample_size=5,
@@ -182,7 +179,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_threshold_nw_t_free'))
         print('===============================================================================\n')
 
-
     def test_compute_and_save_threshold_single_n(self,
                                                 sample_size=5,
                                                 t_par_count=3,
@@ -217,7 +213,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_threshold_single_n'))
         print('===============================================================================\n')
 
-
     def test_compute_and_save_v_vs_nw(self,
                                       sample_size=5,
                                       t_par_count=3,
@@ -241,7 +236,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print("\nDuration: {:g} secs".format(end_time))
         print('End of test {}'.format('compute_and_save_v_vs_nw'))
         print('===============================================================================\n')
-
 
     def test_compute_and_save_var_cov_hat_native_matrix(self,
                                                         replication_count=2,
@@ -269,26 +263,17 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_var_cov_hat_native_matrix'))
         print('===============================================================================\n')
 
-
-    def test_compute_and_save_var_cov_hat_native_matrix_means(self,
-                                                              types_of_noises=('gaussian', 'bernoulli'),
-                                                              is_data=False):
+    def test_compute_and_save_var_cov_hat_native_matrix_means(self):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_var_cov_hat_native_matrix_means"')
 
         start_time = timer()
-        compute_and_save_var_cov_hat_native_matrix_means(types_of_noises,
-                                                         is_data=is_data)
+        compute_and_save_var_cov_hat_native_matrix_means()
         end_time = timer() - start_time
-
-        print('Test parameters:')
-        print('types_of_noises =', types_of_noises)
-        print('is_data =', is_data)
 
         print("\nDuration: {:g} secs".format(end_time))
         print('End of test {}'.format('compute_and_save_var_cov_hat_native_matrix_means'))
         print('===============================================================================\n')
-
 
     def test_compute_and_save_var_cov_hat_semi_bootstrap(self,
                                                         sample_size_from=5,
@@ -318,7 +303,6 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_var_cov_hat_semi_bootstrap'))
         print('===============================================================================\n')
 
-
     def test_compute_and_save_var_cov_hat_theoretical_matrix(self,
                                                             sample_size_array=np.arange(10, 21, 10),
                                                             lags_array=np.arange(0, 3),
@@ -341,19 +325,18 @@ class Test_compute_and_save_all(unittest.TestCase):
         print('End of test {}'.format('compute_and_save_var_cov_hat_theoretical_matrix'))
         print('===============================================================================\n')
 
-
     def test_compute_and_save_multi_precision_of_t(self,
                                                    true_array=[1,2,3],
                                                    est_dict={'est_double_array_1': [[1,2,3], [4,5,6], [7,8,9]]},
                                                    x_label="t_par",
-                                                   x_array= [100,200,300]):
+                                                   x_array=[100,200,300]):
         print('\n\n===============================================================================')
         print('Testing "compute_and_save_multi_precision_of_t"')
 
         start_time = timer()
-        compute_and_save_multi_precision_of_t(true_array = true_array,
-                                              est_dict = est_dict,
-                                              x_array = x_array)
+        compute_and_save_multi_precision_of_t(true_array=true_array,
+                                              est_dict=est_dict,
+                                              x_array=x_array)
         end_time = timer() - start_time
 
         print('Test parameters:')

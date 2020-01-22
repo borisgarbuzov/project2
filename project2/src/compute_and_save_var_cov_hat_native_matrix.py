@@ -49,7 +49,7 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
     :param mean:
     :param sigma:
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
-    :param is_data: save to "data" folder or not
+    :param is_data: save in "data" folder or in "output" folder
     :param fix_number_of_lags: how many lags should use
     :param sample_type: 'ma1' or 'ma3'
     :return:
@@ -135,8 +135,8 @@ if __name__ == '__main__':
                                                      fix_number_of_lags=300,
                                                      sample_type='ma3')
     duration = timer() - start_time
-    
-    
+
+
     start_time = timer()
     res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
                                                       sample_size_array=sample_size_array,
@@ -148,12 +148,12 @@ if __name__ == '__main__':
                                                       sample_type='ma3')
     duration2 = timer() - start_time
     # print(np.around(res, decimals=4))
-    
+
     # print(np.around(res, decimals=4))
     print('=========================================')
     print('Gaussian matrix duration:\t', duration, 'secs')
     print('=========================================\n')
-    
+
     print('=========================================')
     print('Bernoulli matrix duration:\t', duration2, 'secs')
     print('=========================================\n')
