@@ -2,6 +2,11 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 
 def mean_t_free(est_array: np.array):
+    """
+    Computes mean of an array of values
+    :param est_array: array to be averaged. 
+    :return: sample mean of the given array. 
+    """
     return np.mean(est_array)
 
 def bias_t_free(true_value: float, est_array: np.array):

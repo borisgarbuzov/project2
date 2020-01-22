@@ -9,10 +9,10 @@ import numpy as np
     
 def lrv_hat_nw_of_t(cov_double_array: np.array, sample_size: int) -> np.array:
     """
-    LRV estimate newey west.
-
-    :param cov_matrix: covariance double array
-    :return: array of newey west
+    LRV estimate by Newey-West formula.
+    :param cov_double_array: covariance double array. Rows are lags and columns are t_par values.
+    :param sample_size: size of a sample that was used to compute cov_double_array. Used for max lag computation. 
+    :return: array of Newey-West LRV estimates for each column of cov_double_array (each t_par). 
     """
     t_par_count = len(cov_double_array[0])
     res_array = np.full(shape=t_par_count, fill_value=0.0)

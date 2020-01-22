@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 def mse_value_by_value_and_array(true_value: float, est_array: np.array) -> float:
     """
     Computes mean squared distance bettweena value and an array. 
-
     :param true_value: true value or any other single value subjedct to error computation. 
     :param est_array: array of estimated or other values subject to error computation. 
     :return: mse value

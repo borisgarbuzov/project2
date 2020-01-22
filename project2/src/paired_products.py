@@ -2,6 +2,13 @@ import numpy as np
 
 
 def paired_products(sample: np.array, lag: int) -> np.array:
+    """
+    Computes and returns the array of paired lagged products of a given sample. 
+    Is denoted by Z in a formula. 
+    :param sample: the sample to be used in lagged paired products computation. 
+    :param lag: the lag to be used in lagged paired products computation. 
+    :return: paired_product_array, an array of lagged products of a sample. 
+    """
     sample_size = len(sample)
 
     if lag < 0:
