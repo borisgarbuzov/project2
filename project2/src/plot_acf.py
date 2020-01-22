@@ -8,6 +8,14 @@ def plot_acf(cov_hat,
              max_lag_array="auto",
              par_list="",
              title="ACF"):
+    """
+    Plots autocovariance function given in the array. Also shows cloud and labels axes. 
+    :param cov_hat: main values of ACF to be plotted. 
+    :param cloud: an array of values to be used for cloud depiction. 
+    :param max_lag_array: lags to be depicted. 
+    :param par_list: a dictionary of name-value pairs to be shown in caption and in file name. 
+    :param title: a title to be shown on the plot. 
+    """
     if max_lag_array == "auto":
         max_lag_array = [lag for lag in range(len(cov_hat))]
 
