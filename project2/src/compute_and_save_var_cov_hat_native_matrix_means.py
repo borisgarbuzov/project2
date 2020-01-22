@@ -45,7 +45,7 @@ def compute_and_save_var_cov_hat_native_matrix_means(types_of_noises=('gaussian'
         except FileNotFoundError:
             # next for tests
             # find first var_cov_hat_native_matrix csv file
-            files_list = os.listdir('../../data/')
+            files_list = os.listdir('../data/')
             files = '; '.join(files_list)
             name = re.search(r'(var_cov_hat_native_matrix_{}\w*.csv)'.format(noise_type), files).group(0)
             print('name =', name)
