@@ -10,7 +10,8 @@ def plot_arrays(x_array,
                 par_list="",
                 true_array=np.array([]),
                 true_label="True value",
-                y_label='value'):
+                y_label='value',
+                color_array=np.array([])):
     """
     Plots one-dimensional arrays in the same axes and save image in the standard place. 
     :param x_array: values for x axis.
@@ -20,14 +21,21 @@ def plot_arrays(x_array,
     :param par_list: a list of parameters to be listed in caption and used for file name composition.  
     :param true_array: one more array to be plotted, with a special status. Not plotted if empty. 
     :param true_label: a label of true array, to be used in legend. Not used if true array is empty. 
-    :param y_label: a label for y axis. 
+    :param y_label: a label for y axis.
+    :param color_array:
     """
     file_name, caption = plot_preparations(title=title, par_list=par_list)
 
     plt.style.use('seaborn')
 
-    for label, array in arrays_dict.items():
-        plt.plot(x_array, array, label=label)
+    if not len(color_array):
+        for label, array in arrays_dict.items():
+            plt.plot(x_array, array, label=label)
+    else:
+        i = 0
+        for label, array in arrays_dict.items():
+            plt.plot(x_array, array, label=label, color=color_array[i])
+            i += 1
 
     if len(true_array) > 0:
         plt.plot(x_array, true_array, color="black", linewidth=2,
