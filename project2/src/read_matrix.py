@@ -5,10 +5,10 @@ import pandas as pd
 
 def read_matrix(name: str, index_col=None) -> pd.DataFrame:
     """
-
-    :param name:
-    :param index_col:
-    :return:
+    Standard reading actions for matrix. 
+    :param name: name of CSV file to be read. 
+    :param index_col: a column name that should be made row names. 
+    :return: matrix that was read. 
     """
     parent_dir = dirname(dirname(__file__))
     data_folder = os.path.join(parent_dir, "data")

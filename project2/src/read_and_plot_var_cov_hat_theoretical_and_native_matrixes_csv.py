@@ -10,12 +10,12 @@ def read_and_plot_var_cov_hat_theoretical_and_native_matrixes_csv(noise_type: st
     The first is theoretical
     the second if native
     the third is native  means
+    plot 3 lines.  The first is theoretical var cov hat,
+                        the second is native var cov hat
+                        the third is native var cov hat means
 
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
     :param what_lag: for example, 0,1,2
-    :return: plot 3 lines.  The first is theoretical var cov hat,
-                            the second is native var cov hat
-                            the third is native var cov hat means
     """
     theoretical = read_matrix(name='var_cov_hat_theoretical_matrix_{}.csv'.format(noise_type), index_col='lag')
     native_matrix = read_matrix(name='var_cov_hat_native_matrix_{}.csv'.format(noise_type), index_col='lag')

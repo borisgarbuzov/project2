@@ -10,9 +10,8 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(sample_type: str = "ma1") 
     Plot two lines
     the first is gaussian
     the second is bernoulli
-
+    plot 2 lines
     :param sample_type: 'ma1' or 'ma3'
-    :return: plot 2 lines
     """
 
     native_matrix = read_matrix(name='var_cov_hat_native_matrix_means_{}.csv'.format(sample_type), index_col='lag')

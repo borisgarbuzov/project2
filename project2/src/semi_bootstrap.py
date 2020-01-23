@@ -8,10 +8,21 @@ import numpy as np
 
 def semi_bootstrap(sample_size: int,
                    lag: int,
-                   mean: int,
-                   sigma: int,
+                   mean: float,
+                   sigma: float,
                    noise_type: str,
                    sample_type: str="ma1"):
+                       
+    """
+    Generates a sample and computes a block estimate for var(covHat). 
+    :param sample_size: size of a sample to be generated. 
+    :param lag: lag of autocovariance, whose variance should be generated. 
+    :param mean: mean for the noise whose sample should be generated. 
+    :param sigma: sigma for the noise whose sample should be generated. 
+    :param noise_type: type for the noise whose sample should be generated.
+    :param sample_type: type of the sample that should be generated.
+    :return: semi_bootstrap_value, a block estimate value. 
+    """
     batch_size_value = batch_size(sample_size=sample_size)
     if sample_type == "ma1":
         sample = diagonal_sample_tvma1(sample_size=sample_size, mean=mean,

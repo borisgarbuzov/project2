@@ -6,9 +6,12 @@ from src.read_matrix import read_matrix
 
 def read_and_plot_var_cov_hat_csv(noise_type: str):
     """
-
+    M. Reads 2 CSV's and saves one image by calling plot function. 
+    CSV1 is about block estimate of var(covHat). 
+    CSV2 is about natively simulated var(covHat). 
+    Currently does not work because file names changed. 
+    Image is 2 curves in the same axes - naitve and block estimate.  
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
-    :return:
     """
     bootstrap = read_matrix(name="var_cov_hat_bootstrap_matrix_batch_size_formula.csv", index_col='lag')
     native_matrix = read_matrix(name='var_cov_hat_native_matrix_{}.csv'.format(noise_type), index_col='lag')

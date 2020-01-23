@@ -9,14 +9,13 @@ def read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type: str,
                                                                fix_number_of_lags=None,
                                                                sample_type: str = 'ma1') -> None:
     """
-    Plot var cov hat vs sample size
+    N: Plot var cov hat vs sample size
     Read from csv and plot len(count_lags) var cov hat lines:
-
+    plot len(count_lags) lines
     :param noise_type: type of noise 'gaussian' or 'bernoulli'
     :param count_lags: array of lags, example: [0,1,2,3,4,5]
     :param fix_number_of_lags: for take cur csv
     :param sample_type: 'ma1' or 'ma3'
-    :return: plot len(count_lags) lines
     """
     # read csv
     name = ''
