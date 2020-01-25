@@ -28,7 +28,7 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array: np.array = np.
 
     par_list = {
         'sample_type': sample_type,
-        'is_deg': 'deg' if is_deg else 'non_deg'
+        'is_deg': deg
     }
 
     # create dict for plotting
@@ -51,7 +51,7 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array: np.array = np.
                 y_label="var(covHat)",
                 par_list=par_list,
                 color_array=['red', 'blue'])
-    print('Made picture "native matrix means {} with {} sample"'.format(deg, sample_title))
+    print('Made picture "{}"'.format(title))
 
 
 if __name__ == '__main__':
