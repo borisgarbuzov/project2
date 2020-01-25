@@ -22,9 +22,13 @@ def plot_arrays(x_array,
     :param true_array: one more array to be plotted, with a special status. Not plotted if empty. 
     :param true_label: a label of true array, to be used in legend. Not used if true array is empty. 
     :param y_label: a label for y axis.
-    :param color_array:
+    :param color_array: unique color for each line
     """
     file_name, caption = plot_preparations(title=title, par_list=par_list)
+
+    if len(color_array):
+        if len(color_array) != len(arrays_dict):
+            raise ValueError('Length of color_array should be same with length of arrays_dict!')
 
     plt.style.use('seaborn')
 
@@ -53,3 +57,17 @@ def plot_arrays(x_array,
     plt.savefig(file_name, dpi=300, bbox_inches='tight')
 
     plt.close()
+
+
+if __name__ == '__main__':
+    d = {
+        'first': np.random.normal(size=5),
+        'second': np.random.normal(size=5)
+    }
+
+    plot_arrays(x_array=np.arange(5),
+                arrays_dict=d,
+                title='somebody once told me',
+                x_label="xs",
+                y_label="ys",
+                color_array=['red', 'blue', 'white'])
