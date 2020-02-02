@@ -27,7 +27,7 @@ def sd_cov_hat(sample_size: int,
                 index_col="lag")
             if lag < 2:
                 value = matrix_means_array[noise_type][lag]
-            elif lag > matrix_means_array.shape[0]:
+            elif lag > matrix_means_array.shape[0] - 1:
                 value = matrix_means_array["average"][-1]
             else:
                 value = matrix_means_array["average"][lag]
@@ -37,7 +37,7 @@ def sd_cov_hat(sample_size: int,
                 index_col="lag")
             if lag < 4:
                 value = matrix_means_array[noise_type][lag]
-            elif lag > matrix_means_array.shape[0]:
+            elif lag > matrix_means_array.shape[0] - 1:
                 value = matrix_means_array["average"][-1]
             else:
                 value = matrix_means_array["average"][lag]
@@ -51,7 +51,7 @@ def sd_cov_hat(sample_size: int,
                 name="var_cov_hat_native_matrix_means_ma1.csv", index_col="lag")
             if lag < 2:
                 value = matrix_means_array[noise_type][lag]
-            elif lag > matrix_means_array.shape[0]:
+            elif lag > matrix_means_array.shape[0] - 1:
                 value = matrix_means_array["average"][-1]
                 # For large lags, take the last known value
             else:
@@ -62,7 +62,7 @@ def sd_cov_hat(sample_size: int,
                 index_col="lag")
             if lag < 4:
                 value = matrix_means_array[noise_type][lag]
-            elif lag > matrix_means_array.shape[0]:
+            elif lag > matrix_means_array.shape[0] - 1:
                 value = matrix_means_array["average"][-1]
             else:
                 value = matrix_means_array["average"][lag]
