@@ -1,4 +1,10 @@
 def true_cov_ma1_t_free(lag: int, sigma: int):
+    """
+    True global autocovariance for given parameters. 
+    :param sigma: standard deviation of noise used to simulate the MA1 sample. 
+    :param lag: lag of autocovariance to be computed. 
+    :return: true autocovariance value. 
+    """    
     if lag == 0:
         return (10 / 3) * (sigma ** 2)
     elif lag == 1:
@@ -8,6 +14,12 @@ def true_cov_ma1_t_free(lag: int, sigma: int):
 
 
 def true_cov_ma3_t_free(lag: int, sigma: int):
+    """
+    True global autocovariance for given parameters. 
+    :param sigma: standard deviation of noise used to simulate the MA3 sample. 
+    :param lag: lag of autocovariance to be computed. 
+    :return: true autocovariance value. 
+    """    
     if lag == 0:
         return (59 / 3) * (sigma ** 2)
     elif lag == 1:

@@ -26,6 +26,12 @@ def true_lrv_ma1_of_t(sigma: int, t_par_array: np.array) -> np.array:
 
 
 def true_lrv_ma3_of_t(t_par_array: np.array, sigma: float) -> np.array:
+    """
+    True local LRV for given parameters. 
+    :param sigma: standard deviation of noise used to simulate the MA3 sample. 
+    :param t_par: t parameter or scaled time. 
+    :return: true LRV value. 
+    """    
     true_lrv_ma3_array = np.full(shape=len(t_par_array),
                                  fill_value=np.nan)
     for t_index, t_par in enumerate(t_par_array):
