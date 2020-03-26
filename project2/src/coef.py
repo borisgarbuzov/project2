@@ -26,3 +26,10 @@ def coef_3(t_par):
     :return: a value of a coefficient 3 in TVMA at the point of a given t_par. 
     """
     return -3 + t_par
+    
+    
+def coef_1_ar(t_par):
+    """
+    The first coefficient of TVAR process 
+    """
+    return 0.5 - 0.5*t_par
