@@ -126,24 +126,24 @@ if __name__ == '__main__':
     sample_size_array = np.arange(1000, 5001, 1000)
 
     start_time = timer()
-    res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
+    res = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
                                                      sample_size_array=sample_size_array,
                                                      mean=0,
                                                      sigma=2,
                                                      noise_type='gaussian',
-                                                     is_data=True,
+                                                     is_data=False,
                                                      fix_number_of_lags=300,
                                                      sample_type='ma3')
     duration = timer() - start_time
 
 
     start_time = timer()
-    res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
+    res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
                                                       sample_size_array=sample_size_array,
                                                       mean=0,
                                                       sigma=2,
                                                       noise_type='bernoulli',
-                                                      is_data=True,
+                                                      is_data=False,
                                                       fix_number_of_lags=300,
                                                       sample_type='ma3')
     duration2 = timer() - start_time

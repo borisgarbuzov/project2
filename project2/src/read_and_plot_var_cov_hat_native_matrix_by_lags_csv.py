@@ -52,15 +52,17 @@ def read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type: str,
     sample_title = 'MA(1)' if sample_type == 'ma1' else 'MA(3)' if sample_type == 'ma3' else sample_type
     deg_title = 'degenerate' if is_deg else 'nondegenerate'
     title = 'Var(CovHat) with {} noise and {} {} sample vs lags'.format(noise_type, deg_title, sample_title)
+    y_label = "var(covHat)"
 
     if mult_on_sample_size:
         title = 'sample_size*' + title
+        y_label = 'sample_size*' + y_label
 
     plot_arrays(x_array=lags_array,
                 arrays_dict=arrays_dict,
                 title=title,
                 x_label="lags",
-                y_label="var(covHat)")
+                y_label=y_label)
 
     print('Made picture "{}"'.format(title))
 

@@ -6,7 +6,8 @@ from src.read_matrix import read_matrix
 
 def read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array: np.array = np.array([]),
                                                       sample_type: str = "ma1",
-                                                      is_deg: bool = False) -> None:
+                                                      is_deg: bool = False,
+                                                      color_array=['red', 'blue']) -> None:
     """
     Plot var cov hat means for both noise types.
     Plot two lines
@@ -16,6 +17,7 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array: np.array = np.
     :param lags_array: array of lags, example: [0,1,2,3,4,5]
     :param sample_type: 'ma1' or 'ma3'
     :param is_deg: if True -'degenerate', if False - 'non degenerate' process
+    :param color_array: color of lines
     """
     deg = 'deg' if is_deg else 'non_deg'
     native_matrix = read_matrix(name='var_cov_hat_native_matrix_means_{}_{}.csv'.format(sample_type, deg),
@@ -43,14 +45,15 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array: np.array = np.
     sample_title = 'MA(1)' if sample_type == 'ma1' else 'MA(3)' if sample_type == 'ma3' else sample_type
     deg = 'degenerate' if is_deg else 'nondegenerate'
     title = 'sample_size*Var(CovHat) means for {} {} sample'.format(deg, sample_title)
+    y_label = "sample_size*var(covHat)"
 
     plot_arrays(x_array=lags_array,
                 arrays_dict=arrays_dict,
                 title=title,
                 x_label="lags",
-                y_label="var(covHat)",
+                y_label=y_label,
                 par_list=par_list,
-                color_array=['red', 'blue'])
+                color_array=color_array)
     print('Made picture "{}"'.format(title))
 
 
