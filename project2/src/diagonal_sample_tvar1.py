@@ -21,13 +21,15 @@ def diagonal_sample_tvar1(sample_size: int,
     if not noise:
         noise = create_noise(noise_size=sample_size + 3, mean=mean, sigma=sigma,
                              noise_type=noise_type)
-        print('noise')
     elif len(noise) != sample_size + 3:
         raise ValueError("length of noise should be sample_size + 3")
 
     tvar1 = np.full(shape=sample_size, fill_value=np.nan)
+    # our phi is around 0.5
     scale = sigma / (1 - 0.5**2)
     tvar1[0] = np.random.normal(loc=mean, scale=scale)
+    # It does not matter what the first element is. 
+    # The process forgets it very quickly for later indexes. 
 
     for i in range(1, sample_size):
         tvar1[i] = noise[i] + coef_1_ar(t_par=i / sample_size) \

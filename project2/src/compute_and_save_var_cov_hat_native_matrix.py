@@ -29,6 +29,7 @@ from src.horizontal_sample_tvma1 import horizontal_sample_tvma1
 from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
 from src.diagonal_sample_tvar1 import diagonal_sample_tvar1
 from src.cov_hat_t_free import cov_hat_t_free
+from src.calculate_time import calculate_time
 
 
 def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
@@ -136,28 +137,39 @@ if __name__ == '__main__':
     sample_size_array = np.arange(1000, 5001, 1000)
 
     start_time = timer()
-    res = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
+    res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
                                                      sample_size_array=sample_size_array,
                                                      mean=0,
                                                      sigma=2,
                                                      noise_type='gaussian',
-                                                     is_data=False,
+                                                     is_data=True,
                                                      fix_number_of_lags=300,
-                                                     sample_type='ma3')
+                                                     sample_type='ar1')
     duration = timer() - start_time
+
+    calculate_time(name='compute_and_save_var_cov_hat_native_matrix', 
+                   duration=duration,
+                   parameters="""replication_count=1000, sample_size_array=1000:5001, 
+                              mean=0, sigma=2, noise_type='gaussian', is_data=True, 
+                              fix_number_of_lags=300, sample_type='ar1'""")
 
 
     start_time = timer()
-    res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=10,
+    res2 = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
                                                       sample_size_array=sample_size_array,
                                                       mean=0,
                                                       sigma=2,
                                                       noise_type='bernoulli',
-                                                      is_data=False,
+                                                      is_data=True,
                                                       fix_number_of_lags=300,
-                                                      sample_type='ma3')
+                                                      sample_type='ar1')
     duration2 = timer() - start_time
-    # print(np.around(res, decimals=4))
+
+    calculate_time(name='compute_and_save_var_cov_hat_native_matrix', 
+                   duration=duration2,
+                   parameters="""replication_count=1000, sample_size_array=1000:5001, 
+                              mean=0, sigma=2, noise_type='bernoulli', is_data=True, 
+                              fix_number_of_lags=300, sample_type='ar1'""")
 
     # print(np.around(res, decimals=4))
     print('=========================================')
@@ -167,3 +179,6 @@ if __name__ == '__main__':
     print('=========================================')
     print('Bernoulli matrix duration:\t', duration2, 'secs')
     print('=========================================\n')
+    
+    
+    print(duration + duration2)
