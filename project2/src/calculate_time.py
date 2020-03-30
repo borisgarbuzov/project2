@@ -4,7 +4,15 @@ from os.path import dirname
 import datetime
 import os
 
-
+"""
+The caller should measure duration and pass here along with parameters. 
+This program will create CSV if it does not exist.
+If this CSV exists, we will update it. 
+Thus we will add a new line in the end. 
+The format is:
+func_name	time	duration, sec	parameters
+In the parameters we have the dictionary.
+"""
 def calculate_time(name: str, duration: float, **parameters):
 
     # create directory for data if it doesn't exist
@@ -30,7 +38,7 @@ def calculate_time(name: str, duration: float, **parameters):
         with open('durations.csv', 'a'):
             df.to_csv(os.path.join(data_folder, 'durations.csv'), mode='a', index=False, header=False)
 
-
+# Internal test
 if __name__ == '__main__':
     start_time = timer()
     duration = timer() - start_time
