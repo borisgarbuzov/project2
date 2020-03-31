@@ -1,6 +1,9 @@
 from src.create_noise import create_noise
 from src.coef import coef, coef_2, coef_3, coef_1_ar
+from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
 import numpy as np
+from src.plot_hist import plot_hist
+from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 
 
 def diagonal_sample_tvar1(sample_size: int,
@@ -39,7 +42,20 @@ def diagonal_sample_tvar1(sample_size: int,
 
 
 if __name__ == '__main__':
-    d = diagonal_sample_tvar1(sample_size=3,
-                              mean=0,
-                              sigma=1,
-                              noise_type='gaussian')
+    ar1 = diagonal_sample_tvar1(sample_size=1000,
+                                mean=0,
+                                sigma=1,
+                                noise_type='gaussian')
+    plot_hist(array=ar1, name='ar1', title='ar1', show=False)
+
+    ma1 = diagonal_sample_tvma1(sample_size=1000,
+                                mean=0,
+                                sigma=1,
+                                noise_type='gaussian')
+    plot_hist(array=ma1, name='ma1', title='ma1', show=False)
+
+    ma3 = diagonal_sample_tvma3(sample_size=1000,
+                                mean=0,
+                                sigma=1,
+                                noise_type='gaussian')
+    plot_hist(array=ma3, name='ma3', title='ma3', show=False)
