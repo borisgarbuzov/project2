@@ -4,6 +4,7 @@ from src.cov_column_t_free import cov_column_t_free
 from src.threshold_max_lag import threshold_max_lag
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
+from src.diagonal_sample_tvar1 import diagonal_sample_tvar1
 from src.plot_acf import plot_acf
 import numpy as np
 
@@ -39,6 +40,11 @@ def compute_and_save_acf(sample_size: int,
                                        mean=mean,
                                        sigma=sigma,
                                        noise_type=noise_type)
+    elif sample_type == "ar1":
+        sample = diagonal_sample_tvar1(sample_size=sample_size,
+                                       mean=mean,
+                                       sigma=sigma,
+                                       noise_type=noise_type)
     max_lag = threshold_max_lag(sample_size=sample_size)
     cov_hat = cov_column_t_free(sample=sample,
                                 max_lag=max_lag)
@@ -57,9 +63,9 @@ def compute_and_save_acf(sample_size: int,
 
 
 if __name__ == '__main__':
-    compute_and_save_acf(sample_size=1000,
+    compute_and_save_acf(sample_size=5000,
                          mean=0,
                          sigma=2,
                          noise_type="gaussian",
-                         sample_type="ma3",
-                         sd_type="block_est")
+                         sample_type="ar1",
+                         sd_type="native_sim")

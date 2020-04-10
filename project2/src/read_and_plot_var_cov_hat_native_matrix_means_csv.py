@@ -59,4 +59,4 @@ def read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array: np.array = np.
 
 if __name__ == '__main__':
     lags_array = np.arange(21)
-    read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array=lags_array, sample_type='ma3', is_deg=False)
+    read_and_plot_var_cov_hat_native_matrix_means_csv(lags_array=lags_array, sample_type='ar1', is_deg=False)

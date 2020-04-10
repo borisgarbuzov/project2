@@ -66,8 +66,21 @@ def sd_cov_hat(sample_size: int,
                 value = matrix_means_array["average"][-1]
             else:
                 value = matrix_means_array["average"][lag]
+
+        elif sample_type == "ar1":
+            matrix_means_array = read_matrix(
+                name="var_cov_hat_native_matrix_means_ar1_non_deg.csv",
+                index_col="lag"
+            )
+            if lag < 2:
+                value = matrix_means_array[noise_type][lag]
+            elif lag > matrix_means_array.shape[0] - 1:
+                value = matrix_means_array["average"][-1]
+            else:
+                value = matrix_means_array["average"][lag]
+
         else:
-            raise ValueError("'sample_type' should be equal 'ma1' or 'ma3'")
+            raise ValueError("'sample_type' should be equal 'ma1' or 'ma3' or 'ar1'")
 
     else:
         raise ValueError("'sd_type' should be equal 'block_est' or "
