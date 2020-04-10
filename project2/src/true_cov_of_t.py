@@ -1,4 +1,4 @@
-from src.coef import coef, coef_2, coef_3
+from src.coef import coef, coef_2, coef_3, coef_1_ar
 
 
 def true_cov_ma1_of_t(t_par, sigma, lag):
@@ -61,4 +61,6 @@ def true_cov_ma3_of_t(t_par, lag, sigma):
 
 
 def true_cov_ar1_of_t(t_par, lag, sigma):
-    pass
+    coef = coef_1_ar(t_par)
+    cov = (sigma**2 / (1 - coef**2)) * (coef**lag)
+    return cov

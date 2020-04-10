@@ -141,7 +141,7 @@ def compute_and_save_cov_and_cov_hats(sample_size,
 
 
 if __name__ == '__main__':
-    compute_and_save_cov_and_cov_hats(sample_size=5000,
+    compute_and_save_cov_and_cov_hats(sample_size=1000,
                                       t_par_count=11,
                                       gamma_count=5,
                                       mean=0,

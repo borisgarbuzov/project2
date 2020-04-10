@@ -72,7 +72,7 @@ def sd_cov_hat(sample_size: int,
                 name="var_cov_hat_native_matrix_means_ar1_non_deg.csv",
                 index_col="lag"
             )
-            if lag < 2:
+            if lag < 4:
                 value = matrix_means_array[noise_type][lag]
             elif lag > matrix_means_array.shape[0] - 1:
                 value = matrix_means_array["average"][-1]
