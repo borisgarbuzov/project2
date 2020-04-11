@@ -32,4 +32,4 @@ def coef_1_ar(t_par):
     """
     The first coefficient of TVAR process 
     """
-    return 0.5 - 0.5*t_par
+    return 0.75 - 0.5*t_par

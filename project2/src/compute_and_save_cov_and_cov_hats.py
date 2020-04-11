@@ -5,6 +5,7 @@ from src.horizontal_sample_scaled_noise import horizontal_sample_scaled_noise
 from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
 from src.horizontal_sample_tvma3 import horizontal_sample_tvma3
 from src.diagonal_sample_tvar1 import diagonal_sample_tvar1
+from src.horizontal_sample_tvar1 import horizontal_sample_tvar1
 from src.create_t_par_array import create_t_par_array
 from src.true_cov_of_t import true_cov_ma1_of_t, true_cov_ma3_of_t, true_cov_ar1_of_t
 from src.cov_hat_of_t import cov_hat_of_t
@@ -116,6 +117,13 @@ def compute_and_save_cov_and_cov_hats(sample_size,
                     mean=mean,
                     sigma=sigma,
                     noise_type=noise_type)
+            elif diag_or_horiz == "horiz":
+                horizontal = horizontal_sample_tvar1(
+                    sample_size=sample_size,
+                    t_par_count=t_par_count,
+                    mean=mean,
+                    sigma=sigma,
+                    noise_type=noise_type)
 
         for t_index in range(t_par_count):
             if diag_or_horiz == "horiz":
@@ -149,4 +157,96 @@ if __name__ == '__main__':
                                       lag=0,
                                       sample_type='ar1',
                                       noise_type='gaussian',
-                                      diag_or_horiz='diag')
+                                      diag_or_horiz='horiz')
+
+    compute_and_save_cov_and_cov_hats(sample_size=10000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=0,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+
+    # 1
+    compute_and_save_cov_and_cov_hats(sample_size=1000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=1,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+
+    compute_and_save_cov_and_cov_hats(sample_size=10000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=1,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+
+    # 2
+    compute_and_save_cov_and_cov_hats(sample_size=1000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=2,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+
+    compute_and_save_cov_and_cov_hats(sample_size=10000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=2,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+    # 3
+    compute_and_save_cov_and_cov_hats(sample_size=1000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=3,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+
+    compute_and_save_cov_and_cov_hats(sample_size=10000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=3,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+    # 4
+    compute_and_save_cov_and_cov_hats(sample_size=1000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=4,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')
+
+    compute_and_save_cov_and_cov_hats(sample_size=10000,
+                                      t_par_count=11,
+                                      gamma_count=5,
+                                      mean=0,
+                                      sigma=2,
+                                      lag=4,
+                                      sample_type='ar1',
+                                      noise_type='gaussian',
+                                      diag_or_horiz='horiz')

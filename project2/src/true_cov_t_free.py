@@ -30,3 +30,7 @@ def true_cov_ma3_t_free(lag: int, sigma: int):
         return (7 / 2) * (sigma ** 2)
     else:
         return 0
+
+
+def true_cov_ar1_t_free(lag: int, sigma: int):
+    return 4.5
