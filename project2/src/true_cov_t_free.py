@@ -33,4 +33,16 @@ def true_cov_ma3_t_free(lag: int, sigma: int):
 
 
 def true_cov_ar1_t_free(lag: int, sigma: int):
-    return 4.5
+    if lag == 0:
+        return 5.74034
+    elif lag == 1:
+        return 3.04856
+    elif lag == 2:
+        return 1.74034
+    elif lag == 3:
+        return 1.04856
+    else:
+        return 0
+
+
+
