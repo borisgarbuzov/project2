@@ -40,7 +40,7 @@ def true_cov_ar1_t_free(lag: int, sigma: int):
     elif lag == 2:
         return 1.74034
     elif lag == 3:
-        return 1.04856
+        return 1.0485
     else:
         return 0
 
