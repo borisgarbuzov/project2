@@ -78,27 +78,27 @@ if __name__ == '__main__':
     read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type='gaussian',   # bernoulli
                                                                count_lags=count_lags,
                                                                fix_number_of_lags=300,
-                                                               sample_type='ma3',
+                                                               sample_type='ar1',
                                                                is_deg=False,
                                                                mult_on_sample_size=False)
 
     read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type='bernoulli',  # bernoulli
                                                                count_lags=count_lags,
                                                                fix_number_of_lags=300,
-                                                               sample_type='ma3',
+                                                               sample_type='ar1',
                                                                is_deg=False,
                                                                mult_on_sample_size=False)
 
     read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type='gaussian',  # bernoulli
                                                                count_lags=count_lags,
                                                                fix_number_of_lags=300,
-                                                               sample_type='ma3',
+                                                               sample_type='ar1',
                                                                is_deg=False,
                                                                mult_on_sample_size=True)
 
     read_and_plot_var_cov_hat_native_matrix_by_sample_size_csv(noise_type='bernoulli',  # bernoulli
                                                                count_lags=count_lags,
                                                                fix_number_of_lags=300,
-                                                               sample_type='ma3',
+                                                               sample_type='ar1',
                                                                is_deg=False,
                                                                mult_on_sample_size=True)
