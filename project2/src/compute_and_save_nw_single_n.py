@@ -1,8 +1,9 @@
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
+from src.diagonal_sample_tvar1 import diagonal_sample_tvar1
 from src.cov_double_array_of_t import cov_double_array_of_t
 from src.create_t_par_array import create_t_par_array
-from src.true_lrv_of_t import true_lrv_ma1_of_t, true_lrv_ma3_of_t
+from src.true_lrv_of_t import true_lrv_ma1_of_t, true_lrv_ma3_of_t, true_lrv_ar1_of_t
 from src.lrv_hat_nw_of_t import lrv_hat_nw_of_t
 from src.plot_double_array import plot_double_array
 from src.support_bound import support_bound
@@ -38,6 +39,8 @@ def compute_and_save_nw_single_n(sample_size: int,
         true_lrv_array = true_lrv_ma1_of_t(sigma=sigma, t_par_array=t_par_array)
     elif sample_type == "ma3":
         true_lrv_array = true_lrv_ma3_of_t(sigma=sigma, t_par_array=t_par_array)
+    elif sample_type == "ar1":
+        true_lrv_array = true_lrv_ar1_of_t(sigma=sigma, t_par_array=t_par_array)
 
     nw_hat_double_array = np.full(shape=(t_par_count, replication_count),
                                          fill_value=np.nan)
@@ -49,6 +52,10 @@ def compute_and_save_nw_single_n(sample_size: int,
                                            sigma=sigma, noise_type=noise_type)
         elif sample_type == "ma3":
             sample = diagonal_sample_tvma3(sample_size=sample_size, mean=mean,
+                                           sigma=sigma, noise_type=noise_type)
+
+        elif sample_type == "ar1":
+            sample = diagonal_sample_tvar1(sample_size=sample_size, mean=mean,
                                            sigma=sigma, noise_type=noise_type)
 
         cov_double_array = cov_double_array_of_t(sample=sample,
@@ -75,4 +82,4 @@ if __name__ == '__main__':
                                  sigma=2,
                                  noise_type="gaussian",
                                  replication_count=5,
-                                 sample_type="ma3")
+                                 sample_type="ar1")

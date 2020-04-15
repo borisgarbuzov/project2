@@ -79,10 +79,10 @@ def compute_and_save_nw_vs_threshold(sample_size: int,
 
 
 if __name__ == '__main__':
-    compute_and_save_nw_vs_threshold(sample_size=10000,
+    compute_and_save_nw_vs_threshold(sample_size=1000,
                                      t_par_count=11,
                                      mean=0,
                                      sigma=2,
                                      noise_type="gaussian",
-                                     sd_type="block_est",
+                                     sd_type="native_sim",
                                      sample_type="ar1")
