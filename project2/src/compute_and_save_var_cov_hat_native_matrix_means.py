@@ -113,7 +113,7 @@ if __name__ == '__main__':
     start_time = timer()
 
     compute_and_save_var_cov_hat_native_matrix_means(fix_number_of_lags=300,
-                                                     sample_type='ma3',
+                                                     sample_type='ar1',
                                                      is_data=True,
                                                      is_deg=False)
 
