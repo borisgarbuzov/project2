@@ -1,5 +1,6 @@
 from src.diagonal_sample_tvma1 import diagonal_sample_tvma1
 from src.diagonal_sample_tvma3 import diagonal_sample_tvma3
+from src.diagonal_sample_tvar1 import diagonal_sample_tvar1
 from src.lrv_hat_threshold_t_free import lrv_hat_threshold_t_free
 from src.lrv_hat_nw_t_free import lrv_hat_nw_t_free
 from src.plot_double_array import plot_double_array
@@ -7,8 +8,8 @@ from src.cov_column_t_free import cov_column_t_free
 from src.cov_column_of_t import cov_column_of_t
 from src.threshold_max_lag import threshold_max_lag
 from src.support_bound import support_bound
-from src.true_lrv_t_free import true_lrv_ma1_t_free, true_lrv_ma3_t_free
-from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t, true_lrv_ma3_of_single_t
+from src.true_lrv_t_free import true_lrv_ma1_t_free, true_lrv_ma3_t_free, true_lrv_ar1_t_free
+from src.true_lrv_of_single_t import true_lrv_ma1_of_single_t, true_lrv_ma3_of_single_t, true_lrv_ar1_of_single_t
 from src.compute_and_save_multi_precision_of_t import compute_and_save_multi_precision_of_t
 from src.plot_ridgline import plot_ridgline
 import numpy as np
@@ -74,12 +75,20 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
             true_LRV_array = np.repeat(true_lrv_ma3_of_single_t(sigma=sigma,
                                                                 t_par=t_par),
                                        len(sample_size_array))
+        elif sample_type == "ar1":
+            true_LRV_array = np.repeat(true_lrv_ar1_of_single_t(sigma=sigma,
+                                                                t_par=t_par),
+                                       len(sample_size_array))
+
     elif t_par == 'free':
         if sample_type == "ma1":
             true_LRV_array = np.repeat(true_lrv_ma1_t_free(sigma=sigma),
                                        len(sample_size_array))
         elif sample_type == "ma3":
             true_LRV_array = np.repeat(true_lrv_ma3_t_free(sigma=sigma),
+                                       len(sample_size_array))
+        elif sample_type == "ar1":
+            true_LRV_array = np.repeat(true_lrv_ar1_t_free(sigma=sigma),
                                        len(sample_size_array))
     else:
         raise ValueError(
@@ -100,6 +109,12 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
                                                mean=mean,
                                                sigma=sigma,
                                                noise_type=noise_type)
+            elif sample_type == "ar1":
+                sample = diagonal_sample_tvar1(sample_size=sample_size,
+                                               mean=mean,
+                                               sigma=sigma,
+                                               noise_type=noise_type)
+
             if isinstance(t_par, numbers.Number):
                 cov_hat_column = cov_column_of_t(sample=sample,
                                                  t_par=t_par,
@@ -165,12 +180,14 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
 
 if __name__ == '__main__':
     compute_and_save_nw_threshold_single_t(sample_size_from=1000,
-                                           sample_size_to=10001,
+                                           sample_size_to=100001,
                                            sample_size_by=1000,
                                            replication_count=5,
                                            mean=0,
                                            sigma=2,
                                            noise_type="gaussian",
-                                           sd_type="block_est",
+                                           sd_type="native_sim",
                                            t_par="free",
-                                           sample_type="ma3")
+                                           sample_type="ar1")
+
+    duration
