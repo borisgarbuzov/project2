@@ -136,22 +136,22 @@ def compute_and_save_var_cov_hat_native_matrix(replication_count: int,
 if __name__ == '__main__':
     sample_size_array = np.arange(1000, 5001, 1000)
 
-    start_time = timer()
-    res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
-                                                     sample_size_array=sample_size_array,
-                                                     mean=0,
-                                                     sigma=2,
-                                                     noise_type='gaussian',
-                                                     is_data=True,
-                                                     fix_number_of_lags=300,
-                                                     sample_type='ar1')
-    duration = timer() - start_time
+    # start_time = timer()
+    # res = compute_and_save_var_cov_hat_native_matrix(replication_count=1000,
+    #                                                  sample_size_array=sample_size_array,
+    #                                                  mean=0,
+    #                                                  sigma=2,
+    #                                                  noise_type='gaussian',
+    #                                                  is_data=True,
+    #                                                  fix_number_of_lags=300,
+    #                                                  sample_type='ar1')
+    # duration = timer() - start_time
 
-    calculate_time(name='compute_and_save_var_cov_hat_native_matrix', 
-                   duration=duration,
-                   parameters="""replication_count=1000, sample_size_array=1000:5001, 
-                              mean=0, sigma=2, noise_type='gaussian', is_data=True, 
-                              fix_number_of_lags=300, sample_type='ar1'""")
+    # calculate_time(name='compute_and_save_var_cov_hat_native_matrix', 
+    #               duration=duration,
+    #               parameters="""replication_count=1000, sample_size_array=1000:5001, 
+    #                           mean=0, sigma=2, noise_type='gaussian', is_data=True, 
+    #                           fix_number_of_lags=300, sample_type='ar1'""")
 
 
     start_time = timer()
@@ -172,13 +172,13 @@ if __name__ == '__main__':
                               fix_number_of_lags=300, sample_type='ar1'""")
 
     # print(np.around(res, decimals=4))
-    print('=========================================')
-    print('Gaussian matrix duration:\t', duration, 'secs')
-    print('=========================================\n')
+    # print('=========================================')
+    # print('Gaussian matrix duration:\t', duration, 'secs')
+    # print('=========================================\n')
 
     print('=========================================')
     print('Bernoulli matrix duration:\t', duration2, 'secs')
     print('=========================================\n')
     
     
-    print(duration + duration2)
+    # print(duration + duration2)

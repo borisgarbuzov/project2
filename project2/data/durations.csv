@@ -5,3 +5,9 @@ compute_and_save_var_cov_hat_native_matrix,03.29.20-20:54:01,6641.1166775500005,
 compute_and_save_var_cov_hat_native_matrix,03.30.20-01:27:38,16416.822879837,"replication_count=1000, sample_size_array=1000:5001, 
                               mean=0, sigma=2, noise_type='bernoulli', is_data=True, 
                               fix_number_of_lags=300, sample_type='ar1'"
+compute_and_save_var_cov_hat_native_matrix,04.12.20-21:02:35,6693.406511929999,"replication_count=1000, sample_size_array=1000:5001, 
+                              mean=0, sigma=2, noise_type='gaussian', is_data=True, 
+                              fix_number_of_lags=300, sample_type='ar1'"
+compute_and_save_var_cov_hat_native_matrix,04.13.20-19:35:13,16724.547578903002,"replication_count=1000, sample_size_array=1000:5001, 
+                              mean=0, sigma=2, noise_type='bernoulli', is_data=True, 
+                              fix_number_of_lags=300, sample_type='ar1'"
