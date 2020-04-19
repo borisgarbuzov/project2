@@ -9,6 +9,10 @@ from src.support_bound import support_bound
 from src.threshold_max_lag import threshold_max_lag
 from src.plot_histogram import plot_histograms
 import numpy as np
+import pandas as pd
+import os
+from os.path import dirname
+import datetime
 
 
 def compute_and_save_threshold_nw_t_free(sample_size: int,
@@ -18,6 +22,7 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
                                          noise_type: str,
                                          sd_type: str,
                                          lrv_est: str,
+                                         is_data: bool = False,
                                          sample_type: str = "ma1"):
     """
     Illustrated in
@@ -26,6 +31,18 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
     histogram of replicated NW estimate threshold or both.
     True value is marked on all histograms.
     """
+
+    # create directory for data if it doesn't exist
+    now = datetime.datetime.now()
+    parent_dir = dirname(dirname(__file__))
+    if is_data:
+        data_folder = os.path.join(parent_dir, "data")
+    if not is_data:
+        data_folder = os.path.join(parent_dir, "output")
+        date = '_{}'.format(now.strftime("%H;%M;%S;%f"))
+    if not os.path.exists(data_folder):
+        os.mkdir(data_folder)
+
     par_list = {"sample_size": sample_size,
                 "replication_count": replication_count,
                 "mean": mean,
@@ -84,6 +101,13 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
     arrays_dict = {"Newey-West": nw_t_free_array,
                    "Threshold": threshold_t_free_array}
 
+    # convert to Pandas DataFrame
+    df = pd.DataFrame(arrays_dict)
+
+    # df.index.name = 'lag'
+
+    df.to_csv(os.path.join(data_folder, "test.csv"))
+
     plot_histograms(arrays_dict=arrays_dict,
                     true_value=true_lrv,
                     title="{} t free lrv".format(lrv_est),
@@ -91,11 +115,12 @@ def compute_and_save_threshold_nw_t_free(sample_size: int,
 
 
 if __name__ == '__main__':
-    compute_and_save_threshold_nw_t_free(sample_size=10000,
-                                         replication_count=1,
+    compute_and_save_threshold_nw_t_free(sample_size=100,
+                                         replication_count=10,
                                          mean=0,
                                          sigma=2,
                                          noise_type="gaussian",
-                                         sd_type="block_est",
-                                         lrv_est="threshold",
+                                         sd_type="native_sim",
+                                         lrv_est="both",
+                                         is_data=True,
                                          sample_type="ar1")
