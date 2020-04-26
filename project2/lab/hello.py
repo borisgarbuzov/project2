@@ -102,7 +102,7 @@ myList = [1, 2, 2, 'a', 'a', 'b']
 print("first = ", first)
 print("second = ", second)
 print("third = ", third)
-
+ 
 print("\n packing ")
 def summator(*terms):
     return sum(term for term in terms)
