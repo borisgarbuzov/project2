@@ -26,6 +26,6 @@ def lrv_hat_nw_2_of_single_t(sample: np.array, t_par: float) -> float:
             kernel_nw = triangular_kernel(v=np.abs(lag) / support_bound(
                 sample_size=sample_size))
             nw_hat += kernel_cov * kernel_nw * x_i * x_j
-        print("lrv_hat_of_single_t_nw_2 external sum", len(sample) - i)
+        # print("lrv_hat_of_single_t_nw_2 external sum", len(sample) - i)
 
     return nw_hat

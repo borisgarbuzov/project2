@@ -68,8 +68,24 @@ def read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type: str,
 
 
 if __name__ == '__main__':
-    read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type='gaussian', # bernoulli
+    read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type='gaussian',  # bernoulli
                                                         fix_number_of_lags=300,
                                                         sample_type='ar1',
                                                         is_deg=False,
                                                         mult_on_sample_size=False)
+    read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type='bernoulli',  # bernoulli
+                                                        fix_number_of_lags=300,
+                                                        sample_type='ar1',
+                                                        is_deg=False,
+                                                        mult_on_sample_size=False)
+
+    read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type='gaussian',  # bernoulli
+                                                        fix_number_of_lags=300,
+                                                        sample_type='ar1',
+                                                        is_deg=False,
+                                                        mult_on_sample_size=True)
+    read_and_plot_var_cov_hat_native_matrix_by_lags_csv(noise_type='bernoulli',  # bernoulli
+                                                        fix_number_of_lags=300,
+                                                        sample_type='ar1',
+                                                        is_deg=False,
+                                                        mult_on_sample_size=True)
