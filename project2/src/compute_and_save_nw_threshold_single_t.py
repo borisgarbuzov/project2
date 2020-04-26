@@ -18,6 +18,8 @@ import numbers
 import os
 from os.path import dirname
 import datetime
+from src.calculate_time import calculate_time
+from timeit import default_timer as timer
 
 
 def compute_and_save_nw_threshold_single_t(sample_size_from: int,
@@ -187,11 +189,17 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
     arrays_dict = {"Newey-West": nw_double_array,
                    "Threshold": threshold_double_array}
     # plot
-    compute_and_save_multi_precision_of_t(true_array=true_LRV_array,
-                                          est_dict=arrays_dict,
-                                          par_list=par_list,
-                                          x_label="sample size",
-                                          x_array=sample_size_array)
+    precision_dict = compute_and_save_multi_precision_of_t(true_array=true_LRV_array,
+                                                           est_dict=arrays_dict,
+                                                           par_list=par_list,
+                                                           x_label="sample size",
+                                                           x_array=sample_size_array)
+    df_bias = pd.DataFrame(precision_dict['bias'])
+    print(df_bias)
+    df_bias.to_csv(os.path.join(data_folder, "bias_rep{}.csv".format(replication_count)))
+    df_mean = pd.DataFrame(precision_dict['mean']).to_csv(os.path.join(data_folder, "mean_rep{}.csv".format(replication_count)))
+    df_mse = pd.DataFrame(precision_dict['mse']).to_csv(os.path.join(data_folder, "mse_rep{}.csv".format(replication_count)))
+    df_variance = pd.DataFrame(precision_dict['variance']).to_csv(os.path.join(data_folder, "variance_rep{}.csv".format(replication_count)))
 
     # to CSV
     # for DataFrame
@@ -212,10 +220,12 @@ def compute_and_save_nw_threshold_single_t(sample_size_from: int,
 
 
 if __name__ == '__main__':
-    compute_and_save_nw_threshold_single_t(sample_size_from=100,
-                                           sample_size_to=1001,
-                                           sample_size_by=100,
-                                           replication_count=5,
+    
+    start_time = timer()
+    compute_and_save_nw_threshold_single_t(sample_size_from=1000,
+                                           sample_size_to=100001,
+                                           sample_size_by=1000,
+                                           replication_count=100,
                                            mean=0,
                                            sigma=2,
                                            noise_type="gaussian",
@@ -223,3 +233,19 @@ if __name__ == '__main__':
                                            is_data=True,
                                            t_par="free",
                                            sample_type="ar1")
+
+    duration = timer() - start_time
+
+    calculate_time(name='compute_and_save_nw_threshold_single_t', 
+                   duration=duration,
+                   parameters="""sample_size_from=1000,
+                               sample_size_to=100001,
+                               sample_size_by=1000,
+                               replication_count=100,
+                               mean=0,
+                               sigma=2,
+                               noise_type="gaussian",
+                               sd_type="native_sim",
+                               is_data=True,
+                               t_par="free",
+                               sample_type="ar1"'""")
