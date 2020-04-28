@@ -2,6 +2,12 @@ from src.precision_of_t import precision_of_t
 from src.plot_preparations import plot_preparations
 import numpy as np
 from matplotlib import pyplot as plt
+import pandas as pd
+import numbers
+import os
+from os.path import dirname
+import datetime
+
 
 """
 This module contains several functions, 
@@ -42,6 +48,7 @@ def compute_multi_precision_of_t(true_array: np.array,
             'mse': mse_dict,
             'variance': variance_dict
     }
+    
 
 def plot_precision_of_t(precision_dict: dict,
                         true_array: np.array,
@@ -94,6 +101,7 @@ def compute_and_save_multi_precision_of_t(true_array: np.array,
                               x_label=x_label,
                               par_list=par_list,
                               x_array=x_array)
+    return precision_dict
 
 
 if __name__ == '__main__':

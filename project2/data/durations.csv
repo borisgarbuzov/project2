@@ -11,3 +11,28 @@ compute_and_save_var_cov_hat_native_matrix,04.12.20-21:02:35,6693.406511929999,"
 compute_and_save_var_cov_hat_native_matrix,04.13.20-19:35:13,16724.547578903002,"replication_count=1000, sample_size_array=1000:5001, 
                               mean=0, sigma=2, noise_type='bernoulli', is_data=True, 
                               fix_number_of_lags=300, sample_type='ar1'"
+compute_and_save_nw_threshold_single_t,04.15.20-18:59:57,3168.120369783999,"sample_size_from=1000, sample_size_to=100001, 
+                   sample_size_by=1000, replication_count=5, mean=0, sigma=2, noise_type=""gaussian"", 
+                   sd_type=""native_sim"", t_par=""free"", sample_type='ar1'"
+compute_and_save_nw_threshold_single_t,04.21.20-12:52:03,511.5870273159999,"sample_size_from=1000,
+                               sample_size_to=10001,
+                               sample_size_by=1000,
+                               replication_count=100,
+                               mean=0,
+                               sigma=2,
+                               noise_type=""gaussian"",
+                               sd_type=""native_sim"",
+                               is_data=True,
+                               t_par=""free"",
+                               sample_type=""ar1""'"
+compute_and_save_nw_threshold_single_t,04.22.20-07:16:28,61697.19277369501,"sample_size_from=1000,
+                               sample_size_to=10001,
+                               sample_size_by=1000,
+                               replication_count=100,
+                               mean=0,
+                               sigma=2,
+                               noise_type=""gaussian"",
+                               sd_type=""native_sim"",
+                               is_data=True,
+                               t_par=""free"",
+                               sample_type=""ar1""'"
