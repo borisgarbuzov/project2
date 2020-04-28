@@ -124,3 +124,38 @@ myString = "{a}, {b}, {c}".format(**stringDictionary)
 print(myString)
 print(stringDictionary['a'])
 
+a = [11, 2, 1, 1]
+print ("x = ", x)
+a[len(a):] = [x]
+print ("a = ", a)
+a.insert(1, 10)
+print ("a = ", a)
+a.remove(1)
+print ("a = ", a)
+# returned = a.pop([1])
+# print(returned)
+
+squares = list(map(lambda x: x**2, range(10)))
+print ("squares = ", squares)
+
+myMap = map(lambda x: x**2, range(10))
+print ("myMap = ", myMap)
+squares = [x**2 for x in range(10)]
+print ("squares = ", squares)
+print ([(x, y) for x in [1,2,3] for y in [3,1,4] if x != y])
+print ([(x, y) for x in [1,2,3] for y in [3,1,4] if x == y])
+
+matrix = [
+[1, 2, 3, 4],
+[5, 6, 7, 8],
+[9, 10, 11, 12],
+]
+print(len(matrix))
+transposed = [[row[i] for row in matrix] for i in range(4)]
+print(transposed)
+print(len(transposed))
+
+
+
+
+
