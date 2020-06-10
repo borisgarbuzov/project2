@@ -155,6 +155,44 @@ transposed = [[row[i] for row in matrix] for i in range(4)]
 print(transposed)
 print(len(transposed))
 
+for row in matrix:
+    print("row =", row)
+    
+sameMatrix = [row for row in matrix]
+print("sameMatrix =", sameMatrix)
+print("sameMatrix is matrix =", sameMatrix is matrix)
+
+print("suppose there is an external cycle with i = ...")
+i = 0
+col0 = [row[i] for row in matrix]
+i = 1
+col1 = [row[i] for row in matrix]
+i = 2
+col2 = [row[i] for row in matrix]
+i = 3
+col3 = [row[i] for row in matrix]
+transposed = [col0, col1, col2, col3]
+print("transposed =", transposed)
+
+a, b = 1, 2
+myList = [a, b] = 1, 2
+print("myList = ", myList)
+print("type(myList) = ", type(myList))
+# myList[1] = "a"
+myProperList = [1, 2]
+myProperList[0] = 10
+print("myProperList = ", myProperList)
+
+list(zip(*matrix))
+print("matrix = \n", matrix)
+print("*matrix = \n", *matrix)
+# row1, row2, row3 = *matrix
+print("zip(*matrix) = \n", zip(*matrix))
+print("list(zip(*matrix)) = \n", list(zip(*matrix)))
+
+print ("zip([1, 2]) = ", zip([1, 2]))
+
+
 
 
 

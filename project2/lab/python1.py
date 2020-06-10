@@ -150,6 +150,53 @@ pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
 pairs.sort(key=lambda pair: pair[1])
 print(pairs)
 
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(basket)                      # show that duplicates have been removed
+{'orange', 'banana', 'pear', 'apple'}
+print('orange' in basket)                 # fast membership testing
+print(1 in [1]) # works as well
+
+a = set('abracadabra')
+b = set('alacazam')
+print('alacazam' in b)
+print('a' in b)
+print(b)
+
+excludeString = {x for x in 'abracadabra' if x not in 'abc'}
+excludeSet = {x for x in 'abracadabra' if x not in {'a', 'b', 'c'}}
+print(excludeString)
+print(excludeSet)
+
+myDictionary = {"key1":"value1"}
+print(myDictionary)
+print(myDictionary["key1"])
+
+questions = ['name', 'quest', 'favorite color']
+answers = ['lancelot', 'the holy grail', 'blue']
+for q, a in zip(questions, answers):
+    print('What is your {0}?  It is {1}.'.format(q, a))
+
+string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'
+non_null = string1 or string2 or string3
+print("here 1")
+print(non_null)
+print("here 2")
+print("!!!what is the problem?!!!")
+print("here 3")
+print("here 4")
+
+# why?
+print((1, 2, 3)              < (1, 2, 4))
+print([1, 2, 3]              < [1, 2, 4])
+print('ABC' < 'C' < 'Pascal' < 'Python')
+print((1, 2, 3, 4)           < (1, 2, 4))
+print((1, 2)                 < (1, 2, -1))
+print((1, 2, 3)             == (1.0, 2.0, 3.0))
+print((1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4))
+
+print (1 < 1)
+print (1 <= 1)
+
 
 
 
