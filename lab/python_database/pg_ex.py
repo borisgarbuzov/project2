@@ -44,14 +44,39 @@ try:
     print("record 6 ", record)    
     
     
+    insertQuery = "insert into test_crosstab values ('product from Python 2', 'category from Python 2', 1)"
+    cursor.execute(insertQuery)
+    selectQuery = "select * from test_crosstab;"
+    cursor.execute(selectQuery)
+    records = cursor.fetchall()
+    print("select records before commit =\n", records) 
+    
+    deleteQuery = "delete from test_crosstab where product_name = 'product from Python 2'"
+    cursor.execute(deleteQuery)
+    records = cursor.fetchall()
+    print("Delete query: select records before commit =\n", records) 
+    #connection.commit()
+    cursor.execute(selectQuery)
+    records = cursor.fetchall()
+    print("select records after commit =\n", records) 
+    
+        
 except (Exception, psycopg2.Error) as error :
     print ("Error while connecting to PostgreSQL ", error)
 finally:
     # closing database connection.
         if(connection):
+            print("connection =", connection)
+            print("type(connection) =", type(connection))
             cursor.close()
             connection.close()
             print("PostgreSQL connection is closed")
             
-            
-            
+if (float('nan')):
+    print("true branch");
+else:
+    print("false branch");
+a = float('nan')
+print("a =", a)
+print("type(a) =", type(a))
+
